@@ -9,7 +9,7 @@ const movieRouter = require('./modules/api/movies/router');
 const userRouter = require('./modules/api/users/router');
 const authRouter = require('./modules/api/auth/router');
 
-//set up session 
+//set up session sd
 app.use(
   session({
     secret: config.sessionSecret,
