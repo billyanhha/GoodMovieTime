@@ -1,19 +1,37 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter, Route } from "react-router-dom";
+import Home from './containers/Home';
+import axios from './axios';
+import Login from './containers/Login';
+import 'antd/dist/antd.css';  // or 'antd/dist/antd.less'
+
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoggedin: false,
+    }
+  }
+
+  componentDidMount() {
+    axios.get('http://localhost:6969/api/auth').then(
+      data => data.data && this.setState({ isLoggedin: true })
+    ).catch(err => console.log(err))
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <BrowserRouter>
+        <div className="App">
+          <Route exact path='/' render={(props) => {
+            return <Home {...props} isLoggedin={this.state.isLoggedin} />
+          }} />
+          <Route path='/login' render={(props) => {
+            return <Login {...props} />
+          }} /></div>
+      </BrowserRouter>
     );
   }
 }

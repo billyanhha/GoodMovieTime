@@ -1,0 +1,120 @@
+html , body {
+    height: 100%;
+}
+
+
+.container-fluid  {
+    height: 100%;
+    background-image: url('https://assets.nflxext.com/ffe/siteui/vlv3/b09c7d01-44a8-4786-93e6-90c9bc7a4c0a/5f032bce-690a-41db-9a33-ce218e6df76d/VN-en-20180917-popsignuptwoweeks-perspective_alpha_website_small.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* width: 100%; */
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.contain{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0 , 0, 0,0.6);
+    flex-direction: column
+}
+
+.loginForm {
+    display: flex;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.login {
+    width: 100%;
+    background-color: rgba(0,0,0,.75);
+    margin-left: 37%;
+    margin-right:37%;
+    padding: 3%;
+}
+
+
+.ant-input {
+    /* font-co */
+    height: 3vw !important;
+    font-size: 2vw;
+}
+
+#components-form-demo-normal-login .login-form {
+    max-width: 300px;
+  }
+  #components-form-demo-normal-login .login-form-forgot {
+    /* float: c; */
+  } 
+  .ant-btn-primary {
+    height: 3vw !important;
+    margin-top: 3vw; 
+    width: 100%;
+    background-color: #D93433 !important;
+    border-color: #D93433 !important
+  }
+
+  span {
+    font-size: 1vw;
+    color: #fff;
+  }
+
+  a {
+      color: #D93433 !important;
+  }
+
+  .signInText{
+    color: #fff;
+    font-size: 2vw;
+  }
+
+
+  @media only screen and (max-width: 600px) {
+    
+    .login {
+        width: 100%;
+        background-color: rgba(0,0,0,.75);
+        margin-left: 20%;
+        margin-right:20%;
+        padding: 2%;
+    }
+    
+    
+    .ant-input {
+        /* font-co */
+        height: 7vw !important;
+        font-size: 4vw;
+    }
+    
+      .ant-btn-primary {
+        height: 7vw !important;
+        margin-top: 7vw; 
+        width: 100%;
+        background-color: #D93433 !important;
+        border-color: #D93433 !important
+      }
+    
+      span {
+        font-size: 4vw;
+        color: #fff;
+      }
+    
+      a {
+          color: #D93433 !important;
+      }
+    
+      .signInText{
+        color: #fff;
+        font-size: 4vw;
+      }
+    
+    
+}
