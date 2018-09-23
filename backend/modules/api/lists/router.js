@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
-
+const authMiddleware = require('../auth/auth.js');
 const listController = require("./controller");
 
-router.post("/", (req, res) => {
+router.post("/", authMiddleware.authorize, (req, res) => {
   listController
     .createList(req.body)
     .then(data => res.send(data))
