@@ -1,0 +1,6 @@
+{
+    "mongoPath": "mongodb://localhost:27017/movie-suggestions",
+    "sessionSecret": "ok",
+    "secureCookie": false,
+    "rootPath": "vovagram.herokuapp.com"
+}
