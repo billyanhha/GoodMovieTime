@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
-import './NonLoginHeader.css';
-import { Link } from 'react-router-dom'
-import logo from '../../images/logo.png'
+import { Link } from 'react-router-dom';
+import logo from '../images/logo.png';
+
 
 class NonLoginHeader extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isLoggedin: false,
+            username: false,
         }
     }
 
     render() {
         return (
-            <div className="header">
-                <Link to='/' ><img src={logo} className="logo" alt="Logo" /> </Link>
+            <div className="loginHeader">
+                <Link to='/' ><img src={logo} className="logoLogin" alt="Logo" /> </Link>
             </div>
         )
     }

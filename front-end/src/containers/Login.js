@@ -1,33 +1,39 @@
 import React, { Component } from 'react';
-import './Login.css';
-import NonLoginHeader from "../../components/NonLoginHeader";
+import NonLoginHeader from "../components/NonLoginHeader";
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
-import {Link} from 'react-router-dom';
-import axios  from "../../axios";
+import { Link, withRouter, Redirect } from 'react-router-dom';
+import axios from "../axios";
+import { message } from 'antd';
 
 const FormItem = Form.Item;
 class LoginForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isLoggedin: false,
+            username: '',
         }
     }
+    
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                axios.post('/api/auth/login' , {
+                axios.post('/api/auth/login', {
                     ...values
-                })
+                }).then(data => {
+                    return (this.props.history.push('/'))
+                }).catch(err => {
+                    message.error("Incorrect password or username", 2.5)
+                }
+                )
             }
         });
     }
     render() {
         const { getFieldDecorator } = this.props.form;
         return (
-            <div className="container-fluid ">
-                <div className="contain">
+            <div className="Login container-fluid ">
+                <div className="Login contain">
                     <NonLoginHeader />
                     <div className="loginForm">
                         <div className="login">
@@ -37,27 +43,29 @@ class LoginForm extends Component {
                                     {getFieldDecorator('username', {
                                         rules: [{ required: true, message: 'Please input your username!' }],
                                     })(
-                                        <Input  placeholder="Username" />
-                                )}
+                                        <Input placeholder="Username" />
+                                    )}
                                 </FormItem>
                                 <FormItem>
                                     {getFieldDecorator('password', {
                                         rules: [{ required: true, message: 'Please input your Password!' }],
                                     })(
-                                        <Input  type="password" placeholder="Password" />
-                                )}
+                                        <Input type="password" placeholder="Password" />
+                                    )}
                                 </FormItem>
                                 <FormItem>
-                                    <Button type="primary" htmlType="submit" className="login-form-button">
+                                    <Button type="primary" htmlType="submit">
                                         Log in
                                     </Button>
-                                    <span>New to us ? </span><Link to = "./signUp">Sign up !</Link>
+                                    < div className="Login signUp" >
+                                        <span className="span">New to us ? </span><Link to="./signUp">Sign up !</Link>
+                                    </div>
                                 </FormItem>
                             </Form>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div >
         )
     }
 }
@@ -65,4 +73,4 @@ class LoginForm extends Component {
 const Login = Form.create()(LoginForm);
 
 
-export default Login;
+export default withRouter(Login);

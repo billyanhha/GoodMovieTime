@@ -1,3 +1,263 @@
 .App{
     height: 100%;
 }
+
+/* Login */
+
+html , body {
+    height: 100%;
+}
+
+
+.container-fluid  {
+    height: 100%;
+    background-image: url('https://assets.nflxext.com/ffe/siteui/vlv3/b09c7d01-44a8-4786-93e6-90c9bc7a4c0a/5f032bce-690a-41db-9a33-ce218e6df76d/VN-en-20180917-popsignuptwoweeks-perspective_alpha_website_small.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* width: 100%; */
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.contain{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0 , 0, 0,0.6);
+    flex-direction: column
+}
+
+.loginForm {
+    display: flex;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.login {
+    width: 100%;
+    background-color: rgba(0,0,0,.75);
+    margin-left: 40%;
+    margin-right:40%;
+    padding: 3%;
+}
+
+.signUp{
+    margin-top: 10px;
+    text-align: center;
+}
+
+
+.ant-input {
+    /* font-co */
+    height: 2vw !important;
+    color: #000
+}
+
+#components-form-demo-normal-login .login-form {
+    max-width: 300px;
+  }
+  #components-form-demo-normal-login .login-form-forgot {
+    /* float: c; */
+  } 
+  .ant-btn-primary {
+    height: 2vw !important;
+    margin-top: 3vw; 
+    width: 100%;
+    background-color: #D93433 !important;
+    border-color: #D93433 !important;
+    font-size: 0.8vw;
+    color: #fff;
+    font-weight: bold;
+    text-align: center
+  }
+
+  
+  .ant-message-notice-content{
+    background-color: rgba(0,0,0,.75) !important;
+  }
+
+
+  .span {
+    font-size: 0.8vw;
+    color: #fff;
+    font-weight: bold;
+    text-align: center
+  }
+  .span > input {
+    color: #000;
+    font-weight: bold;
+    size: 1vw;
+  }
+  a {
+      color: #D93433 !important;
+  }
+
+  .signInText{
+    color: #fff;
+    font-size: 1.5vw;
+  }
+
+
+  @media only screen and (max-width: 600px) {
+    
+    .login {
+        width: 100%;
+        background-color: rgba(0,0,0,.75);
+        margin-left: 20%;
+        margin-right:20%;
+        padding: 2%;
+    }
+    
+    
+    .ant-input {
+        /* font-co */
+        height: 7vw !important;
+        font-size: 4vw;
+    }
+    
+      .ant-btn-primary {
+        height: 7vw !important;
+        margin-top: 7vw; 
+        width: 100%;
+        background-color: #D93433 !important;
+        border-color: #D93433 !important
+      }
+    
+      .span {
+        font-size: 4vw;
+        color: #fff;
+      }
+    
+      a {
+          color: #D93433 !important;
+      }
+    
+      .signInText{
+        color: #fff;
+        font-size: 4vw;
+      }
+    
+    
+}
+
+/* // Login header  */
+.loginHeader {
+    height: 10%;
+    padding: 2%;
+    width: 100%;
+}
+
+.logoLogin {
+    width: 15%;
+}
+
+@media only screen and (max-width : 600px) {
+    .logoLogin {
+        width: 50%;
+    }
+}
+
+/* Home */
+.header {
+    display: flex;
+    width: 100%;
+    padding: 2%;
+    padding-left: 13%;
+    padding-right: 13%;
+    box-sizing: border-box;
+    background-color: rgba(0,0,0,.9);
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    width: 100%;
+}
+
+.spider {
+    height: 4vw;
+}
+
+.super {
+    height: 3vw;
+}
+
+.containLayout{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    background-color: #fff;
+    flex-direction: column;
+}
+
+.superheroLine {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    left: 30%;
+    top:20px;
+    align-items: center;
+    justify-content: space-between;
+    width: 50%;
+}
+
+.trendyLine {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.a{
+    /* padd */
+}
+
+.panelTag{
+    display: flex;
+    border: 1px solid #D93433;
+    border-radius: 20px;
+    color: #fff;
+    padding-left: 5%;
+    padding-right: 5%;
+    box-sizing: border-box;
+}
+
+.normarlText{
+    color: #fff;
+    font-weight: 500;
+    font-size: 16px;
+    margin-bottom: 0;
+}
+
+.loginButton{
+}
+
+.logoView{
+    width: 20%;
+}
+
+.input {
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+}
+
+.input .ant-input {
+    border-radius: 23px;
+    padding: 20px 11px;
+    color: #000;
+    font-size: 18;
+    font-weight: 500;
+}
+
+
+
+
+
+/* Header */
