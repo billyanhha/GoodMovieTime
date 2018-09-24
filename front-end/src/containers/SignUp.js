@@ -6,7 +6,7 @@ import axios from "../axios";
 import { message } from 'antd';
 
 const FormItem = Form.Item;
-class LoginForm extends Component {
+class SignUpForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -21,15 +21,12 @@ class LoginForm extends Component {
                 axios.post('/api/auth/login', {
                     ...values
                 }).then(data => {
-                    this.props.onLogin(data.data.username)
-                    this.setState({username : data.data.username})
-                    console.log(this.state.username);
-                    
                     message.config({
                         top: '10%',
                         maxCount: 1,
                     });
                     message.loading("Please wait", 0.5);
+                    return (this.props.history.push('/'))
                 }).catch(err => {
                     message.config({
                         top: '10%',
@@ -43,16 +40,13 @@ class LoginForm extends Component {
     }
     render() {
         const { getFieldDecorator } = this.props.form;
-        if(this.state.username) {
-            return( <Redirect to = "/"/>)
-        }
         return (
             <div className="Login container-fluid ">
                 <div className="Login contain">
                     <NonLoginHeader />
                     <div className="loginForm">
                         <div className="login">
-                            <p className="signInText">Sign In</p>
+                            <p className="signInText">Sign Up</p>
                             <Form onSubmit={this.handleSubmit} className="login-form">
                                 <FormItem>
                                     {getFieldDecorator('username', {
@@ -70,11 +64,8 @@ class LoginForm extends Component {
                                 </FormItem>
                                 <FormItem>
                                     <Button type="primary" htmlType="submit">
-                                        Log in
+                                        Submit
                                     </Button>
-                                    < div className="Login signUp" >
-                                        <span className="span">New to us ? </span><Link to="/signUp"  className="link">Sign up !</Link>
-                                    </div>
                                 </FormItem>
                             </Form>
                         </div>
@@ -85,7 +76,7 @@ class LoginForm extends Component {
     }
 }
 
-const Login = Form.create()(LoginForm);
+const SignUp = Form.create()(SignUpForm);
 
 
-export default (Login);
+export default withRouter(SignUp);

@@ -1,5 +1,6 @@
 .App{
     height: 100%;
+    font-family: 'Montserrat', sans-serif !important;
 }
 
 /* Login */
@@ -7,6 +8,8 @@
 html , body {
     height: 100%;
 }
+
+
 
 
 .container-fluid  {
@@ -67,11 +70,11 @@ html , body {
   } 
   .ant-btn-primary {
     height: 2vw !important;
-    margin-top: 3vw; 
+    margin-top: 2vw; 
     width: 100%;
     background-color: #D93433 !important;
     border-color: #D93433 !important;
-    font-size: 0.8vw;
+    font-size: 16px !important;
     color: #fff;
     font-weight: bold;
     text-align: center
@@ -84,7 +87,7 @@ html , body {
 
 
   .span {
-    font-size: 0.8vw;
+    font-size: 16px;
     color: #fff;
     font-weight: bold;
     text-align: center
@@ -92,15 +95,22 @@ html , body {
   .span > input {
     color: #000;
     font-weight: bold;
-    size: 1vw;
+    size: 16px;
   }
-  a {
-      color: #D93433 !important;
+.link {
+      color: #D93433;
+      font-size: 16px;
+      font-weight: bold;
+      align-items: center
+  }
+
+  a:hover {
+    color: #D93433 !important;
   }
 
   .signInText{
     color: #fff;
-    font-size: 1.5vw;
+    font-size: 20px;
   }
 
 
@@ -118,29 +128,30 @@ html , body {
     .ant-input {
         /* font-co */
         height: 7vw !important;
-        font-size: 4vw;
+        font-size: 16px;
     }
     
       .ant-btn-primary {
         height: 7vw !important;
-        margin-top: 7vw; 
+        margin-top: 16px; 
         width: 100%;
         background-color: #D93433 !important;
         border-color: #D93433 !important
       }
     
       .span {
-        font-size: 4vw;
+        font-size: 16px;
         color: #fff;
       }
     
-      a {
-          color: #D93433 !important;
+      .link {
+        color: #D93433 ;
+          font-size: 16px;
       }
     
       .signInText{
         color: #fff;
-        font-size: 4vw;
+        font-size: 16px;
       }
     
     
@@ -166,10 +177,9 @@ html , body {
 /* Home */
 .header {
     display: flex;
-    width: 100%;
     padding: 2%;
-    padding-left: 13%;
-    padding-right: 13%;
+    padding-left: 15%;
+    padding-right: 15%;
     box-sizing: border-box;
     background-color: rgba(0,0,0,.9);
     justify-content: space-between;
@@ -177,7 +187,7 @@ html , body {
 }
 
 .logo {
-    width: 100%;
+    width: 65%;
 }
 
 .spider {
@@ -236,6 +246,7 @@ html , body {
 }
 
 .loginButton{
+    text-align: right
 }
 
 .logoView{
@@ -255,6 +266,58 @@ html , body {
     font-size: 18;
     font-weight: 500;
 }
+
+/* message */
+.ant-message-notice-content{
+    color: #000;
+    font-weight: 500;
+    font-size: 16px;
+    margin-bottom: 0;
+}
+.ant-message-notice-content {
+    background-color: #fff !important;
+}
+
+.myNav{
+    border-top: 0.02px solid #393939;
+    box-sizing: border-box;
+    background-color: rgba(0,0,0,.9);
+    width: 100%;
+    display: flex;
+}
+
+.myNavLeft {
+    display: flex;
+    border-top: 0.02px solid #393939;
+    width: 70%;
+    padding-left: 15%;
+    padding-right: 15%;
+    margin-left: 5px;
+}
+
+.navLink{
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 20%;
+    text-align: left;
+}
+
+@media only screen and (max-width : 768px) {
+    .logoView {
+        display: flex;
+        justify-content: center;
+    }
+    .input {
+        display: none;
+    }
+    .loginButton {
+        display: none;
+    }
+}
+
 
 
 

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../images/logo.png';
-import { Input } from 'antd';
+import { Input, Dropdown, Button, Menu, Icon } from 'antd';
+import axios from "../axios";
 // import spider from '../images/spider.png';
 // import supers from '../images/super.png';
 // import batman from '../images/batman.png';
@@ -19,37 +20,45 @@ class Home extends Component {
     componentDidMount() {
     }
 
+    logout = () => {
+        axios.delete('/api/auth')
+            .then(data => window.location.reload())
+            .catch(err => console.log(err))
+    }
+
+
     render() {
+        const menu = (
+            <Menu>
+                <Menu.Item>
+                    <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">Profile</a>
+                </Menu.Item>
+                <Menu.Item>
+                    <a onClick={this.logout} >Logout</a>
+                </Menu.Item>
+            </Menu>
+        );
         const render = this.props.username ?
             (
-                <div className="loginButton">
-                    <span className="normarlText" >Hello my friend , {this.props.username}</span>
-                    <p className="normarlText" ><Link to="/login">View your profile </Link></p>
+                <div className="col-md-4 col-12 loginButton">
+                    <span className="normarlText" >Hello my friend ,  </span>
+                    <Dropdown overlay={menu}>
+                        <Link to="/" className="ant-dropdown-link" className="link">{this.props.username} <Icon style={{position: 'absolute' , top: "20%"}} type="caret-down" theme="outlined" />
+                        </Link>
+                    </Dropdown>,
                 </div>)
             : (
                 (
-                    <div className="loginButton">
-                        <span className="normarlText" >You've not login yet ,<Link to="/login"> Login ?</Link></span>
+                    <div className="col-md-4 col-12 loginButton">
+                        <span className="normarlText" >You've not login yet ,<Link className="link" to="/login"> Login ?</Link></span>
                     </div>
                 )
             )
         return (
-            <div className="header">
-                <div className="logoView">
-                    <Link to='/' className="a" ><img src={logo} className="logo" alt="Logo" /> </Link>
+            <div className="header row">
+                <div className="col-md-4 col-12 logoView">
+                    <Link to='/' className="link" ><img src={logo} className="logo" alt="Logo" /> </Link>
                 </div>
-                <div className="input">
-                    <Input.Search
-                        placeholder="Type actor , movie , list name ... "
-                        onSearch={value => console.log(value)}
-                    />
-                </div>
-                {/* <div className="superheroLine">
-                    <img src={spider} className="spider" alt="Logo" />
-                    <img src={supers} className="super" alt="Logo" />
-                    <img src={batman} className="super" alt="Logo" />
-                    <img src={naruto} className="super" alt="Logo" />
-                </div> */}
                 {render}
             </div>
         )

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect, withRouter } from 'react-router-dom';
 import Header from '../components/Header';
+import MyNavbar from '../components/MyNavbar';
 
 class Home extends Component {
     constructor(props) {
@@ -10,7 +11,7 @@ class Home extends Component {
         }
     }
 
-    componentDidMount() {        
+    componentDidMount() {
         this.setState({ username: this.props.username });
     }
 
@@ -18,6 +19,7 @@ class Home extends Component {
         return (
             <div className="containLayout">
                 <Header username={this.props.username} />
+                <MyNavbar />
             </div>
         )
     }

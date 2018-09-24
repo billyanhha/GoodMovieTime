@@ -14,7 +14,7 @@ class NonLoginHeader extends Component {
     render() {
         return (
             <div className="loginHeader">
-                <Link to='/' ><img src={logo} className="logoLogin" alt="Logo" /> </Link>
+                <Link to='/'  className="link" ><img src={logo} className="logoLogin" alt="Logo" /> </Link>
             </div>
         )
     }
