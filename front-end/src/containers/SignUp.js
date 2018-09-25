@@ -58,7 +58,7 @@ class SignUpForm extends Component {
                         <div className="login">
                             <p className="signInText">Sign Up</p>
                             <Form onSubmit={this.handleSubmit} className="login-form">
-                                <p className="signUpText" >Use a cool one</p>
+                                <p className="signText" >User name</p>
                                 <FormItem>
                                     {getFieldDecorator('username', {
                                         rules: [{
@@ -70,10 +70,10 @@ class SignUpForm extends Component {
                                         }
                                         ],
                                     })(
-                                        <Input />
+                                        <Input type="text"   />
                                     )}
                                 </FormItem>
-                                <p className="signUpText" >Don't make this up</p>
+                                <p className="signText" >Full name</p>
                                 <FormItem>
                                     {getFieldDecorator('fullname', {
                                         rules: [{ required: true, message: 'Required' }, {
@@ -84,7 +84,7 @@ class SignUpForm extends Component {
                                         <Input type="text" />
                                     )}
                                 </FormItem>
-                                <p className="signUpText" >Try to use password hard to predict</p>
+                                <p className="signText" >Password</p>
                                 <FormItem>
                                     {getFieldDecorator('password', {
                                         rules: [{ required: true, message: 'Required' }, {
@@ -92,10 +92,10 @@ class SignUpForm extends Component {
                                             message: "Password must have at least 6 characters"
                                         }],
                                     })(
-                                        <Input type="password" />
+                                        <Input type="password"  />
                                     )}
                                 </FormItem>
-                                <p className="signUpText" >Confirm password</p>
+                                <p className="signText" >Confirm password</p>
                                 <FormItem>
                                     {getFieldDecorator('confimPassword', {
                                         rules: [{ required: true, message: 'Required' }, {

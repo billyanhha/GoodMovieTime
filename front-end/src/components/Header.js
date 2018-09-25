@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../images/logo.png';
+import watch from '../images/watch.jpg';
 import { Dropdown, Menu, Icon } from 'antd';
 import axios from "../axios";
-// import spider from '../images/spider.png';
-// import supers from '../images/super.png';
-// import batman from '../images/batman.png';
-// import naruto from '../images/naruto.png';
+import iron from '../images/iron.png';
+import deadpool from '../images/deadpool.png';
+import batman from '../images/batman.png';
+import fight from '../images/fight.png';
+import cute from "../images/cute.png";
 
 
 class Home extends Component {
@@ -59,6 +61,13 @@ class Home extends Component {
                 <div className="col-md-6 col-12 logoView">
                     <Link to='/' className="link" ><img src={logo} className="logo" alt="Logo" /> </Link>
                 </div>
+                {/* <div className="col-md-5 superheroLine">
+                    <img src={fight} className="super" alt="Logo" />
+                    <img src={iron} className="super" alt="Logo" />
+                    <img src={deadpool} className="super" alt="Logo" />
+                    <img src={cute} className="spider" alt="Logo" />
+                    <img src={batman} className="super" alt="Logo" />
+                </div> */}
                 {render}
             </div>
         )

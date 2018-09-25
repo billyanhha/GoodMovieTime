@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import { Button } from "react-bootstrap";
 import axios from "../axios";
 
 
@@ -15,9 +14,9 @@ class MyNavbar extends React.Component {
             .catch(err => console.log(err))
     }
 
-    collapseClick = () =>{
+    collapseClick = () => {
         let isShow = this.state.show;
-        this.setState({show : !isShow});
+        this.setState({ show: !isShow });
     }
 
 
@@ -32,13 +31,22 @@ class MyNavbar extends React.Component {
             )
             : (
                 (
-                    <Link className="navLink" to="/login"> Login </Link>
+                    <div className="loginButtonNav">
+                        <Link className="navLink" to="/login"> Login </Link>
+                    </div>
                 )
             )
         return (
             <div className="myNav">
-                <div className={this.state.show ? "verNav" :"myNavLeft"}>
-                    <i className="fas fa-bars collapse" onClick = {this.collapseClick} ></i>
+                <div className={this.state.show ? "verNav" : "myNavLeft"}>
+                    <div className="collapseRow " >
+                        {
+                            this.props.username && (
+                                <Link to="/" className=" collapse navLink whiteCollapse" >hi, {this.props.username} </Link>
+                            )
+                        }
+                        <i className="fas fa-bars collapse whiteCollapse" onClick={this.collapseClick} ></i>
+                    </div>
                     <Link to="/" className="navLink">Home</Link>
                     <Link to="/" className="navLink" >Just now</Link>
                     <Link to="/" className="navLink" >Top 10</Link>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header from '../components/Header';
 import MyNavbar from '../components/MyNavbar';
+import Slide from '../components/Slider';
 
 class Home extends Component {
     constructor(props) {
@@ -18,7 +19,16 @@ class Home extends Component {
         return (
             <div className="containLayout">
                 <Header username={this.props.username} />
-                <MyNavbar username={this.props.username}  />
+                <MyNavbar username={this.props.username} />
+                <Slide />
+                <div className="followUs" >
+                    <p className="homeNormalText" >Follow us</p>
+                    <div className="followIconDiv">
+                        <a target = "_blank" href = "https://www.facebook.com/SNAT-Movie-307717666625768/" ><i class="fab fa-facebook" style = {{color : '#4267B2'}} ></i></a>
+                        <a target = "_blank" href = "https://www.facebook.com/SNAT-Movie-307717666625768/" ><i class="fab fa-twitter" style = {{color : '#1DA1F2'}} ></i></a>
+                        <a target = "_blank" href = "https://www.facebook.com/SNAT-Movie-307717666625768/" ><i class="fab fa-instagram" style = {{color : '#C62E90'}}></i></a>
+                    </div>
+                </div>
             </div>
         )
     }

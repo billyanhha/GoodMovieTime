@@ -22,9 +22,9 @@ class LoginForm extends Component {
                     ...values
                 }).then(data => {
                     this.props.onLogin(data.data.username)
-                    this.setState({username : data.data.username})
+                    this.setState({ username: data.data.username })
                     console.log(this.state.username);
-                    
+
                     message.config({
                         top: '10%',
                         maxCount: 1,
@@ -43,8 +43,8 @@ class LoginForm extends Component {
     }
     render() {
         const { getFieldDecorator } = this.props.form;
-        if(this.state.username) {
-            return( <Redirect to = "/"/>)
+        if (this.state.username) {
+            return (<Redirect to="/" />)
         }
         return (
             <div className="Login container-fluid ">
@@ -54,18 +54,20 @@ class LoginForm extends Component {
                         <div className="login">
                             <p className="signInText">Sign In</p>
                             <Form onSubmit={this.handleSubmit} className="login-form">
+                                <p className="signText" >User name</p>
                                 <FormItem>
                                     {getFieldDecorator('username', {
                                         rules: [{ required: true, message: 'Please enter your username!' }],
                                     })(
-                                        <Input placeholder="Username" />
+                                        <Input type = "text"/>
                                     )}
                                 </FormItem>
+                                <p className="signText" >Password</p>
                                 <FormItem>
                                     {getFieldDecorator('password', {
                                         rules: [{ required: true, message: 'Please enter your Password!' }],
                                     })(
-                                        <Input type="password" placeholder="Password" />
+                                        <Input type="password"/>
                                     )}
                                 </FormItem>
                                 <FormItem>
@@ -73,7 +75,7 @@ class LoginForm extends Component {
                                         Log in
                                     </Button>
                                     < div className="Login signUp" >
-                                        <span className="span">New to us ? </span><Link to="/signUp" style ={{fontSize: "16px"}} className="link">Sign up !</Link>
+                                        <span className="span">New to us ? </span><Link to="/signUp" style={{ fontSize: "16px" }} className="link">Sign up !</Link>
                                     </div>
                                 </FormItem>
                             </Form>
