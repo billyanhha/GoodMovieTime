@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../images/logo.png';
-import { Input, Dropdown, Button, Menu, Icon } from 'antd';
+import {Dropdown, Menu, Icon } from 'antd';
 import axios from "../axios";
 // import spider from '../images/spider.png';
 // import supers from '../images/super.png';
@@ -43,7 +43,7 @@ class Home extends Component {
                 <div className="col-md-4 col-12 loginButton">
                     <span className="normarlText" >Hello my friend ,  </span>
                     <Dropdown overlay={menu}>
-                        <Link to="/" className="ant-dropdown-link" className="link">{this.props.username} <Icon style={{position: 'absolute' , top: "20%"}} type="caret-down" theme="outlined" />
+                        <Link to="/" className="ant-dropdown-link" className="link">{this.props.username}<Icon style={{position: 'absolute' , top: "20%"}} type="caret-down" theme="outlined" />
                         </Link>
                     </Dropdown>,
                 </div>)
@@ -56,7 +56,7 @@ class Home extends Component {
             )
         return (
             <div className="header row">
-                <div className="col-md-4 col-12 logoView">
+                <div className="col-md-6 col-12 logoView">
                     <Link to='/' className="link" ><img src={logo} className="logo" alt="Logo" /> </Link>
                 </div>
                 {render}

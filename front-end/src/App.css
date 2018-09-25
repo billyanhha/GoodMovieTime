@@ -70,7 +70,7 @@ html , body {
   } 
   .ant-btn-primary {
     height: 2vw !important;
-    margin-top: 2vw; 
+    margin-top: 1vw; 
     width: 100%;
     background-color: #D93433 !important;
     border-color: #D93433 !important;
@@ -87,7 +87,6 @@ html , body {
 
 
   .span {
-    font-size: 16px;
     color: #fff;
     font-weight: bold;
     text-align: center
@@ -95,11 +94,9 @@ html , body {
   .span > input {
     color: #000;
     font-weight: bold;
-    size: 16px;
   }
 .link {
       color: #D93433;
-      font-size: 16px;
       font-weight: bold;
       align-items: center
   }
@@ -113,50 +110,6 @@ html , body {
     font-size: 20px;
   }
 
-
-  @media only screen and (max-width: 600px) {
-    
-    .login {
-        width: 100%;
-        background-color: rgba(0,0,0,.75);
-        margin-left: 20%;
-        margin-right:20%;
-        padding: 2%;
-    }
-    
-    
-    .ant-input {
-        /* font-co */
-        height: 7vw !important;
-        font-size: 16px;
-    }
-    
-      .ant-btn-primary {
-        height: 7vw !important;
-        margin-top: 16px; 
-        width: 100%;
-        background-color: #D93433 !important;
-        border-color: #D93433 !important
-      }
-    
-      .span {
-        font-size: 16px;
-        color: #fff;
-      }
-    
-      .link {
-        color: #D93433 ;
-          font-size: 16px;
-      }
-    
-      .signInText{
-        color: #fff;
-        font-size: 16px;
-      }
-    
-    
-}
-
 /* // Login header  */
 .loginHeader {
     height: 10%;
@@ -168,11 +121,6 @@ html , body {
     width: 15%;
 }
 
-@media only screen and (max-width : 600px) {
-    .logoLogin {
-        width: 50%;
-    }
-}
 
 /* Home */
 .header {
@@ -187,7 +135,7 @@ html , body {
 }
 
 .logo {
-    width: 65%;
+    width: 40%;
 }
 
 .spider {
@@ -241,12 +189,15 @@ html , body {
 .normarlText{
     color: #fff;
     font-weight: 500;
-    font-size: 16px;
     margin-bottom: 0;
 }
 
 .loginButton{
     text-align: right
+}
+
+.loginButtonNav{
+    display: none;
 }
 
 .logoView{
@@ -289,20 +240,32 @@ html , body {
 .myNavLeft {
     display: flex;
     border-top: 0.02px solid #393939;
-    width: 70%;
     padding-left: 15%;
     padding-right: 15%;
     margin-left: 5px;
+    width: 60%;
+    justify-content: space-between;
 }
 
 .navLink{
+    display: flex;
     color: #fff;
-    font-size: 15px;
     font-weight: 600;
     padding-top: 10px;
     padding-bottom: 10px;
-    width: 20%;
     text-align: left;
+}
+
+.collapseButton{
+    display: none;
+}
+
+.signUpText{
+    color: #A77919
+}
+
+.collapse{
+    display: none;
 }
 
 @media only screen and (max-width : 768px) {
@@ -314,9 +277,96 @@ html , body {
         display: none;
     }
     .loginButton {
+        /* display: none; */
         display: none;
+        
+    }
+    .loginButtonNav{
+        display: block;
     }
 }
+
+
+@media only screen and (max-width: 600px) {
+    .logoLogin {
+        width: 50%;
+    }
+    .row{
+        margin-right: 0 !important;
+    }
+    .login {
+        width: 100%;
+        background-color: rgba(0,0,0,.75);
+        margin-left: 20%;
+        margin-right:20%;
+        padding: 2%;
+    }
+
+    .myNavLeft  {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .myNavLeft  a{
+        display: none;
+    }
+
+    .verNav {
+        flex-direction: column;
+        width: 100%;
+        display: flex;
+        border-top: 0.02px solid #393939;
+        padding-left: 15%;
+        padding-right: 15%;
+        margin-left: 5px;
+    }
+
+    .collapse{
+        display: flex !important;
+        color: #fff;
+        font-weight: 600;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        font-size: 22px;
+     }
+
+    
+    
+    .ant-input {
+        /* font-co */
+        height: 7vw !important;
+        font-size: 16px;
+    }
+    
+      .ant-btn-primary {
+        height: 7vw !important;
+        margin-top: 10px; 
+        width: 100%;
+        background-color: #D93433 !important;
+        border-color: #D93433 !important
+      }
+    
+      .span {
+        font-size: 16px;
+        color: #fff;
+      }
+    
+      .link {
+        color: #D93433 ;
+          font-size: 16px;
+      }
+    
+      .signInText{
+        color: #fff;
+        font-size: 16px;
+      }
+
+      .logo {
+        width: 80% !important;
+      }
+    
+}
+
 
 
 

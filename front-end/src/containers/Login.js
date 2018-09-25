@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import NonLoginHeader from "../components/NonLoginHeader";
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
-import { Link, withRouter, Redirect } from 'react-router-dom';
+import { Form, Input, Button } from 'antd';
+import { Link, Redirect } from 'react-router-dom';
 import axios from "../axios";
 import { message } from 'antd';
 
@@ -35,7 +35,7 @@ class LoginForm extends Component {
                         top: '10%',
                         maxCount: 1,
                     });
-                    message.error("Incorrect password or username", 2.5)
+                    message.error("Incorrect password or username", 2)
                 }
                 )
             }
@@ -73,7 +73,7 @@ class LoginForm extends Component {
                                         Log in
                                     </Button>
                                     < div className="Login signUp" >
-                                        <span className="span">New to us ? </span><Link to="/signUp"  className="link">Sign up !</Link>
+                                        <span className="span">New to us ? </span><Link to="/signUp" style ={{fontSize: "16px"}} className="link">Sign up !</Link>
                                     </div>
                                 </FormItem>
                             </Form>

@@ -41,7 +41,7 @@ router.get("/:id", (req, res) => {
 
 router.put("/:id", (req, res) => {
   listController
-    .increaseScore(req.params.id, req.body.score)
+    .increaseLike(req.params.id)
     .then(data => res.send(data))
     .catch(err => res.status(500).send(err));
 });

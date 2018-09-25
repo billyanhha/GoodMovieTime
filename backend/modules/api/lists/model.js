@@ -7,8 +7,7 @@ const listModel = new Schema(
     posterUri: [{ type: String,  required: true }],
     original_language : [{type : String, requied : true}],
     name: { type: String, requied: true },
-    score: { type: Number, default: 0 },
-    vote: { type: Number, default: 0 }
+    like: { type: Number, default: 0 },
   },
   { timestamps: { createdAt: "createdAt" } }
 );

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import NonLoginHeader from "../components/NonLoginHeader";
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
-import { Link, withRouter, Redirect } from 'react-router-dom';
+import { Form, Input, Button } from 'antd';
+import { Redirect } from 'react-router-dom';
 import axios from "../axios";
 import { message } from 'antd';
 
@@ -10,7 +10,7 @@ class SignUpForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: '',
+            toLogin: false,
         }
     }
 
@@ -18,28 +18,38 @@ class SignUpForm extends Component {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                axios.post('/api/auth/login', {
+                delete values.confimPassword;
+                axios.post('/api/users', {
                     ...values
-                }).then(data => {
-                    message.config({
-                        top: '10%',
-                        maxCount: 1,
-                    });
-                    message.loading("Please wait", 0.5);
-                    return (this.props.history.push('/'))
-                }).catch(err => {
-                    message.config({
-                        top: '10%',
-                        maxCount: 1,
-                    });
-                    message.error("Incorrect password or username", 2.5)
-                }
-                )
+                })
+                    .then(data => {
+                        this.setState({toLogin: true})
+                        message.config({
+                            top: '10%',
+                            maxCount: 1,
+                        });
+                        message.loading("Creating", 1)
+                            .then(message.success("Create success", 1));
+                    })
+                    .catch(err => console.log(err))
             }
         });
     }
+
+    compareToFirstPassword = (rule, value, callback) => {
+        const form = this.props.form;
+        if (value && value !== form.getFieldValue('password')) {
+            callback('Two passwords that you enter is inconsistent!');
+        } else {
+            callback();
+        }
+    }
+
     render() {
         const { getFieldDecorator } = this.props.form;
+        if(this.state.toLogin) {
+            return( <Redirect to = "/login"/>)
+        }
         return (
             <div className="Login container-fluid ">
                 <div className="Login contain">
@@ -48,18 +58,51 @@ class SignUpForm extends Component {
                         <div className="login">
                             <p className="signInText">Sign Up</p>
                             <Form onSubmit={this.handleSubmit} className="login-form">
+                                <p className="signUpText" >Use a cool one</p>
                                 <FormItem>
                                     {getFieldDecorator('username', {
-                                        rules: [{ required: true, message: 'Please enter your username!' }],
+                                        rules: [{
+                                            required: true,
+                                            message: "Required"
+                                        }, {
+                                            pattern: new RegExp("^[a-zA-Z0-9_]{5,}[0-9]*$"),
+                                            message: "Password must have at least 6 characters"
+                                        }
+                                        ],
                                     })(
-                                        <Input placeholder="Username" />
+                                        <Input />
                                     )}
                                 </FormItem>
+                                <p className="signUpText" >Don't make this up</p>
+                                <FormItem>
+                                    {getFieldDecorator('fullname', {
+                                        rules: [{ required: true, message: 'Required' }, {
+                                            pattern: new RegExp("^[a-zA-Z]([-']?[a-zA-Z]+)*( [a-zA-Z]([-']?[a-zA-Z]+)*)+$"),
+                                            message: "You have to use your real name"
+                                        }],
+                                    })(
+                                        <Input type="text" />
+                                    )}
+                                </FormItem>
+                                <p className="signUpText" >Try to use password hard to predict</p>
                                 <FormItem>
                                     {getFieldDecorator('password', {
-                                        rules: [{ required: true, message: 'Please enter your Password!' }],
+                                        rules: [{ required: true, message: 'Required' }, {
+                                            pattern: new RegExp("^[a-zA-Z0-9_]{5,}[0-9]*$"),
+                                            message: "Password must have at least 6 characters"
+                                        }],
                                     })(
-                                        <Input type="password" placeholder="Password" />
+                                        <Input type="password" />
+                                    )}
+                                </FormItem>
+                                <p className="signUpText" >Confirm password</p>
+                                <FormItem>
+                                    {getFieldDecorator('confimPassword', {
+                                        rules: [{ required: true, message: 'Required' }, {
+                                            validator: this.compareToFirstPassword,
+                                        }],
+                                    })(
+                                        <Input type="password" />
                                     )}
                                 </FormItem>
                                 <FormItem>
@@ -77,6 +120,4 @@ class SignUpForm extends Component {
 }
 
 const SignUp = Form.create()(SignUpForm);
-
-
-export default withRouter(SignUp);
+export default (SignUp);

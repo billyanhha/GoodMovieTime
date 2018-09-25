@@ -28,7 +28,7 @@ const getAllListWithPage = page =>
       .sort({ createdAt: -1 })
       .skip((page - 1) * 10)
       .limit(10)
-      .select("_id score moviesId posterUri name vote original_language")
+      .select("_id like moviesId posterUri name original_language")
       .exec()
       .then(data => resolve(data))
       .catch(err => reject(err));
@@ -38,9 +38,9 @@ const getTop10List = () =>
   new Promise((resolve, reject) => {
     listModel
       .find()
-      .sort({ score: -1, createdAt: -1 })
+      .sort({ like: -1, createdAt: -1 })
       .limit(10)
-      .select("_id score moviesId posterUri name vote original_language")
+      .select("_id  moviesId posterUri name like original_language")
       .exec()
       .then(data => resolve(data))
       .catch(err => reject(err));
@@ -50,16 +50,16 @@ const getDatalistById = id =>
   new Promise((resolve, reject) => {
     listModel
       .findOne({ _id: id })
-      .select("_id score moviesId posterUri name vote original_language createdAt")
+      .select("_id like moviesId posterUri name original_language createdAt")
       .exec()
       .then(data => resolve(data))
       .catch(err => reject(data));
   });
 
-const increaseScore = (id, score) =>
+const increaseLike = (id) =>
   new Promise((resolve, reject) => {
     listModel
-      .update({ _id: id }, { $inc: { score: score , vote : 1 } })
+      .update({ _id: id }, { $inc: { like: 1 } })
       .then(data => resolve(data))
       .catch(err => reject(err));
   });
@@ -70,5 +70,5 @@ module.exports = {
   getAllListWithPage,
   getTop10List,
   getDatalistById,
-  increaseScore
+  increaseLike
 };

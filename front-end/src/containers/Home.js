@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Redirect, withRouter } from 'react-router-dom';
 import Header from '../components/Header';
 import MyNavbar from '../components/MyNavbar';
 
@@ -19,7 +18,7 @@ class Home extends Component {
         return (
             <div className="containLayout">
                 <Header username={this.props.username} />
-                <MyNavbar />
+                <MyNavbar username={this.props.username}  />
             </div>
         )
     }
