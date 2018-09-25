@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../images/logo.png';
-import {Dropdown, Menu, Icon } from 'antd';
+import { Dropdown, Menu, Icon } from 'antd';
 import axios from "../axios";
 // import spider from '../images/spider.png';
 // import supers from '../images/super.png';
@@ -34,7 +34,7 @@ class Home extends Component {
                     <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">Profile</a>
                 </Menu.Item>
                 <Menu.Item>
-                    <a onClick={this.logout} >Logout</a>
+                    <Link to="/login" onClick={this.logout} className="navLink">Logout</Link>
                 </Menu.Item>
             </Menu>
         );
@@ -43,7 +43,7 @@ class Home extends Component {
                 <div className="col-md-4 col-12 loginButton">
                     <span className="normarlText" >Hello my friend ,  </span>
                     <Dropdown overlay={menu}>
-                        <Link to="/" className="ant-dropdown-link" className="link">{this.props.username}<Icon style={{position: 'absolute' , top: "20%"}} type="caret-down" theme="outlined" />
+                        <Link to="/" className="ant-dropdown-link" className="link">{this.props.username}<Icon style={{ position: 'absolute', top: "20%" }} type="caret-down" theme="outlined" />
                         </Link>
                     </Dropdown>,
                 </div>)

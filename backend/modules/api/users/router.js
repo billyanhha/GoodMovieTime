@@ -11,7 +11,7 @@ router.post('/', upload.single('avatarFile'), (req, res) => {
         .then(data => {
             res.send(data);
         })
-        .catch(err => console.log(err)
+        .catch(err => res.status(500).send(err)
         );
 })
 

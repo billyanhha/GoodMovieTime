@@ -31,7 +31,7 @@ class SignUpForm extends Component {
                         message.loading("Creating", 1)
                             .then(message.success("Create success", 1));
                     })
-                    .catch(err => console.log(err))
+                    .catch(err => message.error("User name is already taken" , 1))
             }
         });
     }
