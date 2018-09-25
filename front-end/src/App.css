@@ -129,7 +129,6 @@ html , body {
 /* Home */
 .header {
     display: flex;
-    padding: 2%;
     padding-left: 15%;
     padding-right: 15%;
     box-sizing: border-box;
@@ -139,9 +138,6 @@ html , body {
     position: relative;
 }
 
-.logo {
-    width: 40%;
-}
 
 .spider {
     height: 3vw;
@@ -202,10 +198,11 @@ html , body {
     color: #191919;
     font-weight: bold;
     font-size: 15px;
+    margin: 0
 }
 
 .loginButton{
-    text-align: right
+    text-align: right;
 }
 
 .loginButtonNav{
@@ -213,7 +210,7 @@ html , body {
 }
 
 .logoView{
-    width: 20%;
+    /* height: ; */
 }
 
 .input {
@@ -254,7 +251,6 @@ html , body {
     border-top: 0.02px solid #393939;
     padding-left: 15%;
     padding-right: 15%;
-    margin-left: 5px;
     width: 60%;
     justify-content: space-between;
 }
@@ -327,6 +323,10 @@ html , body {
     flex-direction: row;
     font-size: 25px;
     justify-content: space-between;
+}
+
+.logo{
+    width: 40%;
 }
 
 
