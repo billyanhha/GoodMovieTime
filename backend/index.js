@@ -53,7 +53,7 @@ app.use(bodyParser.json({ extended: false }));
 // api
 app.use('/api/lists', listRouter);
 app.use('/api/users', userRouter);
-app.use('/api/moveis', movieRouter);
+app.use('/api/movies', movieRouter);
 app.use('/api/auth', authRouter);
 
 

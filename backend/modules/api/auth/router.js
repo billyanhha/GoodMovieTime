@@ -14,7 +14,7 @@ router.post("/login", (req, res) => {
 });
 
 router.get("/", (req, res) => {
-  if(req.session.userInfo) res.send(req.session.userInfo.username);
+  if(req.session.userInfo) res.send(req.session.userInfo);
   else res.send('');
 });
 

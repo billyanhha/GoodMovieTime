@@ -21,7 +21,7 @@ class LoginForm extends Component {
                 axios.post('/api/auth/login', {
                     ...values
                 }).then(data => {
-                    this.props.onLogin(data.data.username)
+                    this.props.onLogin(data.data)
                     this.setState({ username: data.data.username })
                     console.log(this.state.username);
 

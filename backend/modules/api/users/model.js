@@ -9,7 +9,7 @@ const userModel = new Schema({
     aboutMe: { type: String, default: "Hi" },
     avatar: { type: Buffer },
     contentType: { type: String },
-    listsMovie: [{ type: Schema.Types.ObjectId, ref: "lists" }],
+    like: {type : Number , default : 0}
 },
     { timestamps: { createdAt: "createdAt" } }
 )

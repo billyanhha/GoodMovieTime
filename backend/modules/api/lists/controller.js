@@ -4,6 +4,7 @@ const createList = body =>
   new Promise((resolve, reject) => {
     listModel
       .create({
+        createdBy: body.createdBy,
         moviesId: body.moviesId,
         posterUri: body.posterUri,
         name: body.name,
@@ -64,11 +65,20 @@ const increaseLike = (id) =>
       .catch(err => reject(err));
   });
 
+const getUserList = ({ id }) => new Promise((resolve, reject) => {
+  listModel.find({createdBy : id})
+    .select("_id like moviesId posterUri name original_language createdAt")
+    .then(data => resolve(data))
+    .catch(err => reject(err));
+})
+
+
 module.exports = {
   createList,
   getlistCount,
   getAllListWithPage,
   getTop10List,
   getDatalistById,
-  increaseLike
+  increaseLike,
+  getUserList
 };

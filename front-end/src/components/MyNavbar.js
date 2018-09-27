@@ -24,7 +24,7 @@ class MyNavbar extends React.Component {
         const render = this.props.username ?
             (
                 <div className="loginButtonNav">
-                    <Link to="/" className="ant-dropdown-link" className="navLink">View profile
+                    <Link to={"/profile/" + this.props.id} className="ant-dropdown-link" className="navLink">View profile
                 </Link>
                     <Link to="/login" onClick={this.logout} className="navLink">Logout</Link>
                 </div>
@@ -50,7 +50,8 @@ class MyNavbar extends React.Component {
                     <Link to="/" className="navLink">Home</Link>
                     <Link to="/" className="navLink" >Just now</Link>
                     <Link to="/" className="navLink" >Top 10</Link>
-                    <Link to="/" className="navLink" >Top attribute user</Link>
+                    <Link to="/" className="navLink" >Search</Link>
+                    <Link to="/" className="navLink" >About Us</Link>
                     {render}
                 </div>
             </div>

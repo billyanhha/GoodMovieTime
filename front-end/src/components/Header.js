@@ -33,7 +33,7 @@ class Home extends Component {
         const menu = (
             <Menu>
                 <Menu.Item>
-                    <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">Profile</a>
+                    <Link to={`/profile/` + this.props.id} onClick = {() => {}} className="navLink" >Profile</Link>
                 </Menu.Item>
                 <Menu.Item>
                     <Link to="/login" onClick={this.logout} className="navLink">Logout</Link>
