@@ -49,6 +49,11 @@ html , body {
     padding: 3%;
 }
 
+.primaryColorText{
+    font-weight: bold;
+    color : #EA1C22
+}
+
 .signUp{
     margin-top: 10px;
     text-align: center;
@@ -105,6 +110,10 @@ html , body {
       align-items: center
   }
 
+  .link:hover {
+    color: #000 !important;
+  }
+
   a:hover {
     color: #D93433 !important;
   }
@@ -131,6 +140,7 @@ html , body {
 /* Home */
 .header {
     display: flex;
+    padding:1%;
     padding-left: 15%;
     padding-right: 15%;
     box-sizing: border-box;
@@ -139,6 +149,7 @@ html , body {
     align-items: center;
     position: relative;
     overflow: hidden;
+    margin-right: 0 !important
 }
 
 
@@ -151,7 +162,7 @@ html , body {
 }
 
 .containLayout{
-    display: block;
+    display: flex;
     height: 100%;
     width: 100%;
     background-color: #fafafa;
@@ -197,6 +208,12 @@ html , body {
     margin-bottom: 0;
 }
 
+.projectInfoText{
+    color: #fff;
+    font-weight: bold;
+    font-size: 10px;
+}
+
 .homeNormalText{
     color: #191919;
     font-weight: bold;
@@ -206,10 +223,12 @@ html , body {
 
 .loginButton{
     text-align: right;
+    padding-right:0 !important
 }
 
 .loginButtonNav{
     display: none;
+
 }
 
 .logoView{
@@ -242,24 +261,38 @@ html , body {
 }
 
 .myNav{
-    border-bottom: 1px solid #bababa;
     box-sizing: border-box;
-    background-color: #fafafa;
-    width: 100%;
+    background-color: rgba(0,0,0,.85);
     display: flex;
+    justify-content: space-between;
+    padding-left: 15%;
+    padding-right: 15%;
 }
 
 .myNavLeft {
     display: flex;
-    padding-left: 15%;
-    padding-right: 15%;
-    width: 80%;
+    width: 40%;
     justify-content: space-between;
 }
 
+.myNavRight{
+    display: flex;
+    width: 5%;
+    justify-content: center;
+    align-items: center;
+    background-color: #fafafa;
+    border-bottom: 0.3px solid rgba(0,0,0,.85);
+    border-top: 0.3px solid rgba(0,0,0,.85)
+}
+
+.searhButton{
+
+}
+
+
 .navLink{
     display: flex;
-    color: #000;
+    color: #fafafa;
     font-weight: 600;
     text-align: left;
     padding-top:10px;
@@ -295,6 +328,7 @@ html , body {
 
 .imageSlide{
     background-size: cover;
+    background-repeat: no-repeat;
     background-position-x: center;
     background-position-y: center;
 }
@@ -333,22 +367,28 @@ html , body {
 }
 
 .logo{
-    width: 45%;
+    width: 35%;
 }
 
 .bodyProfile {
+    padding: 3%;
     padding-left: 15%;
     padding-right: 15%;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     background-color: '#FAFAFA';
 }
 
 .profileRow {
     display: flex;
     flex-direction: column;
-    padding-top:5%;
     padding-right: 3%;
+}
+
+.profileRowInfo {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
 .roundedDiv{
@@ -356,11 +396,45 @@ html , body {
     overflow: hidden;
     height: 200px;
     width: 200px;
-    border-radius: 200px;
+    border-radius: 20px;
     /* border-radius: 500px; */
     background-position: center;
-    background-repeat: none;
+    background-repeat: no-repeat;
     background-size: cover;
+    position: relative;
+}
+
+
+.fileInput{
+    position: absolute;
+    bottom: 0;
+    top:0;
+    left:0;
+    right:0;
+    transition: all 0.3s ease-in-out; 
+    opacity: 0;
+    z-index: 1;
+}
+
+.mask{
+    position: absolute;
+    bottom: 0;
+    top:0;
+    left:0;
+    right:0;
+    transition: all 0.3s ease-in-out; 
+    z-index: 0;
+    opacity: 0;
+    color: #fff;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.roundedDiv:hover .mask{
+    opacity: 1;
+    background-color: rgba(0 , 0, 0,0.6)
 }
 
 .avatar {
@@ -380,7 +454,7 @@ html , body {
 
 .userStats{
     display: flex;
-    width: 40%;
+    width: 30%;
     justify-content: space-between;
     flex-direction: row;
     align-items: center;
@@ -410,6 +484,7 @@ html , body {
     padding:0 !important;
     word-break: break-all;
     width: 55%;
+    white-space: pre-line;
 }
 
 .editText {
@@ -429,19 +504,69 @@ html , body {
     box-shadow:none;
 }
 
+
 .info{
     color: #D93433;
     size: 20px;
     margin-right: 5px;
 }
 
+.toUplistButton{
+    background-color: #fafafa;
+    width: 100px;
+    height: 20px;
+    border:none;
+    margin-top:5px;
+    border-radius: 5px;
+    color: #D93433;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.toUplistButton:hover{
+    background-color: #000;
+}
+
+.upListCollapse{
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    color: #fafafa;
+    font-weight: 600;
+    text-align: left;
+    padding-left: 0 !important;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    cursor: pointer;
+}
+
 textarea.ant-input{
     min-height: 100px !important;
 }
 
+.modal{
+    border-bottom: none !important
+}
+
+.editname{
+    justify-content: space-between;
+}
 
 
-@media only screen and (max-width : 900px) {
+
+@media all and (max-width : 900px ) {
+    .myNavRight{
+        display: none;
+    }
+
+    .profileRowInfo{
+        align-items: center;
+    }
+    .link:hover {
+        color: #000 !important;
+      }
     .logoView {
         display: flex;
         justify-content: center;
@@ -455,8 +580,9 @@ textarea.ant-input{
         
     }
     .loginButtonNav{
-        display: block;
-    }
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;    }
 
     .slide{
         display: none;
@@ -482,8 +608,6 @@ textarea.ant-input{
         width: 100%;
         display: flex;
         border-top: 0.02px solid #393939;
-        padding-left: 15%;
-        padding-right: 15%;
     }
 
     .collapse{
@@ -501,8 +625,8 @@ textarea.ant-input{
         justify-content: space-between;
      }
 
-     .whiteCollapse{
-        color: #fff;
+     .blackCollapse{
+        color: #fafafa;
         font-size: 15px;
      }
 
@@ -521,16 +645,16 @@ textarea.ant-input{
     .login {
         width: 100%;
         background-color: rgba(0,0,0,.75);
-        margin-left: 20%;
-        margin-right:20%;
+        margin-left: 10%;
+        margin-right:10%;
         padding: 2%;
     }
     .bigText{
-        font-size: 25px;
+        font-size: 20px;
     }
 
     .userStats {
-        width: 113% !important;
+        width: 100%;
     }
 
 
@@ -538,7 +662,7 @@ textarea.ant-input{
     
     .ant-input {
         /* font-co */
-        height: 7vw !important;
+        height: 10vw !important;
         font-size: 16px;
     }
 
@@ -548,7 +672,7 @@ textarea.ant-input{
     }
     
       .myButton {
-        height: 7vw !important;
+        height: 10vw !important;
         margin-top: 10px; 
         width: 100% !important;
         background-color: #D93433 !important;
@@ -570,15 +694,19 @@ textarea.ant-input{
         font-size: 16px;
       }
 
-      .logo {
-        width: 80% !important;
-      }
-
 }
 
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 600px ) {
+    .containLayout{
+        display: block;
+    }
 
+    .bigText{
+        font-size: 18px;
+        font-weight: bold;
+        color: #EA1C22;
+    }
     
 }
 

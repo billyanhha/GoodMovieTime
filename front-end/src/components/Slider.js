@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import Slider from 'react-slick'
 const inter = require('../images/inter.jpg');
 const devil = require('../images/devil.jpg');
@@ -20,7 +20,7 @@ class Slide extends React.Component {
             <div className="slide" >
                 <Slider {...settings}>
                     <div className="d-none d-sm-block">
-                        <div className="imageSlide" style={{ backgroundImage: `url(${devil})` }} >
+                        <div className="imageSlide" style={{background: 'linear-gradient(to right bottom, #430089, #82ffa1)', backgroundImage: `url(${devil})`  }}>
                             <div style={{
                                 padding: '15%',
                                 paddingTop: "5%"

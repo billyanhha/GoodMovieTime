@@ -21,12 +21,13 @@ class MyNavbar extends React.Component {
 
 
     render() {
-        const render = this.props.username ?
+        const username = this.props.username;
+        const render = username ?
             (
-                <div className="loginButtonNav">
-                    <Link to={"/profile/" + this.props.id} className="ant-dropdown-link" className="navLink">View profile
-                </Link>
+                <div className="loginButtonNav" >
+                    <Link to={"/profile/" + this.props.id} className="ant-dropdown-link navLink" >View profile</Link>
                     <Link to="/login" onClick={this.logout} className="navLink">Logout</Link>
+                    <Link to="/" className="navLink" > <i className="fas fa-search"></i></Link>
                 </div>
             )
             : (
@@ -42,18 +43,21 @@ class MyNavbar extends React.Component {
                     <div className="collapseRow " >
                         {
                             this.props.username && (
-                                <Link to="/" className=" collapse navLink whiteCollapse" >hi, {this.props.username} </Link>
+                                <Link to="/" className=" collapse navLink blackCollapse" >hi, {this.props.username} </Link>
                             )
                         }
-                        <i className="fas fa-bars collapse whiteCollapse" onClick={this.collapseClick} ></i>
+                        <i className="fas fa-bars collapse blackCollapse" onClick={this.collapseClick} ></i>
                     </div>
                     <Link to="/" className="navLink">Home</Link>
                     <Link to="/" className="navLink" >Just now</Link>
                     <Link to="/" className="navLink" >Top 10</Link>
-                    <Link to="/" className="navLink" >Up list</Link>
-                    <Link to="/" className="navLink" >Search</Link>
                     <Link to="/" className="navLink" >About Us</Link>
+                    {username ? (<button className="upListCollapse">Uplist <i className="fas fa-upload" style={{marginLeft : '5px'}} ></i></button>
+                    ) : <div></div>}
                     {render}
+                </div>
+                <div className="myNavRight" >
+                    <Link to="/" className="navLink" style={{ width: '100%', justifyContent: 'center', color: '#000' }} > <i className="fas fa-search"  ></i></Link>
                 </div>
             </div>
         );

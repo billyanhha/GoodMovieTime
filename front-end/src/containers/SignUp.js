@@ -23,7 +23,7 @@ class SignUpForm extends Component {
                     ...values
                 })
                     .then(data => {
-                        this.setState({toLogin: true})
+                        this.setState({ toLogin: true })
                         message.config({
                             top: '10%',
                             maxCount: 1,
@@ -31,7 +31,7 @@ class SignUpForm extends Component {
                         message.loading("Creating", 1)
                             .then(message.success("Create success", 1));
                     })
-                    .catch(err => message.error("User name is already taken" , 1))
+                    .catch(err => message.error("User name is already taken", 1))
             }
         });
     }
@@ -47,8 +47,8 @@ class SignUpForm extends Component {
 
     render() {
         const { getFieldDecorator } = this.props.form;
-        if(this.state.toLogin) {
-            return( <Redirect to = "/login"/>)
+        if (this.state.toLogin) {
+            return (<Redirect to="/login" />)
         }
         return (
             <div className="Login container-fluid ">
@@ -70,7 +70,7 @@ class SignUpForm extends Component {
                                         }
                                         ],
                                     })(
-                                        <Input type="text"   />
+                                        <Input type="text" />
                                     )}
                                 </FormItem>
                                 <p className="signText" >Full name</p>
@@ -92,7 +92,7 @@ class SignUpForm extends Component {
                                             message: "Password must have at least 6 characters"
                                         }],
                                     })(
-                                        <Input type="password"  />
+                                        <Input type="password" />
                                     )}
                                 </FormItem>
                                 <p className="signText" >Confirm password</p>
@@ -104,10 +104,11 @@ class SignUpForm extends Component {
                                     })(
                                         <Input type="password" />
                                     )}
-                                </FormItem>
+                                </FormItem> 
+                                <p className="signText" style = {{textAlign : 'center'}} >By clicking Submit button , you are agreed to our <span className = "primaryColorText" >Term & Service </span> and <span className = "primaryColorText"> Policy</span></p>
                                 <FormItem>
-                                    <Button type="primary" className= "myButton" htmlType="submit">
-                                        <bold>Submit</bold>
+                                    <Button type="primary" className="myButton" htmlType="submit">
+                                        <b>Submit</b>
                                     </Button>
                                 </FormItem>
                             </Form>
