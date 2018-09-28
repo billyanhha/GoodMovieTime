@@ -5,6 +5,8 @@ import Slide from '../components/Slider';
 import axios from '../axios';
 import config from '../config';
 import defaultUser from "../images/defaultUser.jpg";
+import { Modal } from 'antd';
+import EditProfileModal from '../components/EditProfileModal';
 
 class Profile extends Component {
     constructor(props) {
@@ -13,6 +15,8 @@ class Profile extends Component {
             users: {},
             list: [],
             haveImage: false,
+            visible: false,
+            confirmLoading: false
         }
     }
 
@@ -32,6 +36,22 @@ class Profile extends Component {
             .catch(err => console.log(err))
     }
 
+
+    handleCancel = () => {
+        console.log('Clicked cancel button');
+        this.setState({
+            visible: false,
+        });
+    }
+
+
+    showModal = () => {
+        this.setState({
+            visible: true,
+        });
+    }
+
+
     render() {
         const id = this.props.match.params.id;
         const users = this.state.users;
@@ -41,23 +61,32 @@ class Profile extends Component {
             <div className="containLayout">
                 <Header username={this.props.username} id={this.props.id} />
                 <MyNavbar username={this.props.username} id={this.props.id} />
-                <div className="row bodyProfile">
-                    <div className=" col-12 col-md-2  profileRow"   >
+                <div className="bodyProfile">
+                    <div className="profileRow"   >
                         <div className="roundedDiv" style={{ backgroundImage: `url(${avatar})` }} >
                             {/* <img src={this.state.haveImage ? `${config.url}` + `/api/users/${id}/imageData` : defaultUser} alt={this.state.users.username} className="img-responsive rounded-circle" /> */}
                         </div>
                     </div>
-                    <div className=" col-12 col-md-10  profileRow">
+                    <div className="profileRow">
                         <div className=" profileChildRow">
-                            <p className="bigText" >{users.username} ( {users.fullname} )</p>
-                            <button type="button" style={{ display: authoRize ? '' : 'none' }} className="btn btn-outline-secondary editButton">Edit your profiles</button>
+                            <p className="bigText" >{users.username} ( {users.fullname} )<button type="button" onClick={this.showModal} style={{ display: authoRize ? '' : 'none' }} className="btn btn-outline-secondary editButton"><i className="fas fa-edit"></i></button>
+                            </p>
+                            <div>
+                                <Modal title="Edit profiles"
+                                    visible={this.state.visible}
+                                    confirmLoading={this.state.confirmLoading}
+                                    onCancel={this.handleCancel}
+                                >
+                                    <EditProfileModal  avatar = {avatar} users = {users} id = {id} />
+                                </Modal>
+                            </div>
                         </div>
                         <div className="profileChildRow" >
                             <p className="normalBlackBoldText" ><i className="fas fa-info-circle info"></i>{users.aboutMe}</p>
                         </div>
                         <div className="userStats row" >
                             <div className="col-4">
-                                <span><span className="normalBlackBoldText" >{this.state.list.length}    </span> post </span>
+                                <span><span className="normalBlackBoldText" >{this.state.list.length}   </span> post </span>
                             </div>
                             <div className="col-4">
                                 <span><span className="normalBlackBoldText" >{users.like}  </span> like </span>

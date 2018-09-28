@@ -71,8 +71,8 @@ class LoginForm extends Component {
                                     )}
                                 </FormItem>
                                 <FormItem>
-                                    <Button type="primary" htmlType="submit">
-                                        Log in
+                                    <Button type="primary" className ="myButton" htmlType="submit">
+                                        <bold>Login</bold>
                                     </Button>
                                     < div className="Login signUp" >
                                         <span className="span">New to us ? </span><Link to="/signUp" style={{ fontSize: "16px" }} className="link">Sign up !</Link>

@@ -50,6 +50,7 @@ class MyNavbar extends React.Component {
                     <Link to="/" className="navLink">Home</Link>
                     <Link to="/" className="navLink" >Just now</Link>
                     <Link to="/" className="navLink" >Top 10</Link>
+                    <Link to="/" className="navLink" >Up list</Link>
                     <Link to="/" className="navLink" >Search</Link>
                     <Link to="/" className="navLink" >About Us</Link>
                     {render}

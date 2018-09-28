@@ -106,8 +106,8 @@ class SignUpForm extends Component {
                                     )}
                                 </FormItem>
                                 <FormItem>
-                                    <Button type="primary" htmlType="submit">
-                                        Submit
+                                    <Button type="primary" className= "myButton" htmlType="submit">
+                                        <bold>Submit</bold>
                                     </Button>
                                 </FormItem>
                             </Form>
