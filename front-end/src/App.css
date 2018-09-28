@@ -571,6 +571,9 @@ textarea.ant-input{
         display: flex;
         justify-content: center;
     }
+    .logo{
+        width: 70%;
+    }
     .input {
         display: none;
     }
@@ -694,6 +697,10 @@ textarea.ant-input{
         font-size: 16px;
       }
 
+      .form-item-custom{
+          margin-bottom: 0 !important;
+      }
+
 }
 
 
@@ -707,6 +714,7 @@ textarea.ant-input{
         font-weight: bold;
         color: #EA1C22;
     }
+
     
 }
 

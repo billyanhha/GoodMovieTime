@@ -47,8 +47,8 @@ class LoginForm extends Component {
             return (<Redirect to="/" />)
         }
         return (
-            <div className="Login container-fluid ">
-                <div className="Login contain">
+            <div className=" container-fluid ">
+                <div className=" contain">
                     <NonLoginHeader />
                     <div className="loginForm">
                         <div className="login">

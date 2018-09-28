@@ -51,15 +51,15 @@ class SignUpForm extends Component {
             return (<Redirect to="/login" />)
         }
         return (
-            <div className="Login container-fluid ">
-                <div className="Login contain">
+            <div className=" container-fluid ">
+                <div className=" contain">
                     <NonLoginHeader />
                     <div className="loginForm">
                         <div className="login">
                             <p className="signInText">Sign Up</p>
                             <Form onSubmit={this.handleSubmit} className="login-form">
                                 <p className="signText" >User name</p>
-                                <FormItem>
+                                <FormItem className ="form-item-custom" >
                                     {getFieldDecorator('username', {
                                         rules: [{
                                             required: true,
@@ -74,7 +74,7 @@ class SignUpForm extends Component {
                                     )}
                                 </FormItem>
                                 <p className="signText" >Full name</p>
-                                <FormItem>
+                                <FormItem className ="form-item-custom" >
                                     {getFieldDecorator('fullname', {
                                         rules: [{ required: true, message: 'Required' }, {
                                             pattern: new RegExp("^[a-zA-Z]([-']?[a-zA-Z]+)*( [a-zA-Z]([-']?[a-zA-Z]+)*)+$"),
@@ -85,7 +85,7 @@ class SignUpForm extends Component {
                                     )}
                                 </FormItem>
                                 <p className="signText" >Password</p>
-                                <FormItem>
+                                <FormItem className ="form-item-custom" >
                                     {getFieldDecorator('password', {
                                         rules: [{ required: true, message: 'Required' }, {
                                             pattern: new RegExp("^[a-zA-Z0-9_]{5,}[0-9]*$"),
@@ -94,9 +94,9 @@ class SignUpForm extends Component {
                                     })(
                                         <Input type="password" />
                                     )}
-                                </FormItem>
+                                </FormItem >
                                 <p className="signText" >Confirm password</p>
-                                <FormItem>
+                                <FormItem className ="form-item-custom" >
                                     {getFieldDecorator('confimPassword', {
                                         rules: [{ required: true, message: 'Required' }, {
                                             validator: this.compareToFirstPassword,
@@ -106,7 +106,7 @@ class SignUpForm extends Component {
                                     )}
                                 </FormItem> 
                                 <p className="signText" style = {{textAlign : 'center'}} >By clicking Submit button , you are agreed to our <span className = "primaryColorText" >Term & Service </span> and <span className = "primaryColorText"> Policy</span></p>
-                                <FormItem>
+                                <FormItem className ="form-item-custom" >
                                     <Button type="primary" className="myButton" htmlType="submit">
                                         <b>Submit</b>
                                     </Button>
