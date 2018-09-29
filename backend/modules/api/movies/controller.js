@@ -1,25 +1,36 @@
 const axios = require("axios");
 
 const API_KEY = "7345489e9522a18a9b84bbc90f4d7758";
+const key = "6f2eee009c04b0d0bb32eba6fb3cb10e";
 
-const getMovieDataById = (movieId, original_language) =>
+const getCurrentLanguage = () => new Promise((resolve, reject) => {
+})
+
+
+const getMovieDataById = (movieId) =>
   new Promise((resolve, reject) => {
-    const URI = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&language=${original_language}`;
     axios
-      .get(URI)
-      .then(data =>
-        resolve({
-          genres: data.data.genres,
-          homepage: data.data.homepage,
-          id: data.data.id,
-          overview: data.data.overview,
-          posterUri: "https://image.tmdb.org/t/p/w500" + data.data.poster_path,
-          release_date: data.data.release_date,
-          title: data.data.title,
-          vote_average: data.data.vote_average
-        })
-      )
-      .catch(err => reject(err));
+      .get('http://api.ipstack.com/check?access_key=6f2eee009c04b0d0bb32eba6fb3cb10e&format=1')
+      .then(data => {
+        const language = data.data.location.languages[0].code;
+        const URI = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&language=${language}`;
+        axios
+          .get(URI)
+          .then(data =>
+            resolve({
+              genres: data.data.genres,
+              homepage: data.data.homepage,
+              id: data.data.id,
+              overview: data.data.overview,
+              posterUri: "https://image.tmdb.org/t/p/w500" + data.data.poster_path,
+              release_date: data.data.release_date,
+              title: data.data.title,
+              vote_average: data.data.vote_average
+            })
+          )
+          .catch(err => reject(err));
+      })
+      .catch(err => reject(err))
   });
 
 const getCreditsDataById = movieId =>
@@ -41,8 +52,8 @@ const getCreditsDataById = movieId =>
       .catch(err => reject(err));
   });
 
-const getMovieById = (movieId, original_language) =>
-  Promise.all([getMovieDataById(movieId, original_language), getCreditsDataById(movieId)]);
+const getMovieById = (movieId) =>
+  Promise.all([getMovieDataById(movieId), getCreditsDataById(movieId)]);
 
 const getMovieByName = content =>
   new Promise((resolve, reject) => {
@@ -128,5 +139,6 @@ const getHomepageById = movieId =>
 module.exports = {
   getMovieById,
   getMovieByContent,
-  getHomepageById
+  getHomepageById,
+  getCurrentLanguage
 };

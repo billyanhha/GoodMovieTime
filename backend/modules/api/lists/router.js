@@ -12,5 +12,12 @@ router.post("/", authMiddleware.authorize, (req, res) => {
     .catch(err => res.status(500).send(err));
 });
 
+router.post("/:id", (req, res) => {
+  listController
+    .getListDetails(req.params.id)
+    .then(data => res.send(data))
+    .catch(err => res.status(500).send(err));
+});
+
 
 module.exports = router;

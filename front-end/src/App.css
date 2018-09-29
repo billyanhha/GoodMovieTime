@@ -404,6 +404,10 @@ html , body {
     width: 10%
 }
 
+.movieInfoPhone{
+    display: none;
+}
+
 .linear {
     position: absolute;
     left:0;
@@ -428,6 +432,7 @@ html , body {
     color: #fff;
     font-size: 18px;
     margin-bottom: 3% !important;
+    width: 50%
 }
 
 .slideButton{
@@ -643,7 +648,7 @@ html , body {
 }
 
 .upListCollapse{
-    display: flex;
+    /* display: flex; */
     align-items: center;
     background-color: transparent;
     border: none;
@@ -670,177 +675,6 @@ textarea.ant-input{
 
 
 
-@media all and (max-width : 900px ) {
-    .myNavRight{
-        display: none;
-    }
-
-    .profileRowInfo{
-        align-items: center;
-    }
-    .link:hover {
-        color: #000 !important;
-      }
-    .logoView {
-        display: flex;
-        justify-content: center;
-    }
-    .logo{
-        width: 70%;
-    }
-    .input {
-        display: none;
-    }
-    .loginButton {
-        /* display: none; */
-        display: none;
-        
-    }
-    .loginButtonNav{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;    }
-
-    /* .slide{
-        display: none;
-    } */
-    .normalBlackBoldText{
-        width: 100%;
-    }
-    .bodyProfile {
-        flex-direction: column;
-    }
-
-    .myNavLeft  {
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .myNavLeft  a{
-        display: none;
-    }
-
-    .verNav {
-        flex-direction: column;
-        width: 100%;
-        display: flex;
-        border-top: 0.02px solid #393939;
-    }
-
-    .collapse{
-        display: flex !important;
-        color: #D93433;
-        font-weight: 600;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        font-size: 22px;
-        align-items: center;
-     }
-
-     .collapseRow {
-        display: flex ;
-        justify-content: space-between;
-     }
-
-     .blackCollapse{
-        color: #fafafa;
-        font-size: 15px;
-     }
-
-     .followUs , .superheroLine{
-        display: none;
-    }
-    .logoLogin {
-        width: 50%;
-    }
-    .row{
-        margin-right: 0 !important;
-    }
-    .editButton{
-        margin-left: 0
-    }
-    .login {
-        width: 100%;
-        background-color: rgba(0,0,0,.75);
-        margin-left: 10%;
-        margin-right:10%;
-        padding: 2%;
-    }
-    .bigText{
-        font-size: 20px;
-    }
-
-    .userStats {
-        width: 100%;
-    }
-    
-    .ant-input {
-        /* font-co */
-        height: 10vw !important;
-        font-size: 16px;
-    }
-
-    .profileChildRow{
-        flex-direction: column;
-        align-items: flex-start
-    }
-    
-      .myButton {
-        height: 10vw !important;
-        margin-top: 10px; 
-        width: 100% !important;
-        background-color: #D93433 !important;
-        border-color: #D93433 !important
-      }
-    
-      .span {
-        font-size: 16px;
-        color: #fff;
-      }
-    
-      .link {
-        color: #D4CFD3 ;
-          font-size: 16px;
-      }
-    
-      .signInText{
-        color: #fff;
-        font-size: 16px;
-      }
-
-      .form-item-custom{
-          margin-bottom: 0 !important;
-      }
-
-      .imageSlide {
-          height: 400px;
-      }
-
-       .navSlide{
-          display: none;
-      }
-      .slideLogoImage{
-        width: 30%;
-      }
-      .linear{
-          display: none;
-      }
-}
-
-
-@media only screen and (max-width: 600px ) {
-    .containLayout{
-        display: block;
-    }
-
-    .bigText{
-        font-size: 18px;
-        font-weight: bold;
-        color: #EA1C22;
-    }
-
-    
-}
 
 
 

@@ -14,6 +14,17 @@ const createList = body =>
       .catch(err => reject(err));
   });
 
+const getListDetails = id =>
+  new Promise((resolve, reject) => {
+    listModel
+      .findOne({ _id: id })
+      .select("_id like moviesId posterUri name original_language createdAt")
+      .exec()
+      .then(data => resolve(data))
+      .catch(err => reject(data));
+});
+
+
 const getlistCount = () =>
   new Promise((resolve, reject) => {
     listModel
@@ -47,16 +58,6 @@ const getTop10List = () =>
       .catch(err => reject(err));
   });
 
-const getDatalistById = id =>
-  new Promise((resolve, reject) => {
-    listModel
-      .findOne({ _id: id })
-      .select("_id like moviesId posterUri name original_language createdAt")
-      .exec()
-      .then(data => resolve(data))
-      .catch(err => reject(data));
-  });
-
 const increaseLike = (id) =>
   new Promise((resolve, reject) => {
     listModel
@@ -66,7 +67,7 @@ const increaseLike = (id) =>
   });
 
 const getUserList = ({ id }) => new Promise((resolve, reject) => {
-  listModel.find({createdBy : id})
+  listModel.find({ createdBy: id })
     .select("_id like moviesId posterUri name original_language createdAt")
     .then(data => resolve(data))
     .catch(err => reject(err));
@@ -78,7 +79,7 @@ module.exports = {
   getlistCount,
   getAllListWithPage,
   getTop10List,
-  getDatalistById,
+  getListDetails,
   increaseLike,
   getUserList
 };

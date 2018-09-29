@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import './PhoneApp.css';
 import { BrowserRouter, Route } from "react-router-dom";
 import Home from './containers/Home.js';
 import axios from './axios';
