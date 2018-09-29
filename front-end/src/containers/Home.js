@@ -17,18 +17,18 @@ class Home extends Component {
 
     render() {
         return (
-            <div className="containLayout">
+            <div className="container-fluid">
                 <Header username={this.props.username} id={this.props.id} />
                 <MyNavbar username={this.props.username} id={this.props.id} />
                 <Slide />
-                <div className="followUs" >
+                {/* <div className="followUs" >
                     <p className="homeNormalText" >Follow us</p>
                     <div className="followIconDiv">
                         <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/SNAT-Movie-307717666625768/" ><i className="fab fa-facebook" style={{ color: '#4267B2' }} ></i></a>
                         <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/SNAT-Movie-307717666625768/" ><i className="fab fa-twitter" style={{ color: '#1DA1F2' }} ></i></a>
                         <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/SNAT-Movie-307717666625768/" ><i className="fab fa-instagram" style={{ color: '#C62E90' }}></i></a>
                     </div>
-                </div>
+                </div> */}
             </div>
         )
     }

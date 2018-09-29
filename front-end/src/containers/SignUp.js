@@ -51,7 +51,7 @@ class SignUpForm extends Component {
             return (<Redirect to="/login" />)
         }
         return (
-            <div className=" container-fluid ">
+            <div className=" container-fluid netflix">
                 <div className=" contain">
                     <NonLoginHeader />
                     <div className="loginForm">
@@ -96,7 +96,7 @@ class SignUpForm extends Component {
                                     )}
                                 </FormItem >
                                 <p className="signText" >Confirm password</p>
-                                <FormItem className ="form-item-custom" >
+                                <FormItem >
                                     {getFieldDecorator('confimPassword', {
                                         rules: [{ required: true, message: 'Required' }, {
                                             validator: this.compareToFirstPassword,

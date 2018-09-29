@@ -64,7 +64,7 @@ class Profile extends Component {
         const avatar = this.state.haveImage ? config.url + `/api/users/${id}/imageData` : defaultUser;
         const avatarForEdit = this.state.haveImage ? config.url + `/api/users/${id}/imageData` : '';
         return (
-            <div className="containLayout">
+            <div className="container-fluid">
                 <Header username={this.props.username} id={this.props.id} />
                 <MyNavbar username={this.props.username} id={this.props.id} />
                 <div className="bodyProfile">

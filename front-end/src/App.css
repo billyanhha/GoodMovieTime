@@ -13,12 +13,17 @@ html , body {
 
 .container-fluid  {
     height: 100%;
-    background-image: url('https://assets.nflxext.com/ffe/siteui/vlv3/b09c7d01-44a8-4786-93e6-90c9bc7a4c0a/5f032bce-690a-41db-9a33-ce218e6df76d/VN-en-20180917-popsignuptwoweeks-perspective_alpha_website_small.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     /* width: 100%; */
     margin: 0 !important;
     padding: 0 !important;
+}
+
+.netflix{
+    background-image: url('https://assets.nflxext.com/ffe/siteui/vlv3/b09c7d01-44a8-4786-93e6-90c9bc7a4c0a/5f032bce-690a-41db-9a33-ce218e6df76d/VN-en-20180917-popsignuptwoweeks-perspective_alpha_website_small.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .contain{
@@ -162,11 +167,14 @@ html , body {
 }
 
 .containLayout{
-    display: flex;
     height: 100%;
     width: 100%;
     background-color: #fafafa;
     flex-direction: column;
+}
+
+.container-fluid{
+    background-color: #fafafa;
 }
 
 .superheroLine {
@@ -314,24 +322,130 @@ html , body {
 
 
 .slide {
-    height: 70%;
     width: 100%;
     border:none;
     padding: 0 !important;
-    margin: 0!important
+    margin: 0!important;
+    position: relative;
 }
 
-.slide div {
+.navSlide{
+    position: absolute;
+    left:0;
+    right:0;
+    /* padding: 1%; */
+    margin-left: 15%;
+    margin-right:20%;
+    height:18%;
+    /* top: 90%; */
+    bottom: -10%;
+    background-color: #fafafa;
+    display: flex;
+}
+
+.navSlideItem{
+    /* width: ; */
+    display: flex;
+    padding-left : 2%;
+    padding-right: 2%;
+    flex-basis: 60%;
+    /* align-items: center; */
+    text-align: center;
+    flex-direction: column;
+}
+.slideNavText:hover {
+    color: #EA1C22
+}
+
+.MuiLinearProgress-colorPrimary-2{
+    background-color:transparent !important
+}
+
+.MuiLinearProgress-barColorPrimary-10{
+    background-color: #EA1C22 !important;
+
+}
+
+
+.slideNavText{
+    cursor: pointer;
+    padding-top: 10%;
+    color: #000;
+    font-weight: bolder;
+    letter-spacing: 0;
+    font-size: 0.7vw;
+}
+
+.slideNavTextClick{
+    color: #EB2328;
+    padding-top: 10%;
+    font-weight: bolder;
+    letter-spacing: 0;
+    font-size: 0.7vw;
+}
+
+/* .slide div {
     height: 100%;
     width: 100%
-}
+} */
+
 
 .imageSlide{
+    height: 60vh;
     background-size: cover;
     background-repeat: no-repeat;
     background-position-x: center;
     background-position-y: center;
+    position: relative;
 }
+
+.slideLogoImage {
+    height: 15%;
+    width: 10%
+}
+
+.linear {
+    position: absolute;
+    left:0;
+    right:0;
+    top:0;
+    bottom: 0;
+    background: linear-gradient(to right, rgba(0,0,0,0.8),rgba(0,0,0,0.7) ,rgba(0,0,0,0.5) ,transparent ,  transparent) !important;
+    padding-left: 15%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column
+}
+
+.releaseDate{
+    color: #fff;
+    font-size: 60px;
+    margin-bottom: 0 !important;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.content{
+    color: #fff;
+    font-size: 18px;
+    margin-bottom: 3% !important;
+}
+
+.slideButton{
+    background-color: #EA1C22;
+    padding: 10px 20px;
+    color: #fff;
+    width: 10%;
+    font-size: 13px;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+    text-align: center
+}
+
+.slideButton:hover{
+    background-color: #fafafa;
+}
+
 
 .slideText{
     color: #fff;
@@ -587,9 +701,9 @@ textarea.ant-input{
     flex-direction: column;
     justify-content: space-between;    }
 
-    .slide{
+    /* .slide{
         display: none;
-    }
+    } */
     .normalBlackBoldText{
         width: 100%;
     }
@@ -659,9 +773,6 @@ textarea.ant-input{
     .userStats {
         width: 100%;
     }
-
-
-    
     
     .ant-input {
         /* font-co */
@@ -701,6 +812,19 @@ textarea.ant-input{
           margin-bottom: 0 !important;
       }
 
+      .imageSlide {
+          height: 400px;
+      }
+
+       .navSlide{
+          display: none;
+      }
+      .slideLogoImage{
+        width: 30%;
+      }
+      .linear{
+          display: none;
+      }
 }
 
 
