@@ -1,5 +1,5 @@
 const listModel = require("./model");
-
+const commonController = require("../commonController");
 const createList = body =>
   new Promise((resolve, reject) => {
     listModel
@@ -8,43 +8,133 @@ const createList = body =>
         moviesId: body.moviesId,
         posterUri: body.posterUri,
         name: body.name,
-        original_language: body.original_language
       })
+      .then(data => commonController.increasePostNumber(data.createdBy))
+      .then(data => resolve(data))
+      .catch(err => reject(err));
+  });
+
+const deleteList = ({ id, uid }) =>
+  new Promise((resolve, reject) => {
+    listModel
+      .findOne({ _id: id, createdBy: uid })
+      .then(data => commonController.decreasePostNumber(data.createdBy))
+      .then(data => listModel.findOneAndRemove({ _id: id, createdBy: uid }))
+      .then(data => resolve(data))
+      .catch(err => reject(err));
+  });
+
+const updateList = (body) =>
+  new Promise((resolve, reject) => {
+    listModel.updateOne(
+      { _id: body.id, createdBy: body.uid },
+      {
+        moviesId: body.moviesId,
+        posterUri: body.posterUri,
+        name: body.name,
+      })
+      .then(data => resolve(data))
+      .catch(err => reject(err));
+  });
+
+const getAllList = () =>
+  new Promise((resolve, reject) => {
+    listModel
+      .find({})
       .then(data => resolve(data))
       .catch(err => reject(err));
   });
 
 const getListDetails = id =>
   new Promise((resolve, reject) => {
-    listModel
-      .findOne({ _id: id })
-      .select("_id like moviesId posterUri name original_language createdAt")
-      .exec()
-      .then(data => resolve(data))
+    listModel.update(
+      {
+        _id: id
+      }, {
+        $inc: { view: 1 }
+      }
+    )
+      .then(data => {
+        listModel.findOne({ _id: id })
+          .select("name moviesId posterUri like view createdBy comments")
+          .populate("createdBy", "username _id")
+          .then(data => resolve(data))
+      })
       .catch(err => reject(data));
+  });
+
+const reactList = ({ id, uid }) =>
+  new Promise((resolve, reject) => {
+    listModel.findOne(
+      {
+        _id: id, like: { $elemMatch: { createdBy: uid } }
+      }
+    ).then(data => {
+      if (!data) {
+        listModel
+          .updateOne({
+            _id: id
+          }, {
+              $push: {
+                like: {
+                  createdBy: uid,
+                },
+                $inc: {
+                  view: 1
+                }
+              }
+            }).then(data => resolve(data))
+      } else {
+        listModel
+          .updateOne({
+            _id: id
+          }, {
+              $pull: {
+                like: {
+                  createdBy: uid,
+                },
+                $inc: {
+                  view: 1
+                }
+              }
+            }).then(data => resolve(data))
+      }
+    }
+    )
+      .catch(err => reject(err))
+  });
+
+const comment = ({ id, uid, content }) =>
+  new Promise((resolve, reject) => {
+    listModel.update(
+      {
+        _id: id
+      },
+      {
+        $push: {
+          comments: { createdBy: uid, content }
+        }
+      }
+    )
+      .then(data => resolve(data))
+      .catch(err => reject(err))
+  });
+
+const deleteComment = ({ id, uid, commentId }) => new Promise((resolve, reject) => {
+  listModel.update(
+    {
+      _id: id
+    },
+    {
+      $pull: {
+        comments: { createdBy: uid, _id: commentId }
+      }
+    }
+  )
+    .then(data => resolve(data))
+    .catch(err => reject(err))
 });
 
-
-const getlistCount = () =>
-  new Promise((resolve, reject) => {
-    listModel
-      .find()
-      .then(data => resolve({ count: data.length }))
-      .catch(err => reject(err));
-  });
-
-const getAllListWithPage = page =>
-  new Promise((resolve, reject) => {
-    listModel
-      .find()
-      .sort({ createdAt: -1 })
-      .skip((page - 1) * 10)
-      .limit(10)
-      .select("_id like moviesId posterUri name original_language")
-      .exec()
-      .then(data => resolve(data))
-      .catch(err => reject(err));
-  });
 
 const getTop10List = () =>
   new Promise((resolve, reject) => {
@@ -52,34 +142,23 @@ const getTop10List = () =>
       .find()
       .sort({ like: -1, createdAt: -1 })
       .limit(10)
-      .select("_id  moviesId posterUri name like original_language")
+      .select("_id  moviesId posterUri name like view")
       .exec()
       .then(data => resolve(data))
       .catch(err => reject(err));
   });
 
-const increaseLike = (id) =>
-  new Promise((resolve, reject) => {
-    listModel
-      .update({ _id: id }, { $inc: { like: 1 } })
-      .then(data => resolve(data))
-      .catch(err => reject(err));
-  });
 
-const getUserList = ({ id }) => new Promise((resolve, reject) => {
-  listModel.find({ createdBy: id })
-    .select("_id like moviesId posterUri name original_language createdAt")
-    .then(data => resolve(data))
-    .catch(err => reject(err));
-})
 
 
 module.exports = {
   createList,
-  getlistCount,
-  getAllListWithPage,
+  getAllList,
   getTop10List,
   getListDetails,
-  increaseLike,
-  getUserList
-};
+  reactList,
+  comment,
+  deleteComment,
+  deleteList,
+  updateList
+}

@@ -59,7 +59,7 @@ class LoginForm extends Component {
                                     {getFieldDecorator('username', {
                                         rules: [{ required: true, message: 'Please enter your username!' }],
                                     })(
-                                        <Input type = "text"/>
+                                        <Input autoFocus type = "text"/>
                                     )}
                                 </FormItem>
                                 <p className="signText" >Password</p>

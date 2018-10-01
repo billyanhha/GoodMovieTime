@@ -1,7 +1,6 @@
 const userModel = require('./model');
 const fs = require('fs');
-const listController = require("../lists/controller");
-
+const commonController = require("../commonController");
 const createUser = ({ username, fullname, password }) => new Promise((resolve, reject) => {
     userModel.create({
         username,
@@ -43,15 +42,10 @@ const editUserInfo = ({ id, fullname, avatarFile, aboutMe }) => new Promise((res
         ).catch(err => reject(err));
 })
 
-const getUserList = ({ id }) => new Promise((resolve, reject) => {
-    listController.getUserList({ id })
-        .then(data => resolve(data))
-        .catch(err => reject(err))
-})
 
 const getUserById = ({ id }) => new Promise((resolve, reject) => {
     userModel.findOne({ _id: id })
-        .select('username fullname aboutMe like')
+        .select('username fullname aboutMe like numberOfPost')
         .then(data => resolve(data))
         .catch(err => reject(err))
 })
@@ -59,6 +53,13 @@ const getUserById = ({ id }) => new Promise((resolve, reject) => {
 const getImageData = ({ id }) => new Promise((resolve, reject) => {
     userModel.findOne({ _id: id })
         .select('avatar contentType')
+        .then(data => resolve(data))
+        .catch(err => reject(err))
+})
+
+
+const getUserList = (id) => new Promise((resolve, reject) => {
+    commonController.getListByUser(id)
         .then(data => resolve(data))
         .catch(err => reject(err))
 })
@@ -72,5 +73,5 @@ module.exports = {
     editUserInfo,
     getUserList,
     getUserById,
-    getImageData
+    getImageData,
 }

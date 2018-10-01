@@ -4,8 +4,8 @@ import logo from '../images/logo3.png';
 // import watch from '../images/watch.jpg';
 import { Dropdown, Menu, Icon } from 'antd';
 import axios from "../axios";
-// import iron from '../images/iron.png';
-// import deadpool from '../images/deadpool.png';
+import goku from '../images/goku.gif';
+import pacman from '../images/pacman.gif';
 // import batman from '../images/batman.png';
 // import fight from '../images/fight.png';
 // import cute from "../images/cute.png";
@@ -40,7 +40,7 @@ class Home extends Component {
                 </Menu.Item>
             </Menu>
         );
-        const {username} =this.props;
+        const { username } = this.props;
         // const user = 
         const render = username ?
             (
@@ -63,17 +63,14 @@ class Home extends Component {
                 )
             )
         return (
-            <div className="header row">
+            <div className="header row padding">
                 <div className="col-md-6 col-12 logoView">
                     <Link to='/' className="link" ><img src={logo} className="logo" alt="Logo" /> </Link>
                 </div>
-                {/* <div className="col-md-5 superheroLine">
-                    <img src={fight} className="super" alt="Logo" />
-                    <img src={iron} className="super" alt="Logo" />
-                    <img src={deadpool} className="super" alt="Logo" />
-                    <img src={cute} className="spider" alt="Logo" />
-                    <img src={batman} className="super" alt="Logo" />
-                </div> */}
+                <div className="col-md-5 superheroLine">
+                    <img src={pacman} className="super" alt="Logo" />
+                    <img src={goku} className="super" alt="Logo" />
+                </div>
                 {render}
             </div>
         )

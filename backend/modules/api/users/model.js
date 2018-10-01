@@ -9,7 +9,8 @@ const userModel = new Schema({
     aboutMe: { type: String, default: "Hi" },
     avatar: { type: Buffer },
     contentType: { type: String },
-    like: {type : Number , default : 0}
+    like: {type : Number , default : 0},
+    numberOfPost: {type: Number , default : 0}
 },
     { timestamps: { createdAt: "createdAt" } }
 )

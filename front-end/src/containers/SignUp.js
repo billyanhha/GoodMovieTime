@@ -70,7 +70,7 @@ class SignUpForm extends Component {
                                         }
                                         ],
                                     })(
-                                        <Input type="text" />
+                                        <Input  autoFocus type="text" />
                                     )}
                                 </FormItem>
                                 <p className="signText" >Full name</p>

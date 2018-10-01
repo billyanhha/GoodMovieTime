@@ -5,8 +5,10 @@ import MyNavbar from '../components/MyNavbar';
 import axios from '../axios';
 import config from '../config';
 import defaultUser from "../images/defaultUser.jpg";
-import { Modal  } from 'antd';
+import { Modal } from 'antd';
 import EditProfileModal from '../components/EditProfileModal';
+import ProfilePostedList from '../components/ProfilePostedList';
+import Loader from '../components/Loader';
 
 class Profile extends Component {
     constructor(props) {
@@ -22,19 +24,18 @@ class Profile extends Component {
     }
 
     componentDidMount() {
-        axios.get(`/api/users/${this.props.match.params.id}/list`)
-            .then(data => this.setState({ list: data.data }))
-            .catch(err => console.log(err))
+        this.setState({ loading: true })
         axios.get(`api/users/${this.props.match.params.id}`)
             .then(data => { this.setState({ users: data.data }) })
             .catch(err => console.log(err))
         axios.get(`api/users/${this.props.match.params.id}/imageData`)
             .then(data => {
                 if (data.data) {
-                    this.setState({ haveImage: true })
+                    this.setState({ haveImage: true, loading: false })
                 }
             })
             .catch(err => console.log(err))
+
     }
 
 
@@ -46,7 +47,7 @@ class Profile extends Component {
     }
 
     handleSumbit = () => {
-        
+
     }
 
 
@@ -59,7 +60,7 @@ class Profile extends Component {
 
     render() {
         const id = this.props.match.params.id;
-        const {users } = this.state;
+        const { users } = this.state;
         const authoRize = (this.props.match.params.id === this.props.id);
         const avatar = this.state.haveImage ? config.url + `/api/users/${id}/imageData` : defaultUser;
         const avatarForEdit = this.state.haveImage ? config.url + `/api/users/${id}/imageData` : '';
@@ -67,44 +68,51 @@ class Profile extends Component {
             <div className="container-fluid">
                 <Header username={this.props.username} id={this.props.id} />
                 <MyNavbar username={this.props.username} id={this.props.id} />
-                <div className="bodyProfile">
-                    <div className="profileRow"   >
-                        <div className="roundedDiv" style={{ backgroundImage: `url(${avatar})` }} >
-                            {/* <img src={this.state.haveImage ? `${config.url}` + `/api/users/${id}/imageData` : defaultUser} alt={this.state.users.username} className="img-responsive rounded-circle" /> */}
-                        </div>
-                    </div>
-                    <div className="profileRowInfo">
-                        <div className=" profileChildRow">
-                            <p className="bigText" >{users.username} ( {users.fullname} )<button type="button" onClick={this.showModal} style={{ display: authoRize ? '' : 'none' }} className="btn btn-outline-secondary editButton"><i className="fas fa-edit"></i></button>
-                            </p>
-                            <div className = "modal">
-                                <Modal title="Edit profiles"
-                                    visible={this.state.visible}
-                                    confirmLoading={this.state.confirmLoading}
-                                    onCancel={this.handleCancel}
-                                    action={''}
-                                    footer={[]}
-                                >
-                                    <EditProfileModal handleCancel = {this.handleCancel} handleSumbit = {this.handleSumbit} avatar={avatarForEdit} users={users} id={id} />
-                                </Modal>
+                {this.state.loading ?
+                    (<Loader />) :
+                    (
+                        <div>
+                            <div className="bodyProfile">
+                                <div className="profileRow"   >
+                                    <div className="roundedDiv" style={{ backgroundImage: `url(${avatar})` }} >
+                                        {/* <img src={this.state.haveImage ? `${config.url}` + `/api/users/${id}/imageData` : defaultUser} alt={this.state.users.username} className="img-responsive rounded-circle" /> */}
+                                    </div>
+                                </div>
+                                <div className="profileRowInfo">
+                                    <div className=" profileChildRow">
+                                        <p className="bigText" >{users.username} ( {users.fullname} )<button type="button" onClick={this.showModal} style={{ display: authoRize ? '' : 'none' }} className="btn btn-outline-secondary editButton"><i className="fas fa-edit"></i></button>
+                                        </p>
+                                        <div className="modal">
+                                            <Modal title="Edit profiles"
+                                                visible={this.state.visible}
+                                                confirmLoading={this.state.confirmLoading}
+                                                onCancel={this.handleCancel}
+                                                action={''}
+                                                footer={[]}
+                                            >
+                                                <EditProfileModal handleCancel={this.handleCancel} handleSumbit={this.handleSumbit} avatar={avatarForEdit} users={users} id={id} />
+                                            </Modal>
+                                        </div>
+                                    </div>
+                                    <div className="profileChildRow" >
+                                        <p className="normalBlackBoldText" ><i className="fas fa-info-circle info"></i>{users.aboutMe}</p>
+                                    </div>
+                                    <div className="userStats " >
+                                        <div className="stats">
+                                            <span><span className="normalBlackBoldText" >{users.numberOfPost}   </span> post </span>
+                                        </div>
+                                        <div className="stats">
+                                            <span><span className="normalBlackBoldText" >{users.like}  </span> like </span>
+                                        </div>
+                                        <div className="stats">
+                                            <span><span className="normalBlackBoldText" ># {users.like}  </span> Rank </span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+                            <ProfilePostedList id={id} loading = {this.state.loading} />
                         </div>
-                        <div className="profileChildRow" >
-                            <p className="normalBlackBoldText" ><i className="fas fa-info-circle info"></i>{users.aboutMe}</p>
-                        </div>
-                        <div className="userStats " >
-                            <div className="stats">
-                                <span><span className="normalBlackBoldText" >{this.state.list.length}   </span> post </span>
-                            </div>
-                            <div className="stats">
-                                <span><span className="normalBlackBoldText" >{users.like}  </span> like </span>
-                            </div>
-                            <div className="stats">
-                                <span><span className="normalBlackBoldText" ># {users.like}  </span> Rank </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    )}
             </div>
         )
     }

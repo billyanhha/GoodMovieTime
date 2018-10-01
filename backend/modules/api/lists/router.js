@@ -9,15 +9,71 @@ router.post("/", authMiddleware.authorize, (req, res) => {
   listController
     .createList(req.body)
     .then(data => res.send(data))
+    .catch(err => console.log(err));
+});
+
+router.delete("/:id", authMiddleware.authorize, (req, res) => {
+  let uid = req.session.userInfo.id;
+  listController
+    .deleteList({ ...req.params, uid })
+    .then(data => res.send(data))
     .catch(err => res.status(500).send(err));
 });
 
-router.post("/:id", (req, res) => {
+router.put("/:id", authMiddleware.authorize, (req, res) => {
+  let uid = req.session.userInfo.id;
+  listController
+    .updateList({ ...req.body, id: req.params.id, uid })
+    .then(data => res.send(data))
+    .catch(err => res.status(500).send(err));
+})
+
+router.get("/", (req, res) => {
+  listController
+    .getAllList()
+    .then(data => res.send(data))
+    .catch(err => res.status(500).send(err));
+});
+
+router.get("/top10", (req, res) => {
+  console.log("123")
+  listController
+    .getTop10List()
+    .then(data => res.send(data))
+    .catch(err => res.status(500).send(err));
+})
+
+router.get("/:id/details", (req, res) => {
   listController
     .getListDetails(req.params.id)
     .then(data => res.send(data))
     .catch(err => res.status(500).send(err));
 });
+
+router.post("/:id/react", authMiddleware.authorize, (req, res) => {
+  let uid = req.session.userInfo.id;
+  listController
+    .reactList({ id: req.params.id, uid })
+    .then(data => res.send(data))
+    .catch(err => res.status(500).send(err));
+});
+
+router.post("/:id/comment", authMiddleware.authorize, (req, res) => {
+  let uid = req.session.userInfo.id;
+  listController
+    .comment({ id: req.params.id, uid, content: req.body.content })
+    .then(data => res.send(data))
+    .catch(err => res.status(500).send(err));
+});
+
+router.delete("/:id/comment/:commentId", authMiddleware.authorize, (req, res) => {
+  let uid = req.session.userInfo.id;
+  listController
+    .deleteComment({ id: req.params.id, commentId: req.params.commentId, uid })
+    .then(data => res.send(data))
+    .catch(err => res.status(500).send(err));
+});
+
 
 
 module.exports = router;

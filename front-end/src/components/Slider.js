@@ -41,10 +41,12 @@ class Slide extends React.Component {
     }
 
     progress = () => {
-        this.setState({ completed: 0 });
+        if (this.setState.completed === 100) {
+            this.setState({ completed: 0 });
+        }
         setTimeout(() => {
-            this.setState({ completed: 100 });
-        }, 2000);
+            this.setState({ completed: this.state.completed + 100 });
+        }, 2);
     };
 
     render() {
@@ -68,7 +70,7 @@ class Slide extends React.Component {
             return (
                 <div className="container-fluid" key={index}>
                     <div className="imageSlide" style={{ backgroundImage: `url(${background[index]})` }} >
-                        <div className="linear">
+                        <div className="linear padding">
                             <img alt="" src={logo[index] || ''} className="slideLogoImage" />
                             <p className="releaseDate">{value.bigText}</p>
                             <p className="content">{value.details}</p>
@@ -80,12 +82,12 @@ class Slide extends React.Component {
         })
         const navSlideWeb = navSlide.map((value, index) => {
             const click = () => {
-                return  this.navTosLide(index);
+                return this.navTosLide(index);
             }
             return (<div className="navSlideItem" key={index}>
                 {
                     this.state.slideIndex === (index) && (
-                        <LinearProgress variant="determinate" value={this.state.completed} />
+                        <div className="progress-bar"></div>
                     )
                 }
                 <p onClick={click} className={this.state.slideIndex === (index) ? "slideNavTextClick" : "slideNavText"} >{value.title}</p>

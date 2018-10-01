@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import axios from "../axios";
 
 
@@ -19,8 +19,15 @@ class MyNavbar extends React.Component {
         this.setState({ show: !isShow });
     }
 
+    toPostList = () => {
+        this.setState({ toPostList: true })
+    }
+
 
     render() {
+        if (this.state.toPostList) {
+            return <Redirect to="/post" />
+        }
         const username = this.props.username;
         const render = username ?
             (
@@ -38,7 +45,7 @@ class MyNavbar extends React.Component {
                 )
             )
         return (
-            <div className="myNav">
+            <div className="myNav padding">
                 <div className={this.state.show ? "verNav" : "myNavLeft"}>
                     <div className="collapseRow " >
                         {
@@ -51,8 +58,9 @@ class MyNavbar extends React.Component {
                     <Link to="/" className="navLink">Home</Link>
                     <Link to="/" className="navLink" >Just now</Link>
                     <Link to="/" className="navLink" >Top 10</Link>
-                    <Link to="/" className="navLink" >About Us</Link>
-                    {username ? (<button className="upListCollapse">Uplist <i className="fas fa-upload" style={{marginLeft : '5px'}} ></i></button>
+                    <Link to="/" className="navLink" >About us</Link>
+                    {username ? (
+                        <Link to="/post"><button className="upListCollapse">Post<i className="fas fa-upload" style={{ marginLeft: '5px' }} ></i></button></Link>
                     ) : <div></div>}
                     {render}
                 </div>

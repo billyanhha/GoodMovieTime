@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const userController = require('./controller');
-const listController = require('../lists/controller');
 const multer = require('multer');
 const authMiddleware = require('../auth/auth.js');
 var upload = multer({ dest: 'avatars/' })
@@ -55,9 +54,9 @@ router.put('/', authMiddleware.authorize, upload.single('avatarFile'), (req, res
 })
 
 router.get('/:id/list', (req, res) => {
-    userController.getUserList({ id: req.params.id })
+    userController.getUserList(req.params.id )
         .then(data => res.send(data))
-        .catch(err => res.status(500).send(err))
+        .catch(err => console.log(err))
 })
 
 module.exports = router;
