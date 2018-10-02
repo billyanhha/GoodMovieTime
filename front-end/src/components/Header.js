@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../images/logo3.png';
 // import watch from '../images/watch.jpg';
-import { Dropdown, Menu, Icon } from 'antd';
+import { Dropdown, Menu, Icon, Modal } from 'antd';
 import axios from "../axios";
 import goku from '../images/goku.gif';
 import pacman from '../images/pacman.gif';
+import PostListModal from './PostListModal';
 // import batman from '../images/batman.png';
 // import fight from '../images/fight.png';
 // import cute from "../images/cute.png";
@@ -28,10 +29,31 @@ class Home extends Component {
             .catch(err => console.log(err))
     }
 
+    handleCancel = () => {
+        console.log('Clicked cancel button');
+        this.setState({
+            visible: false,
+        });
+    }
+
+    handleSumbit = () => {
+
+    }
+
+
+    showModal = () => {
+        this.setState({
+            visible: true,
+        });
+    }
+
 
     render() {
         const menu = (
             <Menu>
+                <Menu.Item>
+                    <button onClick = {this.showModal} className="upListCollapse">Post<i className="fas fa-upload" style={{ marginLeft: '5px' }} ></i></button>
+                </Menu.Item>
                 <Menu.Item>
                     <Link to={`/profile/` + this.props.id} onClick={() => { }} className="navLink" >Profile</Link>
                 </Menu.Item>
@@ -70,6 +92,17 @@ class Home extends Component {
                 <div className="col-md-5 superheroLine">
                     <img src={pacman} className="super" alt="Logo" />
                     <img src={goku} className="super" alt="Logo" />
+                </div>
+                <div className="modal">
+                    <Modal title="Post list"
+                        visible={this.state.visible}
+                        confirmLoading={this.state.confirmLoading}
+                        onCancel={this.handleCancel}
+                        action={''}
+                        footer={[]}
+                    >
+                        <PostListModal username={this.props.username} id={this.props.id}/>
+                    </Modal>
                 </div>
                 {render}
             </div>

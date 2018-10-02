@@ -1,7 +1,6 @@
 import React from 'react';
 import Slider from 'react-slick'
 import config from "../config";
-import LinearProgress from '@material-ui/core/LinearProgress';
 const devil = require('../images/watch.jpg');
 const batlogo = require('../images/batlogo.png');
 const ctb = require('../images/ctb.jpg');

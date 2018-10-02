@@ -32,7 +32,9 @@ class MyNavbar extends React.Component {
         const render = username ?
             (
                 <div className="loginButtonNav" >
+                    <button className="upListCollapse" style ={{color: '#fff'  , paddingTop: '10px' , paddingBottom: '10px'}} >Post<i className="fas fa-upload" style={{ marginLeft: '5px' }} ></i></button>
                     <Link to={"/profile/" + this.props.id} className="ant-dropdown-link navLink" >View profile</Link>
+                    <Link to={"/profile/" + this.props.id} className="ant-dropdown-link navLink" >Post</Link>
                     <Link to="/login" onClick={this.logout} className="navLink">Logout</Link>
                     <Link to="/" className="navLink" > <i className="fas fa-search"></i></Link>
                 </div>
@@ -59,9 +61,9 @@ class MyNavbar extends React.Component {
                     <Link to="/" className="navLink" >Just now</Link>
                     <Link to="/" className="navLink" >Top 10</Link>
                     <Link to="/" className="navLink" >About us</Link>
-                    {username ? (
+                    {/* {username ? (
                         <Link to="/post"><button className="upListCollapse">Post<i className="fas fa-upload" style={{ marginLeft: '5px' }} ></i></button></Link>
-                    ) : <div></div>}
+                    ) : <div></div>} */}
                     {render}
                 </div>
                 <div className="myNavRight" >

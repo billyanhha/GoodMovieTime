@@ -23,9 +23,9 @@ class ProfilePostedList extends Component {
         const renderList = this.state.list.map((value, index) => {
             // console.log(value.posterUri)
             return (
-                <div className="col-md-6 col-xs-12 sd-phone" key={index}>
-                    <div className="row nonPadding profileListCard" >
-                        <div className="col-md-6 col-xs-12 row nonPadding">
+                <div className="col-md-4 col-xs-12 sd-phone" key={index}>
+                    <div className=" profileListCard" >
+                        <div className="col-12 row nonPadding">
                             {
                                 (value.posterUri).map((image, index) => {
                                     return (
@@ -37,7 +37,7 @@ class ProfilePostedList extends Component {
                                 })
                             }
                         </div>
-                        <div className="col-md-6 col-xs-12 listInfo ">
+                        <div className="col-12  listInfo ">
                             <p className="listName" >{value.name}</p>
                             <p className="date">{moment(value.createdAt).format(' DD-MM-YYYY  hh:mm A')}</p>
                             <div className="listStats">
@@ -58,7 +58,7 @@ class ProfilePostedList extends Component {
             <div className="container-fluid ">
                 <div className="postedList">
                     <h3 >Posted List</h3>
-                    <div className="row" style={{ paddingTop: '1%' }} >
+                    <div className="row" style={{ paddingTop: '1%'  }} >
                         {renderList}
                     </div>
                 </div>

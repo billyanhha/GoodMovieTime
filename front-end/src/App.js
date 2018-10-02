@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
 import './PhoneApp.css';
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Redirect } from "react-router-dom";
 import Home from './containers/Home.js';
 import axios from './axios';
 import Login from './containers/Login.js';
 import 'antd/dist/antd.css';  // or 'antd/dist/antd.less'
 import SignUp from './containers/SignUp';
 import Profile from './containers/Profile';
-import PostList from './containers/PostList';
 
 class App extends Component {
   constructor(props) {
@@ -50,9 +49,7 @@ class App extends Component {
           <Route path='/profile/:id' render={(props) => {
             return <Profile {...props} username={this.state.username} id={this.state.id} />
           }} />
-          <Route path='/post' render={(props) => {
-            return <PostList {...props} username={this.state.username} id={this.state.id} />
-          }} />
+          {/* <PrivateRoute path='/post'  /> */}
         </div>
       </BrowserRouter>
     );

@@ -1,6 +1,5 @@
 .App{
     height: 100%;
-    font-family: 'Montserrat', sans-serif !important;
 }
 
 html , body {
@@ -285,7 +284,7 @@ html , body {
 
 .myNavLeft {
     display: flex;
-    width: 60%;
+    width: 50%;
     justify-content: space-between;
 }
 
@@ -413,7 +412,7 @@ html , body {
 
 .slideLogoImage {
     height: 15%;
-    width: 12%
+    width: 15%
 }
 
 .movieInfoPhone{
@@ -441,7 +440,7 @@ html , body {
 
 .content{
     color: #fff;
-    font-size: 18px;
+    font-size: 15px;
     margin-bottom: 3% !important;
     width: 70%
 }
@@ -675,14 +674,10 @@ html , body {
     align-items: center;
     background-color: transparent;
     border: none;
-    color: #fafafa;
     font-weight: 600;
     text-align: left;
     padding-left: 0 !important;
-    padding-top: 10px;
-    padding-bottom: 10px;
     cursor: pointer;
-    font-size: 13px;
     transition: color 0.3s ease-in-out;
 }
 
@@ -725,9 +720,10 @@ textarea.ant-input{
 }
 
 .profileListCard{
-    width: 100%;
+    /* width: 100%; */
     background-color: #fff;
     border: 0.5px solid rgba(0,0,0,0.1);
+    margin-bottom: 3%;
     /* display: flex;
     justify-content: center */
     /* margin-left: 0 */
@@ -801,7 +797,18 @@ textarea.ant-input{
     font-size: 15px;
     padding-top: 5%;
   }
+
+  .primaryButton { 
+      color:#fff;
+      margin-top: 30px;
+      width: 200px ;
+      height: 40px;
+      font-size: 15px;
+      font-weight: bold;
+      background-color: #EA1C22;
+    }
   
+
 
   
 
