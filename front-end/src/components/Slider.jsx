@@ -64,8 +64,8 @@ class Slide extends React.Component {
             },
         };
         const slide = slider.map((value, index) => {
-            const background = [ctb, devil, dkb, justiceleague, chow, gdb];
-            const logo = [captainMarvel, teentitan, batlogo, jlb, kungfu, gog]
+            const background = [devil, ctb, dkb, justiceleague, chow, gdb];
+            const logo = [teentitan, captainMarvel, batlogo, jlb, kungfu, gog]
             return (
                 <div className="container-fluid" key={index}>
                     <div className="imageSlide" style={{ backgroundImage: `url(${background[index]})` }} >
@@ -93,7 +93,7 @@ class Slide extends React.Component {
             </div>)
         })
         const movieFontInfo = slider.map((value, index) => {
-            const logo = [captainMarvel, teentitan, batlogo, jlb, kungfu, gog]
+            const logo = [teentitan, captainMarvel, batlogo, jlb, kungfu, gog]
             return (
                 <div className="infoDiv" key={index}>
                     <img alt="" src={logo[index] || ''} className="slideLogoImage" />
@@ -102,26 +102,35 @@ class Slide extends React.Component {
             )
         })
         return (
-            <div className="slide" >
-                <Slider {...settings}
-                    swipeToSlide={false}
-                    asNavFor={this.state.nav2}
-                    ref={slider => (this.slider1 = slider)}>
-                    {slide}
-                </Slider>
-                <div className="navSlide">
-                    {navSlideWeb}
-                </div>
-                <div className="movieInfoPhone" >
+            <div>
+                <div className="slide" >
                     <Slider {...settings}
-                        disable
-                        asNavFor={this.state.nav1}
                         swipeToSlide={false}
-                        ref={slider => (this.slider2 = slider)}>
-                        {movieFontInfo}
+                        asNavFor={this.state.nav2}
+                        ref={slider => (this.slider1 = slider)}>
+                        {slide}
                     </Slider>
-                </div>
-            </div >
+                    <div className="navSlide">
+                        {navSlideWeb}
+                    </div>
+                    <div className="movieInfoPhone" >
+                        <Slider {...settings}
+                            disable
+                            asNavFor={this.state.nav1}
+                            swipeToSlide={false}
+                            ref={slider => (this.slider2 = slider)}>
+                            {movieFontInfo}
+                        </Slider>
+                    </div>
+                </div >
+                <div className="followUs" >
+                    <p className="homeNormalText" >Follow us</p>
+                    <div className="followIconDiv">
+                        <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/SNAT-Movie-307717666625768/" ><i className="fab fa-facebook" style={{ color: '#4267B2', fontSize: '20px' }} ></i></a>
+                        <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/SNAT-Movie-307717666625768/" ><i className="fab fa-twitter" style={{ color: '#1DA1F2', fontSize: '20px' }} ></i></a>
+                        <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/SNAT-Movie-307717666625768/" ><i className="fab fa-instagram" style={{ color: '#C62E90', fontSize: '20px' }}></i></a>
+                    </div>
+                </div></div>
         )
     }
 }

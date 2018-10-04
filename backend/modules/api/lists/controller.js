@@ -24,6 +24,7 @@ const deleteList = ({ id, uid }) =>
       .catch(err => reject(err));
   });
 
+
 const updateList = (body) =>
   new Promise((resolve, reject) => {
     listModel.updateOne(
@@ -37,11 +38,32 @@ const updateList = (body) =>
       .catch(err => reject(err));
   });
 
-const getAllList = () =>
+const getPagingList = (page) =>
   new Promise((resolve, reject) => {
-    listModel
-      .find({})
-      .then(data => resolve(data))
+    listModel.aggregate(
+      [
+        {
+          $project: {
+            name: 1,
+            moviesId: 1,
+            posterUri: 1,
+            view: 1,
+            commentNum: { $size: "$comments" },
+            likeNum: { $size: "$like" },
+          }
+        },
+        {
+          $skip: ((page - 1) * 10),
+        }, {
+          $limit: 10
+        }
+      ])
+      .then(doc =>
+        listModel.find().count().then(
+          data => {
+            resolve(Object.assign({}, doc, { listSize: data }));
+          }
+        ))
       .catch(err => reject(err));
   });
 
@@ -138,12 +160,24 @@ const deleteComment = ({ id, uid, commentId }) => new Promise((resolve, reject) 
 
 const getTop10List = () =>
   new Promise((resolve, reject) => {
-    listModel
-      .find()
-      .sort({ like: -1, createdAt: -1 })
-      .limit(10)
-      .select("_id  moviesId posterUri name like view")
-      .exec()
+    listModel.aggregate(
+      [
+        {
+          $project: {
+            name: 1,
+            moviesId: 1,
+            posterUri: 1,
+            view: 1,
+            commentNum: { $size: "$comments" },
+            likeNum: { $size: "$like" },
+          }
+        },
+        {
+          $sort : { likeNum: -1, view: -1, createdAt: -1 }
+        }, {
+          $limit: 10
+        }
+      ])
       .then(data => resolve(data))
       .catch(err => reject(err));
   });
@@ -151,9 +185,10 @@ const getTop10List = () =>
 
 
 
+
 module.exports = {
   createList,
-  getAllList,
+  getPagingList,
   getTop10List,
   getListDetails,
   reactList,

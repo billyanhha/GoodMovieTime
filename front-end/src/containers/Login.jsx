@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import NonLoginHeader from "../components/NonLoginHeader";
+import NonLoginHeader from "../components/NonLoginHeader.jsx";
 import { Form, Input, Button } from 'antd';
 import { Link, Redirect } from 'react-router-dom';
 import axios from "../axios";
@@ -47,7 +47,7 @@ class LoginForm extends Component {
             return (<Redirect to="/" />)
         }
         return (
-            <div className=" container-fluid netflix">
+            <div className=" container-fluid netflix animation">
                 <div className=" contain">
                     <NonLoginHeader />
                     <div className="loginForm">

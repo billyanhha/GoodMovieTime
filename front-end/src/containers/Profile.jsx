@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import Header from '../components/Header';
-import MyNavbar from '../components/MyNavbar';
+import Header from '../components/Header.jsx';
+import MyNavbar from '../components/MyNavbar.jsx';
 // import Slide from '../components/Slider';
 import axios from '../axios';
 import config from '../config';
 import defaultUser from "../images/defaultUser.jpg";
 import { Modal } from 'antd';
-import EditProfileModal from '../components/EditProfileModal';
-import ProfilePostedList from '../components/ProfilePostedList';
-import Loader from '../components/Loader';
+import EditProfileModal from '../components/EditProfileModal.jsx';
+import ProfilePostedList from '../components/ProfilePostedList.jsx';
+import Loader from '../components/Loader.jsx';
 
 class Profile extends Component {
     constructor(props) {
@@ -65,7 +65,7 @@ class Profile extends Component {
         const avatar = this.state.haveImage ? config.url + `/api/users/${id}/imageData` : defaultUser;
         const avatarForEdit = this.state.haveImage ? config.url + `/api/users/${id}/imageData` : '';
         return (
-            <div className="container-fluid">
+            <div className="container-fluid animation">
                 <Header username={this.props.username} id={this.props.id} />
                 <MyNavbar username={this.props.username} id={this.props.id} />
                 {this.state.loading ?

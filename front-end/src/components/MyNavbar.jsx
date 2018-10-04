@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link, Redirect } from "react-router-dom";
 import axios from "../axios";
+import { Modal } from 'antd';
+import PostListModal from './PostListModal.jsx';
 
 
 class MyNavbar extends React.Component {
@@ -23,6 +25,21 @@ class MyNavbar extends React.Component {
         this.setState({ toPostList: true })
     }
 
+    handleCancel = () => {
+        console.log('Clicked cancel button');
+        this.setState({
+            visible: false,
+        });
+    }
+
+    showModal = () => {
+        this.setState({
+            visible: true,
+            show: false,
+        });
+    }
+
+
 
     render() {
         if (this.state.toPostList) {
@@ -32,7 +49,7 @@ class MyNavbar extends React.Component {
         const render = username ?
             (
                 <div className="loginButtonNav" >
-                    <button className="upListCollapse" style ={{color: '#fff'  , paddingTop: '10px' , paddingBottom: '10px'}} >Post<i className="fas fa-upload" style={{ marginLeft: '5px' }} ></i></button>
+                    <button className="upListCollapse" onClick={this.showModal} style={{ color: '#fff', paddingTop: '10px', paddingBottom: '10px' }} >Post<i className="fas fa-upload" style={{ marginLeft: '5px' }} ></i></button>
                     <Link to={"/profile/" + this.props.id} className="ant-dropdown-link navLink" >View profile</Link>
                     <Link to={"/profile/" + this.props.id} className="ant-dropdown-link navLink" >Post</Link>
                     <Link to="/login" onClick={this.logout} className="navLink">Logout</Link>
@@ -58,8 +75,8 @@ class MyNavbar extends React.Component {
                         <i className="fas fa-bars collapse blackCollapse" onClick={this.collapseClick} ></i>
                     </div>
                     <Link to="/" className="navLink">Home</Link>
-                    <Link to="/" className="navLink" >Just now</Link>
-                    <Link to="/" className="navLink" >Top 10</Link>
+                    <Link to="/top" className="navLink" >Top 10</Link>
+                    <Link to="/justNow" className="navLink" >Just now</Link>
                     <Link to="/" className="navLink" >About us</Link>
                     {/* {username ? (
                         <Link to="/post"><button className="upListCollapse">Post<i className="fas fa-upload" style={{ marginLeft: '5px' }} ></i></button></Link>
@@ -69,6 +86,16 @@ class MyNavbar extends React.Component {
                 <div className="myNavRight" >
                     <Link to="/" className="navLink" style={{ width: '100%', justifyContent: 'center', color: '#000' }} > <i className="fas fa-search"  ></i></Link>
                 </div>
+                <Modal title="Post list"
+                    visible={this.state.visible}
+                    confirmLoading={this.state.confirmLoading}
+                    onCancel={this.handleCancel}
+                    action={''}
+                    footer={[]}
+                    className="fixWidthModal"
+                >
+                    <PostListModal username={this.props.username} id={this.props.id} />
+                </Modal>
             </div>
         );
     }

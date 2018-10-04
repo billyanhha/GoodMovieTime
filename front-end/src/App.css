@@ -4,16 +4,40 @@
 
 html , body {
     height: 100%;
+    animation: fade-in 0.3s ease-in;
+}
+
+.animation{
+    /* animation: fade-in 0.3s ease-in; */
+}
+
+@keyframes fade-in {
+    from {opacity: 0}
+    to {opacity: 1;}
 }
 
 .row{
-    margin-right: 0 !important;
+    /* margin-right: 0 !important; */
 }
 
 .padding {
     padding-left: 15% !important;
     padding-right: 15% !important;
 }
+
+.hoverMovie {
+    transition: all 0.5s ease-in-out;
+}
+
+.hoverMovie:hover .postModal {
+    filter: brightness(50%);
+    z-index: 0;
+}
+
+.hoverMovie:hover .deleteMovie{
+    display: block;
+}
+
 
 .nonPadding {
     margin: 0 !important;
@@ -41,6 +65,11 @@ html , body {
     width: 100%;
     background-color: rgba(0 , 0, 0,0.6);
     flex-direction: column
+}
+
+.paddingResponsive{
+    padding-left: 15% ;
+    padding-right: 15%;
 }
 
 .loginForm {
@@ -232,7 +261,7 @@ html , body {
 .homeNormalText{
     color: #191919;
     font-weight: bold;
-    font-size: 15px;
+    font-size: 13px;
     margin: 0
 }
 
@@ -280,6 +309,9 @@ html , body {
     background-color: rgba(0,0,0,.85);
     display: flex;
     justify-content: space-between;
+    /* position: sticky;
+    top: 10px;
+    z-index: 1; */
 }
 
 .myNavLeft {
@@ -478,13 +510,14 @@ html , body {
 }
 
 .followUs{
-    margin-top: 20px;
+    margin-top: 2%;
     padding-left: 15%;
     padding-right: 15%;
     display: flex;
     justify-content: flex-end;
     flex-direction: column;
-    align-items: flex-end
+    align-items: flex-end;
+    z-index: 1;
 }
 
 .followIconDiv {
@@ -719,10 +752,11 @@ textarea.ant-input{
     justify-self: center;
 }
 
-.profileListCard{
+.listCard{
     /* width: 100%; */
+    animation: fade-in 0.5s ease-in-out;
     background-color: #fff;
-    border: 0.5px solid rgba(0,0,0,0.1);
+    border: 1px solid rgba(0,0,0,0.1);
     margin-bottom: 3%;
     /* display: flex;
     justify-content: center */
@@ -765,6 +799,15 @@ textarea.ant-input{
     /* width: 15%; */
 }
 
+.postedMovieBig{
+    background-position-x: center;
+    background-position-y: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 250px;
+    /* width: 15%; */
+}
+
   
   .progress-bar {
     height: 5px;
@@ -786,6 +829,7 @@ textarea.ant-input{
     display: flex;
     flex-direction: row;
     height: 150px;
+    margin-bottom: 5px;
   }
   .searchMovie-detail{
     display: block;
@@ -800,13 +844,74 @@ textarea.ant-input{
 
   .primaryButton { 
       color:#fff;
-      margin-top: 30px;
+      margin-top: 10px;
       width: 200px ;
       height: 40px;
       font-size: 15px;
       font-weight: bold;
       background-color: #EA1C22;
     }
+
+.fixWidthModal{
+    width: 50% !important; 
+}
+
+.ant-modal-footer{
+    border-top: 0 !important;
+}
+
+.postModal{
+    height: 10vw;
+    background-color: #fafafa;
+    border : 1px dotted #bababa;
+    width: 100%;
+    margin-bottom: 10px;
+    justify-content: center;
+    background-position-x: center;
+    background-position-y: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+}
+
+.deleteMovie{
+    position: absolute;
+    display: none;
+    transform: translate(-50% , -50%);
+    top: 50%;
+    left: 50%;
+    font-size: 30px;
+    color: #fff;
+}
+
+.myPg {
+    float: right !important;
+}
+
+.page-link{
+    border: 1px solid #bababa;
+    color: #EA1C22;
+    font-weight: bold
+}
+
+.titleTag{
+    width: 100%;
+    text-align: left;
+    border-left: 5px solid #EB2328;
+    padding-left: 15px;
+    margin-top: 20px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+
+
+
+
+
+
   
 
 

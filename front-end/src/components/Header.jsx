@@ -6,13 +6,13 @@ import { Dropdown, Menu, Icon, Modal } from 'antd';
 import axios from "../axios";
 import goku from '../images/goku.gif';
 import pacman from '../images/pacman.gif';
-import PostListModal from './PostListModal';
+import PostListModal from './PostListModal.jsx';
 // import batman from '../images/batman.png';
 // import fight from '../images/fight.png';
 // import cute from "../images/cute.png";
 
 
-class Home extends Component {
+class Header extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -35,11 +35,6 @@ class Home extends Component {
             visible: false,
         });
     }
-
-    handleSumbit = () => {
-
-    }
-
 
     showModal = () => {
         this.setState({
@@ -80,7 +75,7 @@ class Home extends Component {
             : (
                 (
                     <div className="col-md-4 col-12 loginButton">
-                        <span className="normarlText" >You've not login yet ,<Link className="link" to="/login"> Login ?</Link></span>
+                        <span className="normarlText" style = {{fontSize: "13px"}} >You've not login yet ,<Link className="link" to="/login"> Login ?</Link></span>
                     </div>
                 )
             )
@@ -89,17 +84,18 @@ class Home extends Component {
                 <div className="col-md-6 col-12 logoView">
                     <Link to='/' className="link" ><img src={logo} className="logo" alt="Logo" /> </Link>
                 </div>
-                <div className="col-md-5 superheroLine">
+                {/* <div className="col-md-5 superheroLine">
                     <img src={pacman} className="super" alt="Logo" />
                     <img src={goku} className="super" alt="Logo" />
-                </div>
-                <div className="modal">
+                </div> */}
+                <div className="modal"  >
                     <Modal title="Post list"
                         visible={this.state.visible}
                         confirmLoading={this.state.confirmLoading}
                         onCancel={this.handleCancel}
                         action={''}
                         footer={[]}
+                        className = "fixWidthModal"
                     >
                         <PostListModal username={this.props.username} id={this.props.id}/>
                     </Modal>
@@ -110,4 +106,4 @@ class Home extends Component {
     }
 }
 
-export default (Home);
+export default (Header);

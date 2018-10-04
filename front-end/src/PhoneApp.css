@@ -75,7 +75,7 @@
         font-size: 15px;
      }
 
-     .followUs , .superheroLine{
+    .superheroLine{
         display: none;
     }
     .logoLogin {
@@ -191,11 +191,54 @@
 
     .sd-phone{
         padding-right: 0 !important;
-        margin-bottom: 20px;
+        margin-bottom: 5px;
     }
+
 
     .sd-phone:last-child {
         margin-bottom: 0;
+    }
+
+    .marginBottom{
+        margin-bottom: 10px;
+    }
+
+    .postModal{
+        height: 150px !important;
+    }
+
+    .deleteMovie {
+        left: calc(50% + 8px);
+    }
+
+    .followUs{
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .followIconDiv{
+        width: 100%;
+        justify-content: space-around
+    }
+    
+    .homeNormalText{
+        display: none;
+    }
+
+    .postedMovieBig{
+        height: 150px;
+    }
+
+
+}
+
+@media only screen and (max-width: 1300px ) {
+    .fixWidthModal{
+        width: 70% !important; 
+    }
+
+    .postModal{
+        height: 15vw;
     }
 }
 
@@ -204,6 +247,16 @@
     .containLayout{
         display: block;
     }
+
+    .paddingResponsive{
+        padding-left: 0 ;
+        padding-right: 0;
+    }
+
+    .titleTag{
+        padding-left: 15%;
+    }
+
 
     .bigText{
         font-size: 16px;

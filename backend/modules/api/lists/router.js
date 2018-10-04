@@ -30,9 +30,9 @@ router.put("/:id", authMiddleware.authorize, (req, res) => {
 
 router.get("/", (req, res) => {
   listController
-    .getAllList()
+    .getPagingList(req.query.page || 1)
     .then(data => res.send(data))
-    .catch(err => res.status(500).send(err));
+    .catch(err => res.sendStatus(500).send(err));
 });
 
 router.get("/top10", (req, res) => {

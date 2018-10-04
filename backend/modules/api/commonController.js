@@ -22,6 +22,15 @@ const decreasePostNumber = (id) => new Promise((resolve, reject) => {
         .catch(err => reject(err))
 })
 
+const getRecommendedList = () => new Promise((resolve, reject) => {
+    listModel
+        .find()
+        .select("_id like posterUri view name comments createdAt")
+        .exec()
+        .then(data => resolve(data))
+        .catch(err => reject(err));
+})
+
 
 module.exports = {
     getListByUser,

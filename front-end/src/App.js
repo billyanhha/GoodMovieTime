@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import './App.css';
 import './PhoneApp.css';
 import { BrowserRouter, Route, Redirect } from "react-router-dom";
-import Home from './containers/Home.js';
+import Home from './containers/Home.jsx';
 import axios from './axios';
-import Login from './containers/Login.js';
+import Login from './containers/Login.jsx';
 import 'antd/dist/antd.css';  // or 'antd/dist/antd.less'
-import SignUp from './containers/SignUp';
-import Profile from './containers/Profile';
+import SignUp from './containers/SignUp.jsx';
+import Profile from './containers/Profile.jsx';
+import TopList from './containers/TopList';
+import JustNow from './containers/JustNow';
 
 class App extends Component {
   constructor(props) {
@@ -48,6 +50,12 @@ class App extends Component {
           }} />
           <Route path='/profile/:id' render={(props) => {
             return <Profile {...props} username={this.state.username} id={this.state.id} />
+          }} />
+          <Route path='/top' render={(props) => {
+            return <TopList {...props} username={this.state.username} id={this.state.id} />
+          }} />
+          <Route path='/justNow' render={(props) => {
+            return <JustNow {...props} username={this.state.username} id={this.state.id} />
           }} />
           {/* <PrivateRoute path='/post'  /> */}
         </div>
