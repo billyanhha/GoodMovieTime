@@ -6,6 +6,9 @@ import Loader from '../components/Loader';
 import axios from '../axios';
 import { Link } from "react-router-dom";
 import moment from 'moment'
+import config from '../config';
+import defaultUser from "../images/defaultUser.jpg";
+
 
 class JustNow extends Component {
     constructor(props) {
@@ -33,6 +36,10 @@ class JustNow extends Component {
         }
     }
 
+    onErrorImage = (e) => {
+        e.target.src = defaultUser;
+    }
+
     render() {
         console.log(Math.floor(this.state.numberOfList / 10) + 1)
         const paging = this.state.numberOfList && Array.apply(null, Array(Math.floor(this.state.numberOfList / 10) + 1)).map((value, index) => {
@@ -57,8 +64,8 @@ class JustNow extends Component {
             const value = this.state.list[key]
             return (
                 <div className="col-12 sd-phone " key={index}>
-                    <div className=" listCard row" >
-                        <div className="col-md-10 col-12 row nonPadding">
+                    <div className=" listCard row " >
+                        <div className="col-md-10 col-12 row nonPadding" style={{ justifyContent: "center" }}>
                             {
                                 (value.posterUri).map((image, index) => {
                                     return (
@@ -71,17 +78,22 @@ class JustNow extends Component {
                             }
                         </div>
                         <div className="col-md-2 col-12  listInfo ">
-                            <p className="listName">{value.name}</p>
-                            <p className="date" >{moment(value.createdAt).format(' DD-MM-YYYY  hh:mm A')}</p>
-                            <div className="listStats">
-                                <p ><i className="fas fa-heart" style={{ color: '#ED4956', marginRight: '3px' }} ></i>{value.view}</p>
-                                <p ><i className="far fa-eye" style={{ color: '#4267B2', marginRight: '3px' }}></i>{value.commentNum}</p>
-                                <p ><i className="far fa-comment" style={{ color: '#FDB616', marginRight: '3px' }}></i>{value.likeNum}</p>
+                            <div className="profileCard">
+                                <Link to={`/profile/${value.createdBy[0]._id}`} ><img onError={this.onErrorImage} src={config.url + `/api/users/${value.createdBy[0]._id}/imageData`} className="rounded-circle smallAvatar" /></Link>
+                                <div>
+                                    <Link to={`/profile/${value.createdBy[0]._id}`}  >{value.createdBy[0].username}</Link>
+                                    <p className="date" >{moment(value.createdAt).format(' DD-MM-YYYY  hh:mm A')}</p>
+                                </div>
                             </div>
-                            <Link to="/" style={{ fontWeight: 'bold' }} >View details</Link>
+                            <p className="listName">{value.name}</p>
+                            <div className="listStats">
+                                <p ><i className="fas fa-eye" style={{ color: '#ED4956', marginRight: '3px' }} ></i>{value.view}</p>
+                                <p ><i className="far fa-comment" style={{ color: '#4267B2', marginRight: '3px' }}></i>{value.commentNum}</p>
+                                <p ><i className="far fa-heart" style={{ color: '#FDB616', marginRight: '3px' }}></i>{value.likeNum}</p>
+                            </div>
+                            <Link to={`/lists/${value._id}`} style={{ fontWeight: 'bold' }} >View details</Link>
                         </div>
                         <div>
-
                         </div>
                     </div>
                 </div>

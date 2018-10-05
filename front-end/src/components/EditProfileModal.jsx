@@ -62,7 +62,6 @@ class EditProfileModalForm extends Component {
                     }
                 )
                     .then(data => {
-                        this.setState({ toLogin: true })
                         message.config({
                             top: '10%',
                             maxCount: 1,

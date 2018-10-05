@@ -22,6 +22,7 @@ const getMovieDataById = (movieId) =>
               homepage: data.data.homepage,
               id: data.data.id,
               overview: data.data.overview,
+              backPosterUri: "https://image.tmdb.org/t/p/w500" + data.data.backdrop_path,
               posterUri: "https://image.tmdb.org/t/p/w500" + data.data.poster_path,
               release_date: data.data.release_date,
               title: data.data.title,
@@ -73,7 +74,6 @@ const getMovieByName = content =>
                 obj.title = element.title === element.original_title ? element.title :
                   element.original_title + " (" + element.title + ")";
                 obj.title += " (" + element.release_date.substr(0, 4) + ")";
-
                 obj.release_date = element.release_date;
                 obj.vote_average = element.vote_average;
                 obj.overview = element.overview;

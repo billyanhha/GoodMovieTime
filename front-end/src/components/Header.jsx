@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link , Redirect } from 'react-router-dom';
 import logo from '../images/logo3.png';
 // import watch from '../images/watch.jpg';
 import { Dropdown, Menu, Icon, Modal } from 'antd';
@@ -36,6 +36,7 @@ class Header extends Component {
         });
     }
 
+
     showModal = () => {
         this.setState({
             visible: true,
@@ -44,13 +45,14 @@ class Header extends Component {
 
 
     render() {
+
         const menu = (
             <Menu>
                 <Menu.Item>
                     <button onClick = {this.showModal} className="upListCollapse">Post<i className="fas fa-upload" style={{ marginLeft: '5px' }} ></i></button>
                 </Menu.Item>
                 <Menu.Item>
-                    <Link to={`/profile/` + this.props.id} onClick={() => { }} className="navLink" >Profile</Link>
+                    <Link to={`/profile/` + this.props.id} className="navLink" >Profile</Link>
                 </Menu.Item>
                 <Menu.Item>
                     <Link to="/login" onClick={this.logout} className="navLink">Logout</Link>
@@ -91,13 +93,11 @@ class Header extends Component {
                 <div className="modal"  >
                     <Modal title="Post list"
                         visible={this.state.visible}
-                        confirmLoading={this.state.confirmLoading}
                         onCancel={this.handleCancel}
-                        action={''}
                         footer={[]}
                         className = "fixWidthModal"
                     >
-                        <PostListModal username={this.props.username} id={this.props.id}/>
+                        <PostListModal redirect = {this.redirect} username={this.props.username} id={this.props.id}/>
                     </Modal>
                 </div>
                 {render}

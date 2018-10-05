@@ -51,11 +51,11 @@ class SignUpForm extends Component {
             return (<Redirect to="/login" />)
         }
         return (
-            <div className=" container-fluid netflix animation">
+            <div className=" container-fluid netflix">
                 <div className=" contain">
                     <NonLoginHeader />
                     <div className="loginForm">
-                        <div className="login">
+                        <div className="signUp">
                             <p className="signInText">Sign Up</p>
                             <Form onSubmit={this.handleSubmit} className="login-form">
                                 <p className="signText" >User name</p>

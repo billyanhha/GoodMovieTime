@@ -9,10 +9,11 @@ const createList = body =>
         posterUri: body.posterUri,
         name: body.name,
       })
-      .then(data => commonController.increasePostNumber(data.createdBy))
+      .then(data => commonController.increasePostNumber(data))
       .then(data => resolve(data))
       .catch(err => reject(err));
   });
+
 
 const deleteList = ({ id, uid }) =>
   new Promise((resolve, reject) => {
@@ -23,7 +24,6 @@ const deleteList = ({ id, uid }) =>
       .then(data => resolve(data))
       .catch(err => reject(err));
   });
-
 
 const updateList = (body) =>
   new Promise((resolve, reject) => {
@@ -43,23 +43,40 @@ const getPagingList = (page) =>
     listModel.aggregate(
       [
         {
+          $lookup: {
+            from: "users",
+            localField: "createdBy",
+            foreignField: "_id",
+            as: "createdBy",
+          },
+        },
+        {
           $project: {
             name: 1,
             moviesId: 1,
             posterUri: 1,
             view: 1,
+            createdAt: 1,
             commentNum: { $size: "$comments" },
             likeNum: { $size: "$like" },
+            createdBy: {
+              _id: 1,
+              username: 1
+            }
           }
         },
         {
+          $sort: {createdAt : -1}
+        },
+        {
           $skip: ((page - 1) * 10),
-        }, {
+        },
+        {
           $limit: 10
-        }
+        },
       ])
       .then(doc =>
-        listModel.find().count().then(
+        listModel.find().countDocuments().then(
           data => {
             resolve(Object.assign({}, doc, { listSize: data }));
           }
@@ -163,24 +180,41 @@ const getTop10List = () =>
     listModel.aggregate(
       [
         {
+          $lookup: {
+            from: "users",
+            localField: "createdBy",
+            foreignField: "_id",
+            as: "createdBy",
+          },
+        },
+        {
           $project: {
             name: 1,
             moviesId: 1,
             posterUri: 1,
             view: 1,
+            createdAt: 1,
             commentNum: { $size: "$comments" },
             likeNum: { $size: "$like" },
+            createdBy: {
+              _id: 1,
+              username: 1
+            }
           }
         },
         {
-          $sort : { likeNum: -1, view: -1, createdAt: -1 }
+          $sort: { likeNum: -1, view: -1, createdAt: -1 }
         }, {
           $limit: 10
-        }
+        },
       ])
       .then(data => resolve(data))
       .catch(err => reject(err));
   });
+
+const getDataForHome = () => {
+  return commonController.getDataForHome();
+}
 
 
 
@@ -195,5 +229,6 @@ module.exports = {
   comment,
   deleteComment,
   deleteList,
-  updateList
+  updateList,
+  getDataForHome
 }

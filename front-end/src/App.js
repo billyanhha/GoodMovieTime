@@ -10,6 +10,7 @@ import SignUp from './containers/SignUp.jsx';
 import Profile from './containers/Profile.jsx';
 import TopList from './containers/TopList';
 import JustNow from './containers/JustNow';
+import ListDetail from './containers/ListDetail';
 
 class App extends Component {
   constructor(props) {
@@ -57,6 +58,9 @@ class App extends Component {
           <Route path='/justNow' render={(props) => {
             return <JustNow {...props} username={this.state.username} id={this.state.id} />
           }} />
+          <Route path='/lists/:id' render={(props) => {
+            return <ListDetail {...props} username={this.state.username} id={this.state.id} />
+          }}/>
           {/* <PrivateRoute path='/post'  /> */}
         </div>
       </BrowserRouter>

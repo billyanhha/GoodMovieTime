@@ -25,17 +25,22 @@ class Profile extends Component {
 
     componentDidMount() {
         this.setState({ loading: true })
-        axios.get(`api/users/${this.props.match.params.id}`)
-            .then(data => { this.setState({ users: data.data }) })
-            .catch(err => console.log(err))
-        axios.get(`api/users/${this.props.match.params.id}/imageData`)
-            .then(data => {
-                if (data.data) {
-                    this.setState({ haveImage: true, loading: false })
-                }
-            })
-            .catch(err => console.log(err))
-
+        try {
+            axios.get(`api/users/${this.props.match.params.id}`)
+                .then(data => { this.setState({ users: data.data }) })
+                .catch(err => console.log(err))
+            axios.get(`api/users/${this.props.match.params.id}/imageData`)
+                .then(data => {
+                    if (data && data.data) {
+                        this.setState({ haveImage: true })
+                    }
+                })
+                .catch(err => console.log(err))
+        } catch (error) {
+            console.log(error)
+        } finally {
+            this.setState({ loading: false })
+        }
     }
 
 
@@ -63,7 +68,7 @@ class Profile extends Component {
         const { users } = this.state;
         const authoRize = (this.props.match.params.id === this.props.id);
         const avatar = this.state.haveImage ? config.url + `/api/users/${id}/imageData` : defaultUser;
-        const avatarForEdit = this.state.haveImage ? config.url + `/api/users/${id}/imageData` : '';
+        const avatarForEdit = this.state.haveImage ? config.url + `/api/users/${id}/imageData` : defaultUser;
         return (
             <div className="container-fluid animation">
                 <Header username={this.props.username} id={this.props.id} />
@@ -75,7 +80,6 @@ class Profile extends Component {
                             <div className="bodyProfile">
                                 <div className="profileRow"   >
                                     <div className="roundedDiv" style={{ backgroundImage: `url(${avatar})` }} >
-                                        {/* <img src={this.state.haveImage ? `${config.url}` + `/api/users/${id}/imageData` : defaultUser} alt={this.state.users.username} className="img-responsive rounded-circle" /> */}
                                     </div>
                                 </div>
                                 <div className="profileRowInfo">
@@ -110,7 +114,7 @@ class Profile extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <ProfilePostedList id={id} loading = {this.state.loading} />
+                            <ProfilePostedList id={id} loading={this.state.loading} />
                         </div>
                     )}
             </div>

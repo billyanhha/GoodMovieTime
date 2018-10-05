@@ -5,6 +5,9 @@ import TitleTag from '../components/TitleTag';
 import axios from '../axios';
 import { Link } from "react-router-dom";
 import moment from 'moment'
+import Loader from '../components/Loader';
+import config from '../config';
+import defaultUser from "../images/defaultUser.jpg";
 
 class TopList extends Component {
     constructor(props) {
@@ -15,20 +18,29 @@ class TopList extends Component {
     }
 
     componentDidMount() {
-        axios.get(`api/lists/top10`)
-            .then(data => { this.setState({ list: data.data }) })
-            .catch(err => console.log(err))
+        try {
+            this.setState({ loading: true })
+            axios.get(`api/lists/top10`)
+                .then(data => { this.setState({ list: data.data }) })
+                .catch(err => console.log(err))
+        } catch (error) {
+            console.log(error)
+        } finally {
+            this.setState({ loading: false })
+        }
     }
 
 
 
     render() {
         const renderList = this.state.list.map((value, index) => {
-            // console.log(value.posterUri)
+            const onErrorImage = (e) => {
+                e.target.src = defaultUser;
+            }
             return (
                 <div className="col-12 sd-phone" key={index}>
                     <div className=" listCard row" >
-                        <div className="col-md-10 col-12 row nonPadding">
+                        <div className="col-md-10 col-12 row nonPadding" style={{ justifyContent: "center" }}>
                             {
                                 (value.posterUri).map((image, index) => {
                                     return (
@@ -41,17 +53,22 @@ class TopList extends Component {
                             }
                         </div>
                         <div className="col-md-2 col-12  listInfo ">
-                            <p className="listName">{value.name}</p>
-                            <p className="date" >{moment(value.createdAt).format(' DD-MM-YYYY  hh:mm A')}</p>
-                            <div className="listStats">
-                                <p ><i className="fas fa-heart" style={{ color: '#ED4956', marginRight: '3px' }} ></i>{value.view}</p>
-                                <p ><i className="far fa-eye" style={{ color: '#4267B2', marginRight: '3px' }}></i>{value.commentNum}</p>
-                                <p ><i className="far fa-comment" style={{ color: '#FDB616', marginRight: '3px' }}></i>{value.likeNum}</p>
+                            <div className="profileCard">
+                                <Link to={`/profile/${value.createdBy[0]._id}`} ><img onError={onErrorImage} src={config.url + `/api/users/${value.createdBy[0]._id}/imageData`} className="rounded-circle smallAvatar" /></Link>
+                                <div>
+                                    <Link to={`/profile/${value.createdBy[0]._id}`}   >{value.createdBy[0].username}</Link>
+                                    <p className="date" >{moment(value.createdAt).format(' DD-MM-YYYY  hh:mm A')}</p>
+                                </div>
                             </div>
-                            <Link to="/" style={{ fontWeight: 'bold' }} >View details</Link>
+                            <p className="listName">{value.name}</p>
+                            <div className="listStats">
+                                <p ><i className="fas fa-eye" style={{ color: '#ED4956', marginRight: '3px' }} ></i>{value.view}</p>
+                                <p ><i className="far fa-comment" style={{ color: '#4267B2', marginRight: '3px' }}></i>{value.commentNum}</p>
+                                <p ><i className="far fa-heart" style={{ color: '#FDB616', marginRight: '3px' }}></i>{value.likeNum}</p>
+                            </div>
+                            <Link to={`/lists/${value._id}`} style={{ fontWeight: 'bold' }} >View details</Link>
                         </div>
                         <div>
-
                         </div>
                     </div>
                 </div>
@@ -61,12 +78,16 @@ class TopList extends Component {
             <div className="container-fluid animation">
                 <Header username={this.props.username} id={this.props.id} />
                 <MyNavbar username={this.props.username} id={this.props.id} />
-                <div className="paddingResponsive" >
-                    <TitleTag title="Top 10" />
-                    <div className="row">
-                        {renderList}
-                    </div>
-                </div>
+                {this.state.loading ? <Loader />
+                    :
+                    (
+                        <div className="paddingResponsive" >
+                            <TitleTag title="Top 10" />
+                            <div className="row">
+                                {renderList}
+                            </div>
+                        </div>)
+                }
             </div>
         )
     }

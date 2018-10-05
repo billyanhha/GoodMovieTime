@@ -51,7 +51,7 @@ const getUserById = ({ id }) => new Promise((resolve, reject) => {
 })
 
 const getImageData = ({ id }) => new Promise((resolve, reject) => {
-    userModel.findOne({ _id: id })
+        userModel.findOne({ _id: id })
         .select('avatar contentType')
         .then(data => resolve(data))
         .catch(err => reject(err))

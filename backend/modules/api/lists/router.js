@@ -35,8 +35,14 @@ router.get("/", (req, res) => {
     .catch(err => res.sendStatus(500).send(err));
 });
 
+router.get("/home", (req, res) => {
+  listController
+    .getDataForHome()
+    .then(data => res.send(data))
+    .catch(err => res.sendStatus(500).send(err));
+});
+
 router.get("/top10", (req, res) => {
-  console.log("123")
   listController
     .getTop10List()
     .then(data => res.send(data))

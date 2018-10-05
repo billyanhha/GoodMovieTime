@@ -24,8 +24,8 @@ class ProfilePostedList extends Component {
             // console.log(value.posterUri)
             return (
                 <div className="col-md-4 col-xs-12 sd-phone" key={index}>
-                    <div className=" profileListCard" >
-                        <div className="col-12 row nonPadding">
+                    <div className=" listCard" >
+                        <div className="col-12 row nonPadding" style = {{ justifyContent: "center" }}>
                             {
                                 (value.posterUri).map((image, index) => {
                                     return (
@@ -39,13 +39,13 @@ class ProfilePostedList extends Component {
                         </div>
                         <div className="col-12  listInfo ">
                             <p className="listName" >{value.name}</p>
-                            <p className="date">{moment(value.createdAt).format(' DD-MM-YYYY  hh:mm A')}</p>
+                            <p className="bigDate">{moment(value.createdAt).format(' DD-MM-YYYY  hh:mm A')}</p>
                             <div className="listStats">
-                                <p><i className="fas fa-heart" style={{ color: '#ED4956', marginRight: '3px' }} ></i>{value.view}</p>
-                                <p><i className="far fa-eye" style={{ color: '#4267B2', marginRight: '3px' }}></i>{value.like.length}</p>
+                                <p><i className="fas fa-eye" style={{ color: '#ED4956', marginRight: '3px' }} ></i>{value.view}</p>
+                                <p><i className="far fa-heart" style={{ color: '#4267B2', marginRight: '3px' }}></i>{value.like.length}</p>
                                 <p><i className="far fa-comment" style={{ color: '#F783AC', marginRight: '3px' }}></i>{value.comments.length}</p>
                             </div>
-                            <Link to="/" style={{ fontWeight: 'bold' }} >View details</Link>
+                            <Link to={`/lists/${value._id}`} style={{ fontWeight: 'bold' }} >View details</Link>
                         </div>
                         <div>
 

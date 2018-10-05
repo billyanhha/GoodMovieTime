@@ -87,7 +87,7 @@
     .editButton{
         margin-left: 0
     }
-    .login {
+    .login , .signUp {
         width: 100%;
         background-color: rgba(0,0,0,.75);
         margin-left: 10%;
@@ -225,10 +225,26 @@
         display: none;
     }
 
-    .postedMovieBig{
+    .postedMovieBig , .listInfo{
         height: 150px;
     }
+    
+    .detailListContainer{
+        margin-left: 0 ;
+        margin-right: 0
+    }
+    .detailName{
+        text-align: left;
+    }
+    .moviePosterInfo{
+        height: 400px;
+    }
 
+    .infoDetail{
+        height: auto;
+        overflow: unset;
+        margin-top: 10px;
+    }
 
 }
 

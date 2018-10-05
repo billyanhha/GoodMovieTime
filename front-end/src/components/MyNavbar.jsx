@@ -51,7 +51,6 @@ class MyNavbar extends React.Component {
                 <div className="loginButtonNav" >
                     <button className="upListCollapse" onClick={this.showModal} style={{ color: '#fff', paddingTop: '10px', paddingBottom: '10px' }} >Post<i className="fas fa-upload" style={{ marginLeft: '5px' }} ></i></button>
                     <Link to={"/profile/" + this.props.id} className="ant-dropdown-link navLink" >View profile</Link>
-                    <Link to={"/profile/" + this.props.id} className="ant-dropdown-link navLink" >Post</Link>
                     <Link to="/login" onClick={this.logout} className="navLink">Logout</Link>
                     <Link to="/" className="navLink" > <i className="fas fa-search"></i></Link>
                 </div>
@@ -78,9 +77,6 @@ class MyNavbar extends React.Component {
                     <Link to="/top" className="navLink" >Top 10</Link>
                     <Link to="/justNow" className="navLink" >Just now</Link>
                     <Link to="/" className="navLink" >About us</Link>
-                    {/* {username ? (
-                        <Link to="/post"><button className="upListCollapse">Post<i className="fas fa-upload" style={{ marginLeft: '5px' }} ></i></button></Link>
-                    ) : <div></div>} */}
                     {render}
                 </div>
                 <div className="myNavRight" >
@@ -88,9 +84,7 @@ class MyNavbar extends React.Component {
                 </div>
                 <Modal title="Post list"
                     visible={this.state.visible}
-                    confirmLoading={this.state.confirmLoading}
                     onCancel={this.handleCancel}
-                    action={''}
                     footer={[]}
                     className="fixWidthModal"
                 >

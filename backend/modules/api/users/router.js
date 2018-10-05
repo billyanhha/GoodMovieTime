@@ -26,7 +26,7 @@ router.get('/', (req, res) => {
 })
 
 router.get('/:id', (req, res) => {
-    userController.getUserById({id: req.params.id})
+    userController.getUserById({ id: req.params.id })
         .then(data => {
             res.send(data);
         })
@@ -35,7 +35,7 @@ router.get('/:id', (req, res) => {
 })
 
 router.get('/:id/imageData', (req, res) => {
-    userController.getImageData({id: req.params.id})
+    userController.getImageData({ id: req.params.id })
         .then(data => {
             res.contentType(data.contentType);
             res.send(data.avatar)
@@ -54,7 +54,7 @@ router.put('/', authMiddleware.authorize, upload.single('avatarFile'), (req, res
 })
 
 router.get('/:id/list', (req, res) => {
-    userController.getUserList(req.params.id )
+    userController.getUserList(req.params.id)
         .then(data => res.send(data))
         .catch(err => console.log(err))
 })

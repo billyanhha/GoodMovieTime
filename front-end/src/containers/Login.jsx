@@ -24,7 +24,6 @@ class LoginForm extends Component {
                     this.props.onLogin(data.data)
                     this.setState({ username: data.data.username })
                     console.log(this.state.username);
-
                     message.config({
                         top: '10%',
                         maxCount: 1,
@@ -47,7 +46,7 @@ class LoginForm extends Component {
             return (<Redirect to="/" />)
         }
         return (
-            <div className=" container-fluid netflix animation">
+            <div className=" container-fluid netflix">
                 <div className=" contain">
                     <NonLoginHeader />
                     <div className="loginForm">
@@ -74,7 +73,7 @@ class LoginForm extends Component {
                                     <Button type="primary" className ="myButton" htmlType="submit">
                                         <b>Login</b>
                                     </Button>
-                                    < div className="Login signUp" >
+                                    < div className="signUpText" >
                                         <span className="span">New to us ? </span><Link to="/signUp" style={{ fontSize: "16px" }} className="link">Sign up !</Link>
                                     </div>
                                 </FormItem>

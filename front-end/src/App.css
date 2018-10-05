@@ -4,7 +4,6 @@
 
 html , body {
     height: 100%;
-    animation: fade-in 0.3s ease-in;
 }
 
 .animation{
@@ -27,6 +26,15 @@ html , body {
 
 .hoverMovie {
     transition: all 0.5s ease-in-out;
+}
+
+.table td, .table th{
+    vertical-align: middle
+}
+
+.noMargin{
+    margin-left: 0 !important;
+    margin-right: 0 !important;
 }
 
 .hoverMovie:hover .postModal {
@@ -70,6 +78,7 @@ html , body {
 .paddingResponsive{
     padding-left: 15% ;
     padding-right: 15%;
+    background-color: #fafafa;
 }
 
 .loginForm {
@@ -92,12 +101,21 @@ html , body {
     padding: 3%;
 }
 
+
 .primaryColorText{
     font-weight: bold;
     color : #EA1C22
 }
 
 .signUp{
+    width: 100%;
+    background-color: rgba(0,0,0,.75);
+    margin-left: 38%;
+    margin-right:38%;
+    padding: 3%;
+}
+
+.signUpText{
     margin-top: 10px;
     text-align: center;
 }
@@ -752,6 +770,17 @@ textarea.ant-input{
     justify-self: center;
 }
 
+.smallloader {
+    text-align: center;
+    border: 2px solid rgba(0,0,0,0.8); /* Light grey */
+    border-top: 2px solid #EB2328; /* Blue */
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 2s linear infinite;
+    justify-self: center;
+}
+
 .listCard{
     /* width: 100%; */
     animation: fade-in 0.5s ease-in-out;
@@ -765,18 +794,42 @@ textarea.ant-input{
 
 .listInfo{
     padding: 10px 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border-left: 1px solid rgba(0,0,0,0.1);
+    height: 250px;
+}
+
+.profileCard{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    overflow: auto;
+}
+
+.smallAvatar{
+    height: 50px;
+    width: 50px;
+    margin-right: 3px;
 }
 
 .listName{
     color: #EB2328;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 17px;
+    word-break: break-all;
+    overflow: hidden;
 }
+
 
 .date {
     color: #000;
-    font-weight: bold;
-    font-size: 15px;
+    font-size: 10px;
+}
+.bigDate {
+    color: #000;
+    font-size: 13px;
 }
 
 .listStats {
@@ -905,6 +958,69 @@ textarea.ant-input{
     font-size: 25px;
     font-weight: bold;
 }
+
+.detailListContainer {
+    background-color: #fff;
+    border: 0.1px solid #bababa;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 3%;
+    padding: 10px 15px;
+}
+
+.detailInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-left: 5px solid #EB2328;
+    padding-left: 10px;
+    margin-bottom: 10px;
+}
+
+.deleteButton{
+    color: #EB2328;
+    font-size: 20px;
+    transition: 0.3s all ease;
+    cursor: pointer;
+    height: 20px;
+}
+
+.deleteButton:hover{
+    color: #000;
+    font-size: 20px;
+}
+
+
+.detailName {
+    word-break: break-all;
+    overflow: hidden;
+    font-weight: bold;
+}
+
+.detailDate {
+    font-size: 13px;
+}
+
+.movieDetail{
+    border-bottom: 1px solid #fafafa;
+    margin-bottom: 3%;
+}
+
+.moviePosterInfo {
+    background-position-x: center;
+    background-position-y: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 17vw;
+    border: 1px solid #bababa;
+}
+
+.infoDetail { 
+    height: 17vw; 
+    overflow: auto;
+ }
+
+
 
 
 

@@ -4,6 +4,7 @@ import { message } from "antd";
 import fetch from 'isomorphic-fetch';
 import * as _ from "lodash";
 import Async from 'react-select/lib/Async';
+import { Redirect } from "react-router-dom";
 
 
 class PostListModal extends React.Component {
@@ -48,14 +49,15 @@ class PostListModal extends React.Component {
     }
     submitList = (e) => {
         if (this.state.name && this.state.posterUri.length >= 3) {
+            e.preventDefault();
             axios.post('/api/lists', {
                 moviesId: this.state.id,
                 posterUri: this.state.posterUri,
                 name: this.state.name,
             })
                 .then(data => {
-                    this.setState({ switch: true, id: data.data._id });
-                    // log
+                    this.setState({listId: data.data , redirect: true});
+                    message.success("Create success", 1);
                 })
                 .catch(err => console.log(err))
         } else if (this.state.posterUri.length === 0 && this.state.name) {
@@ -95,6 +97,12 @@ class PostListModal extends React.Component {
 
 
     render() {
+
+        if (this.state.redirect && this.state.listId) {
+            return (<Redirect to={`/lists/${this.state.listId}`} />);
+        }
+
+
         const Option = (props) => {
             const option = { ...props.data };
             return (
@@ -143,7 +151,7 @@ class PostListModal extends React.Component {
             <form className="form-group">
                 <div className="row" style={{ padding: '10px' }}>
                     <div className="col-md-6 col-12 marginBottom">
-                        <input placeholder="Title" className="form-control" required onChange={e => this.handleChangeText(e.target.value)} />
+                        <input placeholder="Title" maxLength="100" className="form-control" required onChange={e => this.handleChangeText(e.target.value)} />
                     </div>
                     <div className="col-md-6 col-12 marginBottom" style={this.state.id.length === 6 ? { display: 'none' } : {}} >
                         <Async
@@ -176,4 +184,4 @@ class PostListModal extends React.Component {
     }
 }
 
-export default PostListModal;
+export default (PostListModal);
