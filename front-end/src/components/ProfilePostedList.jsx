@@ -55,7 +55,7 @@ class ProfilePostedList extends Component {
             )
         })
         return (
-            <div className="container-fluid animation">
+            <div className="container-fluid">
                 <div className="postedList">
                     <h3 >Posted List</h3>
                     <div className="row " style={{ paddingTop: '1%'  }} >

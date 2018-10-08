@@ -169,7 +169,7 @@ class PostListModal extends React.Component {
                         />
                     </div>
                     <div className="col-12" style={{ marginTop: '20px' }} >
-                        <div className="row">
+                        <div className="row ">
                             {post_arr}
                         </div>
                     </div>

@@ -8,8 +8,10 @@ import config from '../config';
 import defaultUser from "../images/defaultUser.jpg";
 import Loader from '../components/Loader.jsx';
 import MovieInfo from '../components/MovieInfo';
+import CommentList from '../components/CommentList';
 import { Link, Redirect } from "react-router-dom";
-import { Modal, message } from 'antd';
+import { Modal, message, Button } from 'antd';
+import { FacebookShareCount } from "react-share";
 
 
 class ListDetail extends Component {
@@ -18,6 +20,7 @@ class ListDetail extends Component {
         this.state = {
             value: '',
             redirect: false,
+            like: false,
         }
     }
 
@@ -27,8 +30,17 @@ class ListDetail extends Component {
             axios.get(`/api/lists/${this.props.match.params.id}/details`)
                 .then(data => {
                     this.setState({
-                        value: data.data
+                        value: data.data,
+                        likeNum: data.data.like.length,
+                        commentNum: data.data.comments.length,
                     })
+                    if (!this.props.id) return;
+                    for (let like of data.data.like) {
+                        if (like.createdBy === this.props.id) {
+                            this.setState({ like: true });
+                            return;
+                        }
+                    }
                 }
                 )
                 .catch(err => console.log(err))
@@ -47,11 +59,6 @@ class ListDetail extends Component {
         });
     }
 
-    handleSumbit = () => {
-
-    }
-
-
     showModal = () => {
         this.setState({
             visible: true,
@@ -61,6 +68,24 @@ class ListDetail extends Component {
 
     onErrorImage = (e) => {
         e.target.src = defaultUser;
+    }
+
+    reactList = async (e) => {
+        e.preventDefault();
+        if (!this.props.id) {
+            this.setState({ toLogin: true });
+        }
+        let { like, likeNum } = this.state;
+        if (like == true) {
+            likeNum--;
+            await this.setState({ likeNum, like: false })
+        } else {
+            likeNum++;
+            await this.setState({ likeNum, like: true })
+        }
+        await axios.post(`/api/lists/${this.props.match.params.id}/react`)
+            .then(data => { })
+            .catch(err => console.log(err))
     }
 
     showDeleteConfirm = () => {
@@ -87,6 +112,7 @@ class ListDetail extends Component {
         });
     }
 
+
     deleteAuthoRise = () => {
         if (this.state.value && this.props.id) {
             return this.props.id === this.state.value.createdBy._id;
@@ -99,6 +125,10 @@ class ListDetail extends Component {
 
         if (this.state.redirect) {
             return (<Redirect to="/" />);
+        }
+
+        if (this.state.toLogin) {
+            return (<Redirect to="/login" />);
         }
 
         const { value } = this.state;
@@ -114,35 +144,68 @@ class ListDetail extends Component {
         const renderButton = this.deleteAuthoRise() && (<i onClick={this.showDeleteConfirm} className="fas fa-backspace deleteButton"></i>
         )
 
+        const didLike = (this.state.value && this.state.like)
+            ?
+            (<button type="button" onClick={this.reactList} style={{ fontWeight: 'bold' }} className="btn btn-outline-danger likeButton">
+                <i className="fas fa-heart" ></i>
+                Like
+            </button>)
+            : (
+                <button type="button" onClick={this.reactList} className="btn btn-outline-danger likeButton">
+                    <i className="far fa-heart" ></i>
+                    Like
+            </button>
+            )
+
         return (
-            <div className="container-fluid animation">
+            <div style={{ backgroundColor: "#fafafa" }} >
                 <Header username={this.props.username} id={this.props.id} />
                 <MyNavbar username={this.props.username} id={this.props.id} />
                 {this.state.loading || !value ?
                     (<Loader />) :
                     (
-                        <div className="detailListContainer">
-                            <div className="detailInfo" >
-                                <div style={{ width: '70%' }} >
-                                    <h3 className="detailName" >{`${value.name}`} <span style={{ fontWeight: 'normal', fontSize: '15px' }} >({value.view} views)</span></h3>
-                                    <span style={{ fontWeight: 'bold' }} >Created by : <Link to={`/profile/${value.createdBy._id}`} >{value.createdBy.username}</Link></span>
-                                    <p className="detailDate" ><i className="far fa-clock"></i> {moment(value.createdAt).format(' DD-MM-YYYY  hh:mm A')}</p>
-                                    <div className="fb-share-button" data-href="https://scorekeeperfromnorthside.herokuapp.com" data-layout="button_count" data-size="small" data-mobile-iframe="true">
-                                        <a  href="https://www.facebook.com/sharer.php?u=https://scorekeeperfromnorthside.herokuapp.com/" className="fb-xfbml-parse-ignore">
-                                            Share</a>
+                        <div>
+                            <div className="detailListContainer">
+                                <div className="detailInfo" >
+                                    <div style={{ width: '70%' }} >
+                                        <div className="profileCard">
+                                            <Link to={`/profile/${value.createdBy._id}`} ><img onError={this.onErrorImage} src={config.url + `/api/users/${value.createdBy._id}/imageData`} className="rounded-circle smallAvatar" /></Link>
+                                            <div>
+                                                <Link to={`/profile/${value.createdBy._id}`}  >{value.createdBy.username}</Link>
+                                                <p className="detailDate" ><i className="far fa-clock"></i> {moment(value.createdAt).format(' DD-MM-YYYY  hh:mm A')}</p>
+                                            </div>
+                                        </div>
+                                        <h3 className="detailName" >{`${value.name}`} </h3>
+                                        <div className="listStats" style={{ width: '30%' }} >
+                                            <p ><i className="far fa-comment" style={{ color: '#4267B2', marginRight: '3px' }}></i>{this.state.commentNum}</p>
+                                            <p ><i className="far fa-heart" style={{ color: '#ED4956', marginRight: '3px' }}></i>{this.state.likeNum}</p>
+                                            <p ><i className="fas fa-eye" style={{ color: '#FDB616', marginRight: '3px' }} ></i>{value.view}</p>
+                                        </div>
                                     </div>
+                                    {renderButton}
                                 </div>
-                                {renderButton}
+                                <div className="row " style={{ marginTop: '2%' }} >
+                                    {renderMovie}
+                                </div>
+                                <div className="listDetails" >
+                                    {didLike}
+                                    <a target="_blank" href={`https://www.facebook.com/sharer.php?u=https://scorekeeperfromnorthside.herokuapp.com/`} className="fb-xfbml-parse-ignore shareButton">
+                                        <i style={{ fontSize: '12px' }} className="fab fa-facebook-f"></i>
+                                        Share
+                                    <FacebookShareCount url={"https://scorekeeperfromnorthside.herokuapp.com/"}>
+                                            {shareCount => (
+                                                <span className="myShareCountWrapper">{shareCount}</span>
+                                            )}
+                                        </FacebookShareCount>
+                                    </a>
+                                </div>
                             </div>
-                            <p className="normalBlackBoldText" style={{ fontSize: '20px' }} >Movies ({value.moviesId.length} movies)</p>
-                            <div className="row" style={{ marginTop: '1%' }} >
-                                {renderMovie}
-                            </div>
+                            <h6 className = "paddingResponsive" style = {{paddingBottom: 0}} >Comment {this.state.commentNum}</h6>
+                            <CommentList id={this.props.match.params.id} uid={this.props.id} comments = {value.comments}  />
                         </div>
                     )}
             </div>
         )
     }
 }
-
 export default (ListDetail);

@@ -8,6 +8,7 @@ html , body {
 
 .animation{
     /* animation: fade-in 0.3s ease-in; */
+    /* back */
 }
 
 @keyframes fade-in {
@@ -62,7 +63,7 @@ html , body {
 }
 
 .netflix{
-    background-image: url('https://assets.nflxext.com/ffe/siteui/vlv3/b09c7d01-44a8-4786-93e6-90c9bc7a4c0a/5f032bce-690a-41db-9a33-ce218e6df76d/VN-en-20180917-popsignuptwoweeks-perspective_alpha_website_small.jpg');
+    background-image: url('./images/netflix.jpg');
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -78,6 +79,7 @@ html , body {
 .paddingResponsive{
     padding-left: 15% ;
     padding-right: 15%;
+    padding-top: 20px;
     background-color: #fafafa;
 }
 
@@ -817,9 +819,10 @@ textarea.ant-input{
 .listName{
     color: #EB2328;
     font-weight: bold;
-    font-size: 17px;
+    font-size: 13px;
     word-break: break-all;
-    overflow: hidden;
+    overflow: auto;
+    margin-top: 10px !important;
 }
 
 
@@ -940,7 +943,8 @@ textarea.ant-input{
 }
 
 .myPg {
-    float: right !important;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .page-link{
@@ -965,6 +969,7 @@ textarea.ant-input{
     margin-left: 15%;
     margin-right: 15%;
     margin-top: 3%;
+    margin-bottom: 3%;
     padding: 10px 15px;
 }
 
@@ -995,6 +1000,7 @@ textarea.ant-input{
     word-break: break-all;
     overflow: hidden;
     font-weight: bold;
+    margin-top: 1%;
 }
 
 .detailDate {
@@ -1019,6 +1025,83 @@ textarea.ant-input{
     height: 17vw; 
     overflow: auto;
  }
+
+ .shareButton{
+     font-weight: bold;
+     display: flex;
+     flex-direction: row;
+     justify-content: space-around;
+     align-items: center;
+     margin-left: 20px;
+     border-radius: 3px;
+     color: #fff;
+     background-color: #4267B2;
+     width: 100px;
+ }
+
+ .listDetails{
+     display: flex;
+     flex-direction: row;
+     justify-content: flex-start;
+     margin-top: 5%;
+ }
+
+ .likeButton{
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: space-around;
+     width: 100px;
+ }
+
+ .likeButton:hover{
+    background-color: transparent !important;
+    color: #EB2328 !important;
+ }
+
+ .inputComment{
+     display: flex;
+     flex-direction: row;
+     justify-content: space-between;
+     align-items: flex-start;
+     margin-bottom: 3%;
+     margin-top: 1%
+ }
+
+ .typeComment{
+     resize: none;
+ }
+
+ textarea.form-control {
+}
+
+.comment{
+    width: 100%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    max-height: 500px;
+    overflow: auto;
+    /* flex-direction: row;
+    display: flex;
+    justify-items: flex-start;
+    align-items: center; */
+}
+
+.commentContent{
+    white-space: pre-line;
+    word-break: break-all;
+    font-weight: bold;
+    font-size: 15px
+}
+
+ .form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: none !important;
+    outline: 0;
+    box-shadow: none !important;
+ }
+
 
 
 

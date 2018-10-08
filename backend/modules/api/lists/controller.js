@@ -97,6 +97,7 @@ const getListDetails = id =>
         listModel.findOne({ _id: id })
           .select("name moviesId posterUri like view createdBy comments")
           .populate("createdBy", "username _id")
+          .populate("comments.createdBy" , "username _id")
           .then(data => resolve(data))
       })
       .catch(err => reject(data));

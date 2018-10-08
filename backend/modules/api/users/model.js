@@ -26,8 +26,6 @@ userModel.pre("save", function (next) {
         } else {
             next(error);
         }
-
-
     }
 
     bcrypt

@@ -38,8 +38,8 @@ class TopList extends Component {
                 e.target.src = defaultUser;
             }
             return (
-                <div className="col-12 sd-phone" key={index}>
-                    <div className=" listCard row" >
+                <div className="col-12 sd-phone " key={index}>
+                    <div className=" listCard row " >
                         <div className="col-md-10 col-12 row nonPadding" style={{ justifyContent: "center" }}>
                             {
                                 (value.posterUri).map((image, index) => {
@@ -53,14 +53,16 @@ class TopList extends Component {
                             }
                         </div>
                         <div className="col-md-2 col-12  listInfo ">
-                            <div className="profileCard">
-                                <Link to={`/profile/${value.createdBy[0]._id}`} ><img onError={onErrorImage} src={config.url + `/api/users/${value.createdBy[0]._id}/imageData`} className="rounded-circle smallAvatar" /></Link>
-                                <div>
-                                    <Link to={`/profile/${value.createdBy[0]._id}`}   >{value.createdBy[0].username}</Link>
-                                    <p className="date" >{moment(value.createdAt).format(' DD-MM-YYYY  hh:mm A')}</p>
+                            <div style ={{ display: 'flex',  flexDirection: 'column' , justifyContent: 'space-between'}} >
+                                <div className="profileCard">
+                                    <Link to={`/profile/${value.createdBy[0]._id}`} ><img onError={onErrorImage} src={config.url + `/api/users/${value.createdBy[0]._id}/imageData`} className="rounded-circle smallAvatar" /></Link>
+                                    <div>
+                                        <Link to={`/profile/${value.createdBy[0]._id}`}   >{value.createdBy[0].username}</Link>
+                                        <p className="date" >{moment(value.createdAt).format(' DD-MM-YYYY  hh:mm A')}</p>
+                                    </div>
                                 </div>
+                                <p className="listName">{value.name}</p>
                             </div>
-                            <p className="listName">{value.name}</p>
                             <div className="listStats">
                                 <p ><i className="fas fa-eye" style={{ color: '#ED4956', marginRight: '3px' }} ></i>{value.view}</p>
                                 <p ><i className="far fa-comment" style={{ color: '#4267B2', marginRight: '3px' }}></i>{value.commentNum}</p>
@@ -75,7 +77,7 @@ class TopList extends Component {
             )
         })
         return (
-            <div className="container-fluid animation">
+            <div>
                 <Header username={this.props.username} id={this.props.id} />
                 <MyNavbar username={this.props.username} id={this.props.id} />
                 {this.state.loading ? <Loader />

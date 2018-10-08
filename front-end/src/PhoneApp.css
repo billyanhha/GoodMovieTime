@@ -84,6 +84,12 @@
     .row{
         margin-right: 0 !important;
     }
+
+    .sd_phone_list{
+        margin-right: -30px !important; 
+        /* -15px row  */
+
+    }
     .editButton{
         margin-left: 0
     }
@@ -187,6 +193,7 @@
     }
     .listInfo {
         padding: 8px 32px;
+        height: auto;
     }
 
     .sd-phone{
@@ -225,7 +232,7 @@
         display: none;
     }
 
-    .postedMovieBig , .listInfo{
+    .postedMovieBig {
         height: 150px;
     }
     
@@ -246,6 +253,12 @@
         margin-top: 10px;
     }
 
+    .shareButton{
+        width: 40%;
+    }
+
+
+
 }
 
 @media only screen and (max-width: 1300px ) {
@@ -262,6 +275,11 @@
 @media only screen and (max-width: 600px ) {
     .containLayout{
         display: block;
+    }
+
+ 
+    a:hover {
+        color: none !important;
     }
 
     .paddingResponsive{

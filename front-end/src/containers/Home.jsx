@@ -134,7 +134,7 @@ class Home extends Component {
             )
         })
         return (
-            <div className="container-fluid animation">
+            <div className="container-fluid">
                 <Header username={this.props.username} id={this.props.id} />
                 <MyNavbar username={this.props.username} id={this.props.id} />
                 <Slide />

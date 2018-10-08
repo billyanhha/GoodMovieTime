@@ -52,7 +52,7 @@ class LoginForm extends Component {
                     <div className="loginForm">
                         <div className="login">
                             <p className="signInText">Sign In</p>
-                            <Form onSubmit={this.handleSubmit} className="login-form">
+                            <Form   onSubmit={this.handleSubmit} className="login-form">
                                 <p className="signText" >User name</p>
                                 <FormItem>
                                     {getFieldDecorator('username', {
@@ -62,11 +62,11 @@ class LoginForm extends Component {
                                     )}
                                 </FormItem>
                                 <p className="signText" >Password</p>
-                                <FormItem>
+                                <FormItem autoComplete="on">
                                     {getFieldDecorator('password', {
                                         rules: [{ required: true, message: 'Please enter your Password!' }],
                                     })(
-                                        <Input type="password"/>
+                                        <Input  type="password"/>
                                     )}
                                 </FormItem>
                                 <FormItem>

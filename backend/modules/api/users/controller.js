@@ -20,8 +20,9 @@ const getUserForAuth = (username) => new Promise((resolve, reject) => {
 })
 
 const getAllUser = () => new Promise((resolve, reject) => {
-    userModel.find().then(data => resolve(data)
-    ).catch(err => reject(err));
+    userModel.find()
+    .then(data => resolve(data))
+    .catch(err => reject(err));
 })
 
 const editUserInfo = ({ id, fullname, avatarFile, aboutMe }) => new Promise((resolve, reject) => {

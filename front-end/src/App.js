@@ -20,7 +20,7 @@ class App extends Component {
       id: '',
     }
   }
-
+  /*global FB*/
   componentDidMount() {
     axios.get('http://localhost:6969/api/auth').then(
       data => {

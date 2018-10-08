@@ -27,9 +27,9 @@ class MovieInfo extends React.Component {
                 {!movieData ?
                     <SmallLoader />
                     : (
-                        <div className="noPadding movieDetail animation">
+                        <div className="noPadding movieDetail">
                             <h6 style={{ fontWeight: 'bold' }} >{movieData.title}</h6>
-                            <div className="row" >
+                            <div className="row sd_phone_list" >
                                 <div className="col-md-4 col-12 noPadding" >
                                     <div className="moviePosterInfo"
                                         style={{

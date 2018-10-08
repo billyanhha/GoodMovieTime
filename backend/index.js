@@ -59,7 +59,7 @@ app.use('/api/auth', authRouter);
 
 // connect
 
-mongoose.connect(config.mongoPath, { useNewUrlParser: true }, err => {
+mongoose.connect(config.mlab, { useNewUrlParser: true }, err => {
   if (err) console.error(err);
   else console.log("Database connect successful");
 });
