@@ -22,7 +22,7 @@ class App extends Component {
   }
   /*global FB*/
   componentDidMount() {
-    axios.get('http://localhost:6969/api/auth').then(
+    axios.get('/api/auth').then(
       data => {
         if (data.data) {
           this.setState({ username: data.data.username, id: data.data.id })
