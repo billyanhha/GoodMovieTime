@@ -56,6 +56,12 @@ app.use('/api/users', userRouter);
 app.use('/api/movies', movieRouter);
 app.use('/api/auth', authRouter);
 
+app.use(express.static('./public'))
+
+app.get('/' , (req , res) => {
+  res.sendFile('./public/index.html')
+})
+
 
 // connect
 
