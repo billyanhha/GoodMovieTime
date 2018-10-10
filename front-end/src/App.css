@@ -789,9 +789,14 @@ textarea.ant-input{
     background-color: #fff;
     border: 1px solid rgba(0,0,0,0.1);
     margin-bottom: 3%;
+    transition: box-shadow 0.3s ease;
     /* display: flex;
     justify-content: center */
     /* margin-left: 0 */
+}
+
+.listCard:hover{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) ;
 }
 
 .listInfo{

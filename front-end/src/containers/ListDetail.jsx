@@ -189,10 +189,10 @@ class ListDetail extends Component {
                                 </div>
                                 <div className="listDetails" >
                                     {didLike}
-                                    <a target="_blank" href={`https://www.facebook.com/sharer.php?u=https://scorekeeperfromnorthside.herokuapp.com/`} className="fb-xfbml-parse-ignore shareButton">
+                                    <a target="_blank" href={`https://www.facebook.com/sharer.php?u=https://goodmovietime.herokuapp.com/lists/${this.props.match.params.id}`} className="fb-xfbml-parse-ignore shareButton">
                                         <i style={{ fontSize: '12px' }} className="fab fa-facebook-f"></i>
                                         Share
-                                    <FacebookShareCount url={"https://scorekeeperfromnorthside.herokuapp.com/"}>
+                                    <FacebookShareCount url={`https://www.facebook.com/sharer.php?u=https://goodmovietime.herokuapp.com/lists/${this.props.match.params.id}`}>
                                             {shareCount => (
                                                 <span className="myShareCountWrapper">{shareCount}</span>
                                             )}

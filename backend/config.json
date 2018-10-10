@@ -2,6 +2,6 @@
     "mongoPath": "mongodb://localhost:27017/movie-suggestions",
     "sessionSecret": "ok",
     "secureCookie": false,
-    "rootPath": "vovagram.herokuapp.com",
-    "mlab": "mongodb://caubengoaiquoc:haquyanh!@#123@ds125453.mlab.com:25453/goodmovietime"
+    "mlab": "mongodb://admin:haquyanh123456@ds125453.mlab.com:25453/goodmovietime"
 }
+

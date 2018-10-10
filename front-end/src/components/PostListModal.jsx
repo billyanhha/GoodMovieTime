@@ -5,6 +5,7 @@ import fetch from 'isomorphic-fetch';
 import * as _ from "lodash";
 import Async from 'react-select/lib/Async';
 import { Redirect } from "react-router-dom";
+import config from '../config';
 
 
 class PostListModal extends React.Component {
@@ -78,7 +79,7 @@ class PostListModal extends React.Component {
 
 
     debouncedFetch = _.debounce((searchTerm, callback) => {
-        return fetch(`http://localhost:6969/api/movies/?content=${searchTerm}`)
+        return fetch(`${config.url}/api/movies/?content=${searchTerm}`)
             .then((result) => { return result.json() })
             .then(json => {
                 this.setState({ movies: json })

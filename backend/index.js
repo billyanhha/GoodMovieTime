@@ -8,6 +8,11 @@ const listRouter = require('./modules/api/lists/router');
 const movieRouter = require('./modules/api/movies/router');
 const userRouter = require('./modules/api/users/router');
 const authRouter = require('./modules/api/auth/router');
+var path = require('path');
+
+
+var pub = __dirname + '/public';
+app.use(express.static(pub));
 
 //set up session sd
 app.use(
@@ -56,11 +61,11 @@ app.use('/api/users', userRouter);
 app.use('/api/movies', movieRouter);
 app.use('/api/auth', authRouter);
 
-app.use(express.static('./public'))
 
-app.get('/' , (req , res) => {
-  res.sendFile('./public/index.html')
-})
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, './public/index.html'));
+});
+
 
 
 // connect
