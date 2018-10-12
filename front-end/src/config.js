@@ -1,5 +1,6 @@
 export default {
-    url: 'https://goodmovietime.herokuapp.com',
+    url: 'http://localhost:6969',
     speed: 4000,
     //http://localhost:6969
+    // https://goodmovietime.herokuapp.com
 }

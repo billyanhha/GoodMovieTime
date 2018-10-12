@@ -10,7 +10,7 @@ import Loader from '../components/Loader.jsx';
 import MovieInfo from '../components/MovieInfo';
 import CommentList from '../components/CommentList';
 import { Link, Redirect } from "react-router-dom";
-import { Modal, message, Button } from 'antd';
+import { Modal, message } from 'antd';
 import { FacebookShareCount } from "react-share";
 
 
@@ -76,7 +76,7 @@ class ListDetail extends Component {
             this.setState({ toLogin: true });
         }
         let { like, likeNum } = this.state;
-        if (like == true) {
+        if (like === true) {
             likeNum--;
             await this.setState({ likeNum, like: false })
         } else {
@@ -169,7 +169,7 @@ class ListDetail extends Component {
                                 <div className="detailInfo" >
                                     <div style={{ width: '70%' }} >
                                         <div className="profileCard">
-                                            <Link to={`/profile/${value.createdBy._id}`} ><img onError={this.onErrorImage} src={config.url + `/api/users/${value.createdBy._id}/imageData`} className="rounded-circle smallAvatar" /></Link>
+                                            <Link to={`/profile/${value.createdBy._id}`} ><img alt = {value.createdBy.username} onError={this.onErrorImage} src={config.url + `/api/users/${value.createdBy._id}/imageData`} className="rounded-circle smallAvatar" /></Link>
                                             <div>
                                                 <Link to={`/profile/${value.createdBy._id}`}  >{value.createdBy.username}</Link>
                                                 <p className="detailDate" ><i className="far fa-clock"></i> {moment(value.createdAt).format(' DD-MM-YYYY  hh:mm A')}</p>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import './PhoneApp.css';
-import { BrowserRouter, Route, Redirect } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
 import Home from './containers/Home.jsx';
 import axios from './axios';
 import Login from './containers/Login.jsx';
@@ -20,7 +20,7 @@ class App extends Component {
       id: '',
     }
   }
-  /*global FB*/
+
   componentDidMount() {
     axios.get('/api/auth').then(
       data => {

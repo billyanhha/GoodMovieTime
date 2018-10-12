@@ -1,6 +1,7 @@
 import React from 'react';
 import Slider from 'react-slick'
 import config from "../config";
+import { translate } from "react-i18next";
 const devil = require('../images/watch.jpg');
 const batlogo = require('../images/batlogo.png');
 const ctb = require('../images/ctb.jpg');
@@ -49,6 +50,8 @@ class Slide extends React.Component {
     };
 
     render() {
+        const { t } = this.props;
+
         const settings = {
             infinite: true,
             speed: 500,
@@ -124,7 +127,7 @@ class Slide extends React.Component {
                     </div>
                 </div >
                 <div className="followUs" >
-                    <p className="homeNormalText" >Follow us</p>
+                    <p className="homeNormalText" >{t("home.followUs")}</p>
                     <div className="followIconDiv">
                         <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/SNAT-Movie-307717666625768/" ><i className="fab fa-facebook" style={{ color: '#4267B2', fontSize: '20px' }} ></i></a>
                         <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/SNAT-Movie-307717666625768/" ><i className="fab fa-twitter" style={{ color: '#1DA1F2', fontSize: '20px' }} ></i></a>
@@ -135,5 +138,5 @@ class Slide extends React.Component {
     }
 }
 
-export default (Slide);
+export default translate()(Slide);
 

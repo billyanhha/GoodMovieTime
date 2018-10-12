@@ -79,7 +79,7 @@ class JustNow extends Component {
                         </div>
                         <div className="col-md-2 col-12  listInfo ">
                             <div className="profileCard">
-                                <Link to={`/profile/${value.createdBy[0]._id}`} ><img onError={this.onErrorImage} src={config.url + `/api/users/${value.createdBy[0]._id}/imageData`} className="rounded-circle smallAvatar" /></Link>
+                                <Link to={`/profile/${value.createdBy[0]._id}`} ><img alt = {value.createdBy[0].username} onError={this.onErrorImage} src={config.url + `/api/users/${value.createdBy[0]._id}/imageData`} className="rounded-circle smallAvatar" /></Link>
                                 <div>
                                     <Link to={`/profile/${value.createdBy[0]._id}`}  >{value.createdBy[0].username}</Link>
                                     <p className="date" >{moment(value.createdAt).format(' DD-MM-YYYY  hh:mm A')}</p>

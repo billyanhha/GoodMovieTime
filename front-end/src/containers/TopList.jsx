@@ -55,7 +55,7 @@ class TopList extends Component {
                         <div className="col-md-2 col-12  listInfo ">
                             <div style ={{ display: 'flex',  flexDirection: 'column' , justifyContent: 'space-between'}} >
                                 <div className="profileCard">
-                                    <Link to={`/profile/${value.createdBy[0]._id}`} ><img onError={onErrorImage} src={config.url + `/api/users/${value.createdBy[0]._id}/imageData`} className="rounded-circle smallAvatar" /></Link>
+                                    <Link to={`/profile/${value.createdBy[0]._id}`} ><img alt = {value.createdBy[0].username} onError={onErrorImage} src={config.url + `/api/users/${value.createdBy[0]._id}/imageData`} className="rounded-circle smallAvatar" /></Link>
                                     <div>
                                         <Link to={`/profile/${value.createdBy[0]._id}`}   >{value.createdBy[0].username}</Link>
                                         <p className="date" >{moment(value.createdAt).format(' DD-MM-YYYY  hh:mm A')}</p>

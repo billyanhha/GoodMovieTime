@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link, Redirect } from "react-router-dom";
 import axios from "../axios";
-import { Modal } from 'antd';
+import { Modal, Menu, Dropdown, Icon } from 'antd';
 import PostListModal from './PostListModal.jsx';
-
+import { translate } from "react-i18next";
 
 class MyNavbar extends React.Component {
     state = {
@@ -42,6 +42,9 @@ class MyNavbar extends React.Component {
 
 
     render() {
+
+        const { t, i18n } = this.props;
+
         if (this.state.toPostList) {
             return <Redirect to="/post" />
         }
@@ -50,15 +53,15 @@ class MyNavbar extends React.Component {
             (
                 <div className="loginButtonNav" >
                     <button className="upListCollapse" onClick={this.showModal} style={{ color: '#fff', paddingTop: '10px', paddingBottom: '10px' }} >Post<i className="fas fa-upload" style={{ marginLeft: '5px' }} ></i></button>
-                    <Link to={"/profile/" + this.props.id} className="ant-dropdown-link navLink" >View profile</Link>
-                    <Link to="/login" onClick={this.logout} className="navLink">Logout</Link>
+                    <Link to={"/profile/" + this.props.id} className="ant-dropdown-link navLink" >{t("navBar.viewProfile")}</Link>
+                    <Link to="/login" onClick={this.logout} className="navLink">{t("navBar.logout")}</Link>
                     <Link to="/" className="navLink" > <i className="fas fa-search"></i></Link>
                 </div>
             )
             : (
                 (
                     <div className="loginButtonNav">
-                        <Link className="navLink" to="/login"> Login </Link>
+                        <Link className="navLink" to="/login"> {t("navBar.login")} </Link>
                     </div>
                 )
             )
@@ -68,15 +71,15 @@ class MyNavbar extends React.Component {
                     <div className="collapseRow " >
                         {
                             this.props.username && (
-                                <Link to="/" className=" collapse navLink blackCollapse" >hi, {this.props.username} </Link>
+                                <Link to="/" className=" collapse navLink blackCollapse" >{t("navBar.hi")}, {this.props.username} </Link>
                             )
                         }
                         <i className="fas fa-bars collapse blackCollapse" onClick={this.collapseClick} ></i>
                     </div>
-                    <Link to="/" className="navLink">Home</Link>
-                    <Link to="/top" className="navLink" >Top 10</Link>
-                    <Link to="/justNow" className="navLink" >Just now</Link>
-                    <Link to="/" className="navLink" >About us</Link>
+                    <Link to="/" className="navLink">{t("navBar.home")}</Link>
+                    <Link to="/top" className="navLink" >{t("navBar.top10")}</Link>
+                    <Link to="/justNow" className="navLink" >{t("navBar.justNow")}</Link>
+                    <Link to="/" className="navLink" >{t("navBar.aboutUs")}</Link>
                     {render}
                 </div>
                 <div className="myNavRight" >
@@ -95,4 +98,4 @@ class MyNavbar extends React.Component {
     }
 }
 
-export default MyNavbar;
+export default translate()(MyNavbar);

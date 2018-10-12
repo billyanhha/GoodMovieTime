@@ -4,6 +4,9 @@ import { Form, Input, Button } from 'antd';
 import { Link, Redirect } from 'react-router-dom';
 import axios from "../axios";
 import { message } from 'antd';
+import { translate } from "react-i18next";
+import i18n from "../locales/i18n";
+
 
 const FormItem = Form.Item;
 class LoginForm extends Component {
@@ -28,19 +31,21 @@ class LoginForm extends Component {
                         top: '10%',
                         maxCount: 1,
                     });
-                    message.loading("Please wait", 0.5);
+                    message.loading(i18n.t('message.wait'), 0.5);
                 }).catch(err => {
                     message.config({
                         top: '10%',
                         maxCount: 1,
                     });
-                    message.error("Incorrect password or username", 2)
+                    message.error(i18n.t('message.incorrect'), 2)
                 }
                 )
             }
         });
     }
     render() {
+        const { t } = this.props;
+
         const { getFieldDecorator } = this.props.form;
         if (this.state.username) {
             return (<Redirect to="/" />)
@@ -51,30 +56,30 @@ class LoginForm extends Component {
                     <NonLoginHeader />
                     <div className="loginForm">
                         <div className="login">
-                            <p className="signInText">Sign In</p>
+                            <p className="signInText">{t('login.signIn')}</p>
                             <Form   onSubmit={this.handleSubmit} className="login-form">
-                                <p className="signText" >User name</p>
+                                <p className="signText" >{t('login.name')}</p>
                                 <FormItem>
                                     {getFieldDecorator('username', {
-                                        rules: [{ required: true, message: 'Please enter your username!' }],
+                                        rules: [{ required: true, message: `${t('message.require')}` }],
                                     })(
                                         <Input autoFocus type = "text"/>
                                     )}
                                 </FormItem>
-                                <p className="signText" >Password</p>
+                                <p className="signText" >{t('login.password')}</p>
                                 <FormItem autoComplete="on">
                                     {getFieldDecorator('password', {
-                                        rules: [{ required: true, message: 'Please enter your Password!' }],
+                                        rules: [{ required: true, message: `${t('message.require')}` }],
                                     })(
                                         <Input  type="password"/>
                                     )}
                                 </FormItem>
                                 <FormItem>
                                     <Button type="primary" className ="myButton" htmlType="submit">
-                                        <b>Login</b>
+                                        <b>{t('login.signIn')}</b>
                                     </Button>
                                     < div className="signUpText" >
-                                        <span className="span">New to us ? </span><Link to="/signUp" style={{ fontSize: "16px" }} className="link">Sign up !</Link>
+                                        <span className="span">{t('login.new')}</span><Link to="/signUp" style={{ fontSize: "16px" }} className="link">{t('login.signUp')}</Link>
                                     </div>
                                 </FormItem>
                             </Form>
@@ -89,4 +94,4 @@ class LoginForm extends Component {
 const Login = Form.create()(LoginForm);
 
 
-export default (Login);
+export default translate()(Login);

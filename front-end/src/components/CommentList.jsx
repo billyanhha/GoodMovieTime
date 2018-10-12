@@ -49,7 +49,7 @@ class CommentList extends Component {
             return (
                 <div className="comment" key={index}>
                     <div className="profileCard">
-                        <Link to={`/profile/${value.createdBy._id}`} ><img onError={this.onErrorImage} src={config.url + `/api/users/${value.createdBy._id}/imageData`} className="rounded-circle smallAvatar" /></Link>
+                        <Link to={`/profile/${value.createdBy._id}`} ><img alt = {value.createdBy.username} onError={this.onErrorImage} src={config.url + `/api/users/${value.createdBy._id}/imageData`} className="rounded-circle smallAvatar" /></Link>
                         <div>
                             <Link to={`/profile/${value.createdBy._id}`} style={{ fontSize: '17px', fontWeight: 'bold' }}  >{value.createdBy.username}</Link>
                             <p className="date" style={{ fontSize: '12px' }}  >{moment(value.createdAt).format(' DD-MM-YYYY  hh:mm A')}</p>

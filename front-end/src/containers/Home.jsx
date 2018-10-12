@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import moment from 'moment'
 import config from '../config';
 import defaultUser from "../images/defaultUser.jpg";
+import { translate } from "react-i18next";
 
 class Home extends Component {
     constructor(props) {
@@ -42,6 +43,7 @@ class Home extends Component {
     }
 
     render() {
+        const { t } = this.props;
         const renderRecommendList = this.state.recommendList && this.state.recommendList.map((value, index) => {
             return (
                 <div className="col-12 sd-phone " key={index}>
@@ -60,7 +62,7 @@ class Home extends Component {
                         </div>
                         <div className="col-md-2 col-12  listInfo ">
                             <div className="profileCard">
-                                <Link to={`/profile/${value.createdBy[0]._id}`} ><img onError={this.onErrorImage} src={config.url + `/api/users/${value.createdBy[0]._id}/imageData`} className="rounded-circle smallAvatar" /></Link>
+                                <Link to={`/profile/${value.createdBy[0]._id}`} ><img alt={value.createdBy[0].username} onError={this.onErrorImage} src={config.url + `/api/users/${value.createdBy[0]._id}/imageData`} className="rounded-circle smallAvatar" /></Link>
                                 <div>
                                     <Link to={`/profile/${value.createdBy[0]._id}`} >{value.createdBy[0].username}</Link>
                                     <p className="date" >{moment(value.createdAt).format(' DD-MM-YYYY  hh:mm A')}</p>
@@ -99,7 +101,7 @@ class Home extends Component {
                         </div>
                         <div className="col-12  listInfo ">
                             <div className="profileCard">
-                                <Link to={`/profile/${value.createdBy[0]._id}`} ><img onError={this.onErrorImage} src={config.url + `/api/users/${value.createdBy[0]._id}/imageData`} className="rounded-circle smallAvatar" /></Link>
+                                <Link to={`/profile/${value.createdBy[0]._id}`} ><img alt={value.createdBy[0].username} onError={this.onErrorImage} src={config.url + `/api/users/${value.createdBy[0]._id}/imageData`} className="rounded-circle smallAvatar" /></Link>
                                 <div>
                                     <Link to={`/profile/${value.createdBy[0]._id}`} >{value.createdBy[0].username}</Link>
                                     <p className="date" >{moment(value.createdAt).format(' DD-MM-YYYY  hh:mm A')}</p>
@@ -124,7 +126,7 @@ class Home extends Component {
             return (
                 <tr key={index} >
                     <th>
-                        <Link to={`/profile/${value._id}`} ><img onError={this.onErrorImage} src={config.url + `/api/users/${value._id}/imageData`} className="rounded-circle smallAvatar" /></Link>
+                        <Link to={`/profile/${value._id}`} ><img alt={value.username} onError={this.onErrorImage} src={config.url + `/api/users/${value._id}/imageData`} className="rounded-circle smallAvatar" /></Link>
                         <Link to={`/profile/${value._id}`} >{value.username}</Link>
                     </th>
                     <th>{value.numberOfPost}</th>
@@ -146,22 +148,22 @@ class Home extends Component {
                             :
                             (
                                 <div>
-                                    <TitleTag title="Recommended list" />
+                                    <TitleTag title={t("home.recommendedList")} />
                                     <div className="row ">
                                         {renderRecommendList}
                                     </div>
-                                    <TitleTag title="New list" />
+                                    <TitleTag title={t("home.newList")} />
                                     <div className="row ">
                                         {renderNewList}
                                     </div>
-                                    <TitleTag title="Most ranked users" />
+                                    <TitleTag title={t("home.mostRank")} />
                                     <table className="table table-striped">
                                         <thead>
                                             <tr>
-                                                <th>User</th>
-                                                <th>Post</th>
-                                                <th>Like</th>
-                                                <th>Rank</th>
+                                                <th>{t('home.user')}</th>
+                                                <th>{t('home.post')}</th>
+                                                <th>{t('home.like')}</th>
+                                                <th>{t('home.rank')}</th>
                                             </tr>
                                         </thead>
                                         <tbody >
@@ -177,4 +179,4 @@ class Home extends Component {
     }
 }
 
-export default (Home);
+export default translate()(Home);

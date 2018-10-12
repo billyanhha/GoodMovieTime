@@ -102,7 +102,7 @@ class EditProfileModalForm extends Component {
 
 
     render() {
-        const { id, users } = this.props;
+        // const { id, users } = this.props;
         const { getFieldDecorator } = this.props.form;
         let { imagePreviewUrl } = this.state;
         return (

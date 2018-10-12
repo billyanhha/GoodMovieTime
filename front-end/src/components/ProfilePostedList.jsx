@@ -21,7 +21,6 @@ class ProfilePostedList extends Component {
 
     render() {
         const renderList = this.state.list.map((value, index) => {
-            // console.log(value.posterUri)
             return (
                 <div className="col-md-4 col-xs-12 sd-phone" key={index}>
                     <div className=" listCard" >
