@@ -7,7 +7,7 @@ class Loader extends Component {
     render() {
         return (
             <div className="loaderDiv" >
-                <img src={pacman} className="super" style ={{ height: '3vw' }} alt="Logo" />
+                <div className="bigLoader"  ></div>
             </div>
         )
     }

@@ -4,7 +4,7 @@ import moment from 'moment'
 import config from '../config';
 import axios from '../axios';
 import { message } from 'antd';
-
+import { translate } from "react-i18next";
 
 class CommentList extends Component {
     constructor(props) {
@@ -44,7 +44,7 @@ class CommentList extends Component {
 
 
     render() {
-        const { comments } = this.props;
+        const { comments , t } = this.props;
         const renderComment = comments.length !== 0 && comments.map((value, index) => {
             return (
                 <div className="comment" key={index}>
@@ -62,8 +62,8 @@ class CommentList extends Component {
 
         const renderTextArea = this.props.uid && (
             <div className="inputComment" >
-                <textarea type="text" onChange={this.typeComment} className="form-control typeComment" placeholder="Type what you think" />
-                <button onClick={this.submitComment} style={{ backgroundColor: 'transparent', fontSize: '15px', border: 'none', color: '#EA1C22', cursor: 'pointer', fontWeight: 'bold' }} >Send</button>
+                <textarea type="text" onChange={this.typeComment} className="form-control typeComment" placeholder= {`${t('listDetails.type')}`} />
+                <button onClick={this.submitComment} style={{ backgroundColor: 'transparent', fontSize: '15px', border: 'none', color: '#EA1C22', cursor: 'pointer', fontWeight: 'bold' }} >{t('listDetails.send')}</button>
             </div>
         )
 
@@ -78,4 +78,4 @@ class CommentList extends Component {
 
 
 
-export default (CommentList);
+export default translate()(CommentList);

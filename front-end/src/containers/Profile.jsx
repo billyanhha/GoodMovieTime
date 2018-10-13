@@ -9,6 +9,8 @@ import { Modal } from 'antd';
 import EditProfileModal from '../components/EditProfileModal.jsx';
 import ProfilePostedList from '../components/ProfilePostedList.jsx';
 import Loader from '../components/Loader.jsx';
+import { translate } from "react-i18next";
+
 
 class Profile extends Component {
     constructor(props) {
@@ -64,6 +66,8 @@ class Profile extends Component {
 
 
     render() {
+        const { t } = this.props;
+
         const id = this.props.match.params.id;
         const { users } = this.state;
         const authoRize = (this.props.match.params.id === this.props.id);
@@ -87,7 +91,7 @@ class Profile extends Component {
                                         <p className="bigText" >{users.username} ( {users.fullname} )<button type="button" onClick={this.showModal} style={{ display: authoRize ? '' : 'none' }} className="btn btn-outline-secondary editButton"><i className="fas fa-edit"></i></button>
                                         </p>
                                         <div className="modal">
-                                            <Modal title="Edit profiles"
+                                            <Modal title={t('profile.edit')}
                                                 visible={this.state.visible}
                                                 confirmLoading={this.state.confirmLoading}
                                                 onCancel={this.handleCancel}
@@ -103,13 +107,10 @@ class Profile extends Component {
                                     </div>
                                     <div className="userStats " >
                                         <div className="stats">
-                                            <span><span className="normalBlackBoldText" >{users.numberOfPost}   </span> post </span>
+                                            <span><span className="normalBlackBoldText" >{users.numberOfPost}   </span> {t('profile.post')} </span>
                                         </div>
                                         <div className="stats">
-                                            <span><span className="normalBlackBoldText" >{users.like}  </span> like </span>
-                                        </div>
-                                        <div className="stats">
-                                            <span><span className="normalBlackBoldText" ># {users.like}  </span> Rank </span>
+                                            <span><span className="normalBlackBoldText" >{users.like}  </span> {t('profile.like')} </span>
                                         </div>
                                     </div>
                                 </div>
@@ -122,4 +123,4 @@ class Profile extends Component {
     }
 }
 
-export default (Profile);
+export default translate()(Profile);

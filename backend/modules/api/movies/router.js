@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get("/:movieId", (req, res) => {
   controller
-    .getMovieById(req.params.movieId)
+    .getMovieById({id: req.params.movieId , language: req.query.language})
     .then(data => res.send({ ...data[0], ...data[1] }))
     .catch(err => res.status(500).send(err));
 });

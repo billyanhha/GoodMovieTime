@@ -52,7 +52,7 @@ class MyNavbar extends React.Component {
         const render = username ?
             (
                 <div className="loginButtonNav" >
-                    <button className="upListCollapse" onClick={this.showModal} style={{ color: '#fff', paddingTop: '10px', paddingBottom: '10px' }} >Post<i className="fas fa-upload" style={{ marginLeft: '5px' }} ></i></button>
+                    <button className="upListCollapse" onClick={this.showModal} style={{ color: '#fff', paddingTop: '10px', paddingBottom: '10px' }} >{t("navBar.post")}<i className="fas fa-upload" style={{ marginLeft: '5px' }} ></i></button>
                     <Link to={"/profile/" + this.props.id} className="ant-dropdown-link navLink" >{t("navBar.viewProfile")}</Link>
                     <Link to="/login" onClick={this.logout} className="navLink">{t("navBar.logout")}</Link>
                     <Link to="/" className="navLink" > <i className="fas fa-search"></i></Link>

@@ -282,6 +282,10 @@
         color: none !important;
     }
 
+    .commentText{
+       padding: 10px 15px;
+    }
+
     .paddingResponsive{
         padding-left: 0 ;
         padding-right: 0;

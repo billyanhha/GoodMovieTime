@@ -12,7 +12,8 @@ import CommentList from '../components/CommentList';
 import { Link, Redirect } from "react-router-dom";
 import { Modal, message } from 'antd';
 import { FacebookShareCount } from "react-share";
-
+import { translate } from "react-i18next";
+import i18n from "../locales/i18n";
 
 class ListDetail extends Component {
     constructor(props) {
@@ -123,6 +124,11 @@ class ListDetail extends Component {
 
     render() {
 
+        const language = i18n.language;
+
+        const { t } = this.props;
+
+
         if (this.state.redirect) {
             return (<Redirect to="/" />);
         }
@@ -136,7 +142,7 @@ class ListDetail extends Component {
         const renderMovie = value && (value.moviesId).map((id, index) => {
             return (
                 <div className="col-md-6 col-12" key={index} >
-                    <MovieInfo id={id} />
+                    <MovieInfo id={id} language = {language}/>
                 </div>
             )
         })
@@ -148,13 +154,13 @@ class ListDetail extends Component {
             ?
             (<button type="button" onClick={this.reactList} style={{ fontWeight: 'bold' }} className="btn btn-outline-danger likeButton">
                 <i className="fas fa-heart" ></i>
-                Like
+                {i18n.t('listDetails.like')}
             </button>)
             : (
                 <button type="button" onClick={this.reactList} className="btn btn-outline-danger likeButton">
                     <i className="far fa-heart" ></i>
-                    Like
-            </button>
+                    {i18n.t('listDetails.like')}
+                </button>
             )
 
         return (
@@ -169,7 +175,7 @@ class ListDetail extends Component {
                                 <div className="detailInfo" >
                                     <div style={{ width: '70%' }} >
                                         <div className="profileCard">
-                                            <Link to={`/profile/${value.createdBy._id}`} ><img alt = {value.createdBy.username} onError={this.onErrorImage} src={config.url + `/api/users/${value.createdBy._id}/imageData`} className="rounded-circle smallAvatar" /></Link>
+                                            <Link to={`/profile/${value.createdBy._id}`} ><img alt={value.createdBy.username} onError={this.onErrorImage} src={config.url + `/api/users/${value.createdBy._id}/imageData`} className="rounded-circle smallAvatar" /></Link>
                                             <div>
                                                 <Link to={`/profile/${value.createdBy._id}`}  >{value.createdBy.username}</Link>
                                                 <p className="detailDate" ><i className="far fa-clock"></i> {moment(value.createdAt).format(' DD-MM-YYYY  hh:mm A')}</p>
@@ -190,9 +196,8 @@ class ListDetail extends Component {
                                 <div className="listDetails" >
                                     {didLike}
                                     <a target="_blank" href={`https://www.facebook.com/sharer.php?u=https://goodmovietime.herokuapp.com/lists/${this.props.match.params.id}`} className="fb-xfbml-parse-ignore shareButton">
-                                        <i style={{ fontSize: '12px' }} className="fab fa-facebook-f"></i>
-                                        Share
-                                    <FacebookShareCount url={`https://www.facebook.com/sharer.php?u=https://goodmovietime.herokuapp.com/lists/${this.props.match.params.id}`}>
+                                        {i18n.t('listDetails.share')}
+                                        <FacebookShareCount url={`https://www.facebook.com/sharer.php?u=https://goodmovietime.herokuapp.com/lists/${this.props.match.params.id}`}>
                                             {shareCount => (
                                                 <span className="myShareCountWrapper">{shareCount}</span>
                                             )}
@@ -200,12 +205,15 @@ class ListDetail extends Component {
                                     </a>
                                 </div>
                             </div>
-                            <h6 className = "paddingResponsive" style = {{paddingBottom: 0}} >Comment {this.state.commentNum}</h6>
-                            <CommentList id={this.props.match.params.id} uid={this.props.id} comments = {value.comments}  />
+                            <h6 className="commentText" >{t('listDetails.comment')} {this.state.commentNum}</h6>
+                            {(this.props.id || this.state.commentNum > 0) &&
+                                (
+                                    <CommentList id={this.props.match.params.id} uid={this.props.id} comments={value.comments} />)
+                            }
                         </div>
                     )}
             </div>
         )
     }
 }
-export default (ListDetail);
+export default translate()(ListDetail);

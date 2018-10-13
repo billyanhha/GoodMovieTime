@@ -83,6 +83,13 @@ html , body {
     background-color: #fafafa;
 }
 
+.commentText{
+    padding-left: 15% ;
+    padding-right: 15%;
+    padding-top: 20px;
+    background-color: #fafafa;
+}
+
 .loginForm {
     display: flex;
     position: absolute;
@@ -648,8 +655,7 @@ html , body {
 
 .userStats{
     display: flex;
-    width: 30%;
-    justify-content: space-between;
+    justify-content: flex-start;
     flex-direction: row;
     align-items: center;
 }
@@ -783,6 +789,17 @@ textarea.ant-input{
     justify-self: center;
 }
 
+.bigLoader {
+    text-align: center;
+    border: 5px solid rgba(0,0,0,0.8); /* Light grey */
+    border-top: 5px solid #EB2328; /* Blue */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 2s linear infinite;
+    justify-self: center;
+}
+
 .listCard{
     /* width: 100%; */
     animation: fade-in 0.5s ease-in-out;
@@ -838,6 +855,10 @@ textarea.ant-input{
 .bigDate {
     color: #000;
     font-size: 13px;
+}
+
+.stats {
+    margin-right: 5%;
 }
 
 .listStats {

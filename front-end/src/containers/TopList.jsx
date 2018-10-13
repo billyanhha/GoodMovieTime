@@ -8,6 +8,7 @@ import moment from 'moment'
 import Loader from '../components/Loader';
 import config from '../config';
 import defaultUser from "../images/defaultUser.jpg";
+import { translate } from "react-i18next";
 
 class TopList extends Component {
     constructor(props) {
@@ -33,6 +34,9 @@ class TopList extends Component {
 
 
     render() {
+        const { t } = this.props;
+
+
         const renderList = this.state.list.map((value, index) => {
             const onErrorImage = (e) => {
                 e.target.src = defaultUser;
@@ -68,7 +72,7 @@ class TopList extends Component {
                                 <p ><i className="far fa-comment" style={{ color: '#4267B2', marginRight: '3px' }}></i>{value.commentNum}</p>
                                 <p ><i className="far fa-heart" style={{ color: '#FDB616', marginRight: '3px' }}></i>{value.likeNum}</p>
                             </div>
-                            <Link to={`/lists/${value._id}`} style={{ fontWeight: 'bold' }} >View details</Link>
+                            <Link to={`/lists/${value._id}`} style={{ fontWeight: 'bold' }} >{t('profile.detail')}</Link>
                         </div>
                         <div>
                         </div>
@@ -95,4 +99,4 @@ class TopList extends Component {
     }
 }
 
-export default (TopList);
+export default translate()(TopList);

@@ -3,7 +3,7 @@ import axios from '../axios';
 import { Form, Input, Button, message } from 'antd';
 import FormItem from 'antd/lib/form/FormItem';
 import TextArea from 'antd/lib/input/TextArea';
-
+import { translate } from "react-i18next";
 
 class EditProfileModalForm extends Component {
     constructor(props) {
@@ -102,6 +102,8 @@ class EditProfileModalForm extends Component {
 
 
     render() {
+        const { t } = this.props;
+
         // const { id, users } = this.props;
         const { getFieldDecorator } = this.props.form;
         let { imagePreviewUrl } = this.state;
@@ -114,28 +116,32 @@ class EditProfileModalForm extends Component {
                                 type="file"
                                 onChange={(e) => this._handleImageChange(e)} />
                             <div className="mask">
-                                Choose picture
-                                </div>
+                                {t('profile.choose')}
+                            </div>
                         </div>
                     </div>
                     <div className="col-md-6 ">
-                        <p className="editText" >Full name</p>
+                        <p className="editText" >
+                            {t('signUp.fullname')}
+                        </p>
                         <FormItem style={{ marginBottom: '10px' }} >
                             {getFieldDecorator('fullname', {
-                                rules: [{ required: true, message: 'Required' }, {
+                                rules: [{ required: true, message: `${t(message.required)}` }, {
                                     pattern: new RegExp("^[a-zA-Z]([-']?[a-zA-Z]+)*( [a-zA-Z]([-']?[a-zA-Z]+)*)+$"),
-                                    message: "You have to use your real name"
+                                    message: `${t('message.fullname')}`
                                 }],
                             })(
                                 <Input type="text" />
                             )}
                         </FormItem>
-                        <p className="editText" >About me</p>
-                        <FormItem  style={{ marginBottom: '10px' }}>
+                        <p className="editText" >
+                            {t('profile.about')}
+                        </p>
+                        <FormItem style={{ marginBottom: '10px' }}>
                             {getFieldDecorator('aboutMe', {
                                 rules: [],
                             })(
-                                <TextArea maxLength="200" cols = "5" type="text"  wrap="hard" />
+                                <TextArea maxLength="200" cols="5" type="text" wrap="hard" />
                             )}
                         </FormItem>
                         {/* <p className="editText" >Password</p>
@@ -161,9 +167,11 @@ class EditProfileModalForm extends Component {
                         </FormItem> */}
                     </div>
                 </div>
-                <FormItem>
-                    <Button type="primary" htmlType="submit">
-                        <b>Submit</b>
+                <FormItem style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 0 }} >
+                    <Button type="primary" htmlType="submit" >
+                        <b>
+                            {t('signUp.submit')}
+                        </b>
                     </Button>
                 </FormItem>
             </Form>
@@ -174,4 +182,4 @@ class EditProfileModalForm extends Component {
 const EditProfileModal = Form.create()(EditProfileModalForm);
 
 
-export default (EditProfileModal);
+export default translate()(EditProfileModal);

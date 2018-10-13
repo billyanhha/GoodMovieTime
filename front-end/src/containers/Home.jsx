@@ -74,7 +74,7 @@ class Home extends Component {
                                 <p ><i className="far fa-comment" style={{ color: '#4267B2', marginRight: '3px' }}></i>{value.commentNum}</p>
                                 <p ><i className="far fa-heart" style={{ color: '#FDB616', marginRight: '3px' }}></i>{value.likeNum}</p>
                             </div>
-                            <Link to={`/lists/${value._id}`} style={{ fontWeight: 'bold' }} >View details</Link>
+                            <Link to={`/lists/${value._id}`} style={{ fontWeight: 'bold' }} >{t('profile.detail')}</Link>
                         </div>
                         <div>
                         </div>
@@ -113,7 +113,7 @@ class Home extends Component {
                                 <p ><i className="far fa-comment" style={{ color: '#4267B2', marginRight: '3px' }}></i>{value.commentNum}</p>
                                 <p ><i className="far fa-heart" style={{ color: '#FDB616', marginRight: '3px' }}></i>{value.likeNum}</p>
                             </div>
-                            <Link to={`/lists/${value._id}`} style={{ fontWeight: 'bold' }} >View details</Link>
+                            <Link to={`/lists/${value._id}`} style={{ fontWeight: 'bold' }} >{t('profile.detail')}</Link>
                         </div>
                         <div>
 

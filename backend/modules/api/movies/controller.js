@@ -7,13 +7,10 @@ const getCurrentLanguage = () => new Promise((resolve, reject) => {
 })
 
 
-const getMovieDataById = (movieId) =>
+const getMovieDataById = ({id , language}) =>
   new Promise((resolve, reject) => {
-    axios
-      .get('http://api.ipstack.com/check?access_key=6f2eee009c04b0d0bb32eba6fb3cb10e&format=1')
-      .then(data => {
-        const language = data.data.location.languages[0].code;
-        const URI = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&language=${language}`;
+        const ln = language || 'en';        
+        const URI = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=${ln}`;
         axios
           .get(URI)
           .then(data =>
@@ -30,8 +27,6 @@ const getMovieDataById = (movieId) =>
             })
           )
           .catch(err => reject(err));
-      })
-      .catch(err => reject(err))
   });
 
 const getCreditsDataById = movieId =>
@@ -53,8 +48,8 @@ const getCreditsDataById = movieId =>
       .catch(err => reject(err));
   });
 
-const getMovieById = (movieId) =>
-  Promise.all([getMovieDataById(movieId), getCreditsDataById(movieId)]);
+const getMovieById = ({id , language}) =>
+  Promise.all([getMovieDataById({id , language}), getCreditsDataById(id)]);
 
 const getMovieByName = content =>
   new Promise((resolve, reject) => {

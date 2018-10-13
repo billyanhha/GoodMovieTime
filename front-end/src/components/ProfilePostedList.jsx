@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import axios from '../axios';
 import { Link } from "react-router-dom";
-import moment from 'moment'
+import moment from 'moment';
+import { translate } from "react-i18next";
+
 
 
 class ProfilePostedList extends Component {
@@ -20,6 +22,7 @@ class ProfilePostedList extends Component {
 
 
     render() {
+        const {t} = this.props;
         const renderList = this.state.list.map((value, index) => {
             return (
                 <div className="col-md-4 col-xs-12 sd-phone" key={index}>
@@ -44,7 +47,7 @@ class ProfilePostedList extends Component {
                                 <p><i className="far fa-heart" style={{ color: '#4267B2', marginRight: '3px' }}></i>{value.like.length}</p>
                                 <p><i className="far fa-comment" style={{ color: '#F783AC', marginRight: '3px' }}></i>{value.comments.length}</p>
                             </div>
-                            <Link to={`/lists/${value._id}`} style={{ fontWeight: 'bold' }} >View details</Link>
+                            <Link to={`/lists/${value._id}`} style={{ fontWeight: 'bold' }} >{t('profile.detail')}</Link>
                         </div>
                         <div>
 
@@ -56,7 +59,7 @@ class ProfilePostedList extends Component {
         return (
             <div className="container-fluid">
                 <div className="postedList">
-                    <h3 >Posted List</h3>
+                    <h3 >{t('profile.postedList')}</h3>
                     <div className="row " style={{ paddingTop: '1%'  }} >
                         {renderList}
                     </div>
@@ -66,4 +69,4 @@ class ProfilePostedList extends Component {
     }
 }
 
-export default (ProfilePostedList);
+export default translate()(ProfilePostedList);

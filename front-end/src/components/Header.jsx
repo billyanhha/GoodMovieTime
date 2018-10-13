@@ -52,7 +52,7 @@ class Header extends Component {
         const menu = (
             <Menu>
                 <Menu.Item>
-                    <button onClick={this.showModal} className="upListCollapse">Post<i className="fas fa-upload" style={{ marginLeft: '5px' }} ></i></button>
+                    <button onClick={this.showModal} className="upListCollapse">{t("navBar.post")}<i className="fas fa-upload" style={{ marginLeft: '5px' }} ></i></button>
                 </Menu.Item>
                 <Menu.Item>
                     <Link to={`/profile/` + this.props.id} className="navLink" >{t("navBar.viewProfile")}</Link>
@@ -77,9 +77,9 @@ class Header extends Component {
             (
                 <div className="col-md-4 col-12 loginButton">
                     <div style={{ verticalAlign: 'center', display: 'flex', justifyContent: 'flex-end', }}  >
-                        <span className="normarlText" >{t("navBar.hi")}, </span>
+                        <span className="normarlText" >{t("navBar.hi")} , </span>
                         <Dropdown overlay={menu}>
-                            <Link to="/" className="ant-dropdown-link" style={{ verticalAlign: 'center', display: 'flex', }} className="link"> . {username}
+                            <Link to="/" className="ant-dropdown-link" style={{ verticalAlign: 'center', display: 'flex', }} className="link"> {username}
                                 <Icon type="caret-down" theme="outlined" />
                             </Link>
                         </Dropdown>

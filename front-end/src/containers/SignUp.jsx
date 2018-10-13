@@ -4,6 +4,9 @@ import { Form, Input, Button } from 'antd';
 import { Redirect } from 'react-router-dom';
 import axios from "../axios";
 import { message } from 'antd';
+import i18n from "../locales/i18n";
+import { translate } from "react-i18next";
+
 
 const FormItem = Form.Item;
 class SignUpForm extends Component {
@@ -29,9 +32,9 @@ class SignUpForm extends Component {
                             maxCount: 1,
                         });
                         message.loading("Creating", 1)
-                            .then(message.success("Create success", 1));
+                            .then(message.success(i18n.t('message.createSuccess'), 1));
                     })
-                    .catch(err => message.error("User name is already taken", 1))
+                    .catch(err => message.error(i18n.t('message.taken'), 1))
             }
         });
     }
@@ -39,13 +42,15 @@ class SignUpForm extends Component {
     compareToFirstPassword = (rule, value, callback) => {
         const form = this.props.form;
         if (value && value !== form.getFieldValue('password')) {
-            callback('Two passwords that you enter is inconsistent!');
+            callback(i18n.t('message.notMatch'));
         } else {
             callback();
         }
     }
 
     render() {
+        const { t } = this.props;
+
         const { getFieldDecorator } = this.props.form;
         if (this.state.toLogin) {
             return (<Redirect to="/login" />)
@@ -56,46 +61,46 @@ class SignUpForm extends Component {
                     <NonLoginHeader />
                     <div className="loginForm">
                         <div className="signUp">
-                            <p className="signInText">Sign Up</p>
+                            <p className="signInText">{t('signUp.signUp')}</p>
                             <Form onSubmit={this.handleSubmit} className="login-form">
-                                <p className="signText" >User name</p>
-                                <FormItem className ="form-item-custom" >
+                                <p className="signText" >{t('signUp.username')}</p>
+                                <FormItem className="form-item-custom" >
                                     {getFieldDecorator('username', {
                                         rules: [{
                                             required: true,
                                             message: "Required"
                                         }, {
                                             pattern: new RegExp("^[a-zA-Z0-9_]{5,}[0-9]*$"),
-                                            message: "Password must have at least 6 characters"
+                                            message: `${t('message.userName')}`
                                         }
                                         ],
                                     })(
-                                        <Input  autoFocus type="text" />
+                                        <Input autoFocus type="text" />
                                     )}
                                 </FormItem>
-                                <p className="signText" >Full name</p>
-                                <FormItem className ="form-item-custom" >
+                                <p className="signText" >{t('signUp.fullname')}</p>
+                                <FormItem className="form-item-custom" >
                                     {getFieldDecorator('fullname', {
                                         rules: [{ required: true, message: 'Required' }, {
                                             pattern: new RegExp("^[a-zA-Z]([-']?[a-zA-Z]+)*( [a-zA-Z]([-']?[a-zA-Z]+)*)+$"),
-                                            message: "You have to use your real name"
+                                            message: `${t('message.fullname')}`
                                         }],
                                     })(
                                         <Input type="text" />
                                     )}
                                 </FormItem>
-                                <p className="signText" >Password</p>
-                                <FormItem className ="form-item-custom" >
+                                <p className="signText" >{t('signUp.password')}</p>
+                                <FormItem className="form-item-custom" >
                                     {getFieldDecorator('password', {
                                         rules: [{ required: true, message: 'Required' }, {
                                             pattern: new RegExp("^[a-zA-Z0-9_]{5,}[0-9]*$"),
-                                            message: "Password must have at least 6 characters"
+                                            message: `${t('message.password')}`
                                         }],
                                     })(
                                         <Input type="password" />
                                     )}
                                 </FormItem >
-                                <p className="signText" >Confirm password</p>
+                                <p className="signText" >{t('signUp.confirmPassword')}</p>
                                 <FormItem >
                                     {getFieldDecorator('confimPassword', {
                                         rules: [{ required: true, message: 'Required' }, {
@@ -104,11 +109,13 @@ class SignUpForm extends Component {
                                     })(
                                         <Input type="password" />
                                     )}
-                                </FormItem> 
-                                <p className="signText" style = {{textAlign : 'center'}} >By clicking Submit button , you are agreed to our <span className = "primaryColorText" >Term & Service </span> and <span className = "primaryColorText"> Policy</span></p>
-                                <FormItem className ="form-item-custom" >
+                                </FormItem>
+                                <p className="signText" style={{ textAlign: 'center' }} >{t('signUp.click')}
+                                    <span className="primaryColorText" >{t('signUp.term')}</span> {t('signUp.and')}
+                                    <span className="primaryColorText"> {t('signUp.policy')}</span></p>
+                                <FormItem className="form-item-custom" >
                                     <Button type="primary" className="myButton" htmlType="submit">
-                                        <b>Submit</b>
+                                        <b>{t('signUp.submit')}</b>
                                     </Button>
                                 </FormItem>
                             </Form>
@@ -121,4 +128,4 @@ class SignUpForm extends Component {
 }
 
 const SignUp = Form.create()(SignUpForm);
-export default (SignUp);
+export default translate()(SignUp);

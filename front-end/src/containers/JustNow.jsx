@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import moment from 'moment'
 import config from '../config';
 import defaultUser from "../images/defaultUser.jpg";
+import { translate } from "react-i18next";
 
 
 class JustNow extends Component {
@@ -41,7 +42,8 @@ class JustNow extends Component {
     }
 
     render() {
-        console.log(Math.floor(this.state.numberOfList / 10) + 1)
+        const { t } = this.props;
+
         const paging = this.state.numberOfList && Array.apply(null, Array(Math.floor(this.state.numberOfList / 10) + 1)).map((value, index) => {
             const goto = () => {
                 axios.get(`api/lists?page=${index + 1}`)
@@ -91,7 +93,7 @@ class JustNow extends Component {
                                 <p ><i className="far fa-comment" style={{ color: '#4267B2', marginRight: '3px' }}></i>{value.commentNum}</p>
                                 <p ><i className="far fa-heart" style={{ color: '#FDB616', marginRight: '3px' }}></i>{value.likeNum}</p>
                             </div>
-                            <Link to={`/lists/${value._id}`} style={{ fontWeight: 'bold' }} >View details</Link>
+                            <Link to={`/lists/${value._id}`} style={{ fontWeight: 'bold' }} >{t('profile.detail')}</Link>
                         </div>
                         <div>
                         </div>
@@ -108,7 +110,7 @@ class JustNow extends Component {
                     :
                     (
                         <div className="paddingResponsive" >
-                            <TitleTag title="New list" />
+                            <TitleTag title= {t('home.newList')} />
                             <div className="row">
                                 {renderList}
                             </div>
@@ -124,4 +126,4 @@ class JustNow extends Component {
     }
 }
 
-export default (JustNow);
+export default translate()(JustNow);

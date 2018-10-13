@@ -5,6 +5,7 @@ const translate = {
         top10: "Tốp 10",
         justNow: "Mới nhất",
         aboutUs: "Về chúng tôi",
+        post: 'Đăng bài',
         login: "Đăng nhập",
         viewProfile: "Trang cá nhân",
         logout: "Đăng xuất",
@@ -37,7 +38,47 @@ const translate = {
     message: {
         require: 'Yêu cầu',
         incorrect: 'Tên hoặc mật khẩu không đúng',
-        wait: 'Xin vui lòng đợi'
+        wait: 'Xin vui lòng đợi',
+        createSuccess: 'Tạo thành công',
+        taken: 'Tên đăng nhập đã có người sử dụng',
+        userName: 'Tên đăn nhập phải có ít nhất 6 kí tự',
+        password: 'Mật khẩu phải có ít nhất 6 kí tự',
+        fullname: 'Hệ thống yêu cầu dùng tên thật',
+        notMatch: 'Mật khẩu nhập lại không khớp'
+    },
+    signUp: {
+        signUp: 'Đăng kí',
+        username: 'Tên đăng nhập',
+        fullname: 'Tên đầy đủ',
+        password: 'Mật khẩu',
+        confirmPassword: 'Nhập lại mật khẩu',
+        submit: 'Hoàn tất',
+        click: 'Nhấn hoàn tất tức là bạn đã đông ý với chúng tôi về',
+        term: ' Điều khoản ',
+        and: 'và',
+        policy: ' Chính sách '
+    },
+    profile: {
+        post: 'Bài đăng',
+        like: 'Lượt thích',
+        postedList: 'Các list đã đăng',
+        detail: 'Chi tiết',
+        edit: 'Thay đổi tin cá nhân',
+        choose: 'Chọn ảnh',
+        about: 'Về tôi'
+    },
+    listDetails: {
+        comment: 'Bình luận',
+        type: '...',
+        send: 'Gửi',
+        like: 'Thích',
+        share: 'Chia sẻ',
+        uploading: 'Đang cập nhập',
+        overView: 'Nội dung : ',
+        release: 'Ngày ra rạp :',
+        genres: 'Thể loại :',
+        homePage: 'Trang chủ :',
+        actor: 'Diễn viên :'
     }
 }
 
