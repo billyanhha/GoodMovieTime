@@ -28,7 +28,7 @@ class Profile extends Component {
     componentDidMount() {
         this.setState({ loading: true })
         try {
-            axios.get(`api/users/${this.props.match.params.id}`)
+            axios.get(`api/users/detail/${this.props.match.params.id}`)
                 .then(data => {
                     this.setState({ users: data.data })
                 })

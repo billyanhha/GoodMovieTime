@@ -11,6 +11,7 @@ import Profile from './containers/Profile.jsx';
 import TopList from './containers/TopList';
 import JustNow from './containers/JustNow';
 import ListDetail from './containers/ListDetail';
+import Search from './containers/Search';
 
 class App extends Component {
   constructor(props) {
@@ -63,6 +64,9 @@ class App extends Component {
           }}/>
           <Route exact path={`/profilec/:id`} render={(props) => {
             return <Profile {...props} username={this.state.username} id={this.state.id} />
+          }}/>
+          <Route exact path={`/search`} render={(props) => {
+            return <Search {...props} username={this.state.username} id={this.state.id} />
           }}/>
         </div>
       </BrowserRouter>

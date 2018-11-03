@@ -25,7 +25,7 @@ router.get('/', (req, res) => {
         );
 })
 
-router.get('/:id', (req, res) => {
+router.get('/detail/:id', (req, res) => {
     userController.getUserById({ id: req.params.id })
         .then(data => {
             res.send(data);
@@ -55,6 +55,20 @@ router.put('/', authMiddleware.authorize, upload.single('avatarFile'), (req, res
 
 router.get('/:id/list', (req, res) => {
     userController.getUserList(req.params.id)
+        .then(data => res.send(data))
+        .catch(err => console.log(err))
+})
+
+router.get('/:id/list', (req, res) => {
+    userController.getUserList(req.params.id)
+        .then(data => res.send(data))
+        .catch(err => console.log(err))
+})
+
+router.get('/search', (req, res) => {
+    console.log(req.query.page)
+    let page= (req.query.page == 0 || !req.query.page) ? 1 : req.query.page;
+    userController.searchUser(req.query.content , page)
         .then(data => res.send(data))
         .catch(err => console.log(err))
 })

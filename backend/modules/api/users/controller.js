@@ -21,8 +21,8 @@ const getUserForAuth = (username) => new Promise((resolve, reject) => {
 
 const getAllUser = () => new Promise((resolve, reject) => {
     userModel.find()
-    .then(data => resolve(data))
-    .catch(err => reject(err));
+        .then(data => resolve(data))
+        .catch(err => reject(err));
 })
 
 const editUserInfo = ({ id, fullname, avatarFile, aboutMe }) => new Promise((resolve, reject) => {
@@ -52,7 +52,7 @@ const getUserById = ({ id }) => new Promise((resolve, reject) => {
 })
 
 const getImageData = ({ id }) => new Promise((resolve, reject) => {
-        userModel.findOne({ _id: id })
+    userModel.findOne({ _id: id })
         .select('avatar contentType')
         .then(data => resolve(data))
         .catch(err => reject(err))
@@ -65,6 +65,42 @@ const getUserList = (id) => new Promise((resolve, reject) => {
         .catch(err => reject(err))
 })
 
+const searchUser = (query , page) => new Promise((resolve, reject) => {
+    userModel.find({
+        $or: [
+            {
+                username: { $regex: ".*" + query + ".*" }
+            },
+            {
+                fullname: { $regex: ".*" + query + ".*" },
+            }
+        ]
+    })
+        .select('_id username fullname numberOfPost')
+        .skip((page - 1) * 10)
+        .limit(10)
+        .exec()
+        .then(
+            data => {
+                userModel.find({
+                    $or: [
+                        {
+                            username: { $regex: ".*" + query + ".*" }
+                        },
+                        {
+                            fullname: { $regex: ".*" + query + ".*" },
+                        }
+                    ]
+                }).countDocuments()
+                .then(number => resolve({data , total: number}))
+            })
+        .catch(err => reject(err))
+})
+
+
+
+
+
 
 
 module.exports = {
@@ -75,4 +111,5 @@ module.exports = {
     getUserList,
     getUserById,
     getImageData,
+    searchUser
 }

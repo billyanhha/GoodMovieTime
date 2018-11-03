@@ -80,6 +80,13 @@ router.delete("/:id/comment/:commentId", authMiddleware.authorize, (req, res) =>
     .catch(err => res.status(500).send(err));
 });
 
+router.get('/search', (req, res) => {
+  let page= (req.query.page == 0 || !req.query.page) ? 1 : req.query.page;
+  listController.searchList(req.query.content , page)
+      .then(data => res.send(data))
+      .catch(err => console.log(err))
+})
+
 
 
 module.exports = router;

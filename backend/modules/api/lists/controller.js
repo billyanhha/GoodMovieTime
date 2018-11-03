@@ -66,7 +66,7 @@ const getPagingList = (page) =>
           }
         },
         {
-          $sort: {createdAt : -1}
+          $sort: { createdAt: -1 }
         },
         {
           $skip: ((page - 1) * 10),
@@ -97,7 +97,7 @@ const getListDetails = id =>
         listModel.findOne({ _id: id })
           .select("name moviesId posterUri like view createdBy comments")
           .populate("createdBy", "username _id")
-          .populate("comments.createdBy" , "username _id")
+          .populate("comments.createdBy", "username _id")
           .then(data => resolve(data))
       })
       .catch(err => reject(data));
@@ -217,7 +217,25 @@ const getDataForHome = () => {
   return commonController.getDataForHome();
 }
 
-
+const searchList = (query, page) => new Promise((resolve, reject) => {
+  listModel.find({
+    name: { $regex: ".*" + query + ".*" },
+  })
+    .select("name moviesId posterUri like view")
+    .limit(10)
+    .skip((page - 1) * 10)
+    .exec()
+    .then(
+      data => {
+        listModel.find({
+          name: { $regex: ".*" + query + ".*" },
+        }).countDocuments()
+        .then(number => resolve({data , total: number}))
+      }
+    ).catch(
+      err => reject(err)
+    )
+})
 
 
 
@@ -231,5 +249,6 @@ module.exports = {
   deleteComment,
   deleteList,
   updateList,
-  getDataForHome
+  getDataForHome,
+  searchList
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect , withRouter } from "react-router-dom";
 import axios from "../axios";
 import { Modal, Menu, Dropdown, Icon } from 'antd';
 import PostListModal from './PostListModal.jsx';
@@ -44,7 +44,7 @@ class MyNavbar extends React.Component {
 
     render() {
 
-        const { t, i18n } = this.props;
+        const { t, i18n , location } = this.props;
 
         if (this.state.toPostList) {
             return <Redirect to="/post" />
@@ -56,7 +56,7 @@ class MyNavbar extends React.Component {
                     <button className="upListCollapse" onClick={this.showModal} style={{ color: '#fff', paddingTop: '10px', paddingBottom: '10px' }} >{t("navBar.post")}<i className="fas fa-upload" style={{ marginLeft: '5px' }} ></i></button>
                     <Link to={"/profile/" + this.props.id} className="ant-dropdown-link navLink" >{t("navBar.viewProfile")}</Link>
                     <Link to="/login" onClick={this.logout} className="navLink">{t("navBar.logout")}</Link>
-                    <Link to="/" className="navLink" > <i className="fas fa-search"></i></Link>
+                    <Link to="/search" className="navLink" > <i className="fas fa-search"></i></Link>
                 </div>
             )
             : (
@@ -77,14 +77,14 @@ class MyNavbar extends React.Component {
                         }
                         <i className="fas fa-bars collapse blackCollapse" onClick={this.collapseClick} ></i>
                     </div>
-                    <Link to="/" className="navLink">{t("navBar.home")}</Link>
-                    <Link to="/top" className="navLink" >{t("navBar.top10")}</Link>
-                    <Link to="/justNow" className="navLink" >{t("navBar.justNow")}</Link>
-                    <Link to="/" className="navLink" >{t("navBar.aboutUs")}</Link>
+                    <Link to="/" className={location.pathname === '/' ?  "navLinkActive" : "navLink"}>{t("navBar.home")}</Link>
+                    <Link to="/top" className={location.pathname === '/top' ?  "navLinkActive" : "navLink"} >{t("navBar.top10")}</Link>
+                    <Link to="/justNow" className={location.pathname === '/justNow' ?  "navLinkActive" : "navLink"} >{t("navBar.justNow")}</Link>
+                    <Link to="/" className={location.pathname === '/aboutUs' ?  "navLinkActive" : "navLink"} >{t("navBar.aboutUs")}</Link>
                     {render}
                 </div>
                 <div className="myNavRight" >
-                    <Link to="/" className="navLink" style={{ width: '100%', justifyContent: 'center', color: '#000' }} > <i className="fas fa-search"  ></i></Link>
+                    <Link to="/search" className="navLink" style={{ width: '100%', justifyContent: 'center', color: '#000' }} > <i className="fas fa-search"  ></i></Link>
                 </div>
                 <Modal title={`${t('postList.title')}`}
                     visible={this.state.visible}
@@ -99,4 +99,4 @@ class MyNavbar extends React.Component {
     }
 }
 
-export default translate()(MyNavbar);
+export default translate()(withRouter(MyNavbar));
