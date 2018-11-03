@@ -21,7 +21,7 @@ class MovieInfo extends React.Component {
         const renderGenres = movieData.genres ? movieData.genres.map((value, index) => {
             return (<span key={index} >{value.name} . </span>)
         }) : `${i18n.t('listDetails.uploading')}`
-        const renderActor = movieData.actor ? movieData.actor.splice(0, 5).map((value, index) => {
+        const renderActor = movieData.actor ? movieData.actor.map((value, index) => {
             return (<span key={index} >{value.name} . </span>)
         }) : `${i18n.t('listDetails.uploading')}`
         return (
@@ -46,7 +46,7 @@ class MovieInfo extends React.Component {
                                     <p style={{ color: '#000' }}><span style={{ fontWeight: 'bold', color: '#000' }}>{t('listDetails.homePage')}</span>
                                         <a style={{ fontWeight: 'bold' }} target='_blank' href={`${movieData.homepage || ''}`} > {movieData.homepage || `${t('listDetails.uploading')}` } </a>
                                     </p>
-                                    <p style={{ color: '#000' }}><span style={{ fontWeight: 'bold', color: '#000' }}>{t('listDetails.actor')}</span> {renderActor}</p>
+                                    <p style={{ color: '#000' }}  className= "actorText"><span style = {{fontWeight: "bold"}} >{t('listDetails.actor')}</span> {renderActor}</p>
                                 </div>
                             </div>
                         </div>

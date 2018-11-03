@@ -10,10 +10,12 @@ import Loader from '../components/Loader.jsx';
 import MovieInfo from '../components/MovieInfo';
 import CommentList from '../components/CommentList';
 import { Link, Redirect } from "react-router-dom";
-import { Modal, message } from 'antd';
+import { Modal, message, Dropdown, Menu, Icon } from 'antd';
 import { FacebookShareCount } from "react-share";
 import { translate } from "react-i18next";
 import i18n from "../locales/i18n";
+import PostListModal from '../components/PostListModal';
+import EditListModal from '../components/EditListModal';
 
 class ListDetail extends Component {
     constructor(props) {
@@ -121,6 +123,22 @@ class ListDetail extends Component {
         return false;
     }
 
+    handleCancel = () => {
+        console.log('Clicked cancel button');
+        this.setState({
+            visible: false,
+        });
+    }
+
+
+    showModal = () => {
+        this.setState({
+            visible: true,
+        });
+    }
+
+
+
 
     render() {
 
@@ -128,6 +146,16 @@ class ListDetail extends Component {
 
         const { t } = this.props;
 
+        const menu = (
+            <Menu>
+                <Menu.Item onClick={this.showModal}>
+                    <button  className=" deleteButton">Edit list</button>
+                </Menu.Item>
+                <Menu.Item  onClick={this.showDeleteConfirm}>
+                    <button className=" deleteButton">Delete list</button>
+                </Menu.Item>
+            </Menu>
+        );
 
         if (this.state.redirect) {
             return (<Redirect to="/" />);
@@ -142,12 +170,17 @@ class ListDetail extends Component {
         const renderMovie = value && (value.moviesId).map((id, index) => {
             return (
                 <div className="col-md-6 col-12" key={index} >
-                    <MovieInfo id={id} language = {language}/>
+                    <MovieInfo id={id} language={language} />
                 </div>
             )
         })
 
-        const renderButton = this.deleteAuthoRise() && (<i onClick={this.showDeleteConfirm} className="fas fa-backspace deleteButton"></i>
+        const renderButton = this.deleteAuthoRise() && (
+            <div>
+                <Dropdown overlay={menu}>
+                    <Icon type="down-circle" theme="outlined" style={{ fontSize: "25px", color: "#EA1C22" }} />
+                </Dropdown>
+            </div>
         )
 
         const didLike = (this.state.value && this.state.like)
@@ -164,7 +197,7 @@ class ListDetail extends Component {
             )
 
         return (
-            <div style={{ backgroundColor: "#fafafa" }} >
+            <div>
                 <Header username={this.props.username} id={this.props.id} />
                 <MyNavbar username={this.props.username} id={this.props.id} />
                 {this.state.loading || !value ?
@@ -188,6 +221,16 @@ class ListDetail extends Component {
                                             <p ><i className="fas fa-eye" style={{ color: '#FDB616', marginRight: '3px' }} ></i>{value.view}</p>
                                         </div>
                                     </div>
+                                    <div className="modal"  >
+                                        <Modal title={`${t('postList.title')}`}
+                                            visible={this.state.visible}
+                                            onCancel={this.handleCancel}
+                                            footer={[]}
+                                            className="fixWidthModal"
+                                        >
+                                            <EditListModal id={`${this.props.match.params.id}`} data={this.state.value} username={this.props.username} uid={this.props.id} />
+                                        </Modal>
+                                    </div>
                                     {renderButton}
                                 </div>
                                 <div className="row " style={{ marginTop: '2%' }} >
@@ -197,7 +240,7 @@ class ListDetail extends Component {
                                     {didLike}
                                     <a target="_blank" href={`https://www.facebook.com/sharer.php?u=https://goodmovietime.herokuapp.com/lists/${this.props.match.params.id}`} className="fb-xfbml-parse-ignore shareButton">
                                         {i18n.t('listDetails.share')}
-                                        <FacebookShareCount url={`https://www.facebook.com/sharer.php?u=https://goodmovietime.herokuapp.com/lists/${this.props.match.params.id}`}>
+                                        <FacebookShareCount url={`https://goodmovietime.herokuapp.com/lists/${this.props.match.params.id}`}>
                                             {shareCount => (
                                                 <span className="myShareCountWrapper">{shareCount}</span>
                                             )}

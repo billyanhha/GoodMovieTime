@@ -55,7 +55,7 @@ class Header extends Component {
                     <button onClick={this.showModal} className="upListCollapse">{t("navBar.post")}<i className="fas fa-upload" style={{ marginLeft: '5px' }} ></i></button>
                 </Menu.Item>
                 <Menu.Item>
-                    <Link to={`/profile/` + this.props.id} className="navLink" >{t("navBar.viewProfile")}</Link>
+                    <Link to={`/profilec/` + this.props.id} className="navLink" >{t("navBar.viewProfile")}</Link>
                 </Menu.Item>
                 <Menu.Item>
                     <Link to="/login" onClick={this.logout} className="navLink">{t("navBar.logout")}</Link>
@@ -79,7 +79,7 @@ class Header extends Component {
                     <div style={{ verticalAlign: 'center', display: 'flex', justifyContent: 'flex-end', }}  >
                         <span className="normarlText" >{t("navBar.hi")} , </span>
                         <Dropdown overlay={menu}>
-                            <Link to="/" className="ant-dropdown-link" style={{ verticalAlign: 'center', display: 'flex', }} className="link"> {username}
+                            <Link to={`/profilec/` + `${this.props.id}`}  className="ant-dropdown-link" style={{ verticalAlign: 'center', display: 'flex', }} className="link"> {username}
                                 <Icon type="caret-down" theme="outlined" />
                             </Link>
                         </Dropdown>
@@ -110,7 +110,7 @@ class Header extends Component {
                     <img src={goku} className="super" alt="Logo" />
                 </div> */}
                 <div className="modal"  >
-                    <Modal title="Post list"
+                    <Modal title= {`${t('postList.title')}`}
                         visible={this.state.visible}
                         onCancel={this.handleCancel}
                         footer={[]}

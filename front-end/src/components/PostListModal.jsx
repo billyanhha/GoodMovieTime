@@ -6,6 +6,9 @@ import * as _ from "lodash";
 import Async from 'react-select/lib/Async';
 import { Redirect } from "react-router-dom";
 import config from '../config';
+import i18n from "../locales/i18n";
+import { translate } from "react-i18next";
+
 
 
 class PostListModal extends React.Component {
@@ -57,7 +60,7 @@ class PostListModal extends React.Component {
                 name: this.state.name,
             })
                 .then(data => {
-                    this.setState({listId: data.data , redirect: true});
+                    this.setState({ listId: data.data, redirect: true });
                     message.success("Create success", 1);
                 })
                 .catch(err => console.log(err))
@@ -99,6 +102,8 @@ class PostListModal extends React.Component {
 
     render() {
 
+        const { t } = this.props;
+
         if (this.state.redirect && this.state.listId) {
             return (<Redirect to={`/lists/${this.state.listId}`} />);
         }
@@ -111,7 +116,7 @@ class PostListModal extends React.Component {
                     <img alt={option.title} src={option.posterUri !== 'https://image.tmdb.org/t/p/w500null' ? option.posterUri : 'https://vnkings.com/wp-content/uploads/2018/01/unknown_01.jpg'} style={{ width: '100px', height: 'auto' }} />
                     <div className="searchMovie-detail">
                         <p style={{ fontWeight: 'bold', paddingLeft: '10px' }} >{option.title}</p>
-                        <p style={{ fontSize: '12px', paddingLeft: '10px' }} ><span style={{ fontWeight: 'bold', fontSize: '13px' }} >Nội dung : </span>  {option.overview.substr(0, 100) + '...'}</p>
+                        <p style={{ fontSize: '12px', paddingLeft: '10px' }} ><span style={{ fontWeight: 'bold', fontSize: '13px' }} >{i18n.t('listDetails.overView')}</span>  {option.overview.substr(0, 100) + '...'}</p>
                         <p style={{ fontSize: '13px', paddingLeft: '10px' }} > <span style={{ fontWeight: 'bold', fontSize: '13px' }} >IDMB : </span>{option.vote_average}</p>
                     </div>
                 </div>
@@ -126,9 +131,9 @@ class PostListModal extends React.Component {
                         <div key={index} className="col-4 col-md-2 sd-phone hoverMovie" >
                             <div className="postModal " style={{
                                 backgroundImage: `url('${this.state.posterUri[index]}')`,
-                            }}>
+                            }}  onClick={this.clear.bind(this, index)}>
                             </div>
-                            <i className="fas fa-times deleteMovie" onClick={this.clear.bind(this, index)}></i>
+                            <i className="fas fa-times deleteMovie"></i>
                         </div>
                     )
                     :
@@ -152,7 +157,7 @@ class PostListModal extends React.Component {
             <form className="form-group">
                 <div className="row" style={{ padding: '10px' }}>
                     <div className="col-md-6 col-12 marginBottom">
-                        <input placeholder="Title" maxLength="100" className="form-control" required onChange={e => this.handleChangeText(e.target.value)} />
+                        <input placeholder={t('postList.name')} maxLength="100" className="form-control" required onChange={e => this.handleChangeText(e.target.value)} />
                     </div>
                     <div className="col-md-6 col-12 marginBottom" style={this.state.id.length === 6 ? { display: 'none' } : {}} >
                         <Async
@@ -162,7 +167,7 @@ class PostListModal extends React.Component {
                             onChange={this.onChange}
                             value={this.state.inputValue}
                             blurInputOnSelect={true}
-                            placeholder='Enter movie title , credits ..'
+                            placeholder={`${t('postList.movieName')}`}
                             getOptionLabel={({ title }) => title}
                             defaultOptions
                             cacheOptions
@@ -177,12 +182,12 @@ class PostListModal extends React.Component {
                 </div>
                 <center>
                     <button className="btn primaryButton" onClick={this.submitList}>
-                        Submit
-                            </button>
+                        {`${t('signUp.submit')}`}
+                    </button>
                 </center>
             </form>
         );
     }
 }
 
-export default (PostListModal);
+export default translate()(PostListModal);

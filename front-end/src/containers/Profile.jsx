@@ -29,7 +29,9 @@ class Profile extends Component {
         this.setState({ loading: true })
         try {
             axios.get(`api/users/${this.props.match.params.id}`)
-                .then(data => { this.setState({ users: data.data }) })
+                .then(data => {
+                    this.setState({ users: data.data })
+                })
                 .catch(err => console.log(err))
             axios.get(`api/users/${this.props.match.params.id}/imageData`)
                 .then(data => {
@@ -67,7 +69,6 @@ class Profile extends Component {
 
     render() {
         const { t } = this.props;
-
         const id = this.props.match.params.id;
         const { users } = this.state;
         const authoRize = (this.props.match.params.id === this.props.id);

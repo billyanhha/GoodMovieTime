@@ -5,6 +5,7 @@ import { Modal, Menu, Dropdown, Icon } from 'antd';
 import PostListModal from './PostListModal.jsx';
 import { translate } from "react-i18next";
 
+
 class MyNavbar extends React.Component {
     state = {
         current: 'mail',
@@ -71,7 +72,7 @@ class MyNavbar extends React.Component {
                     <div className="collapseRow " >
                         {
                             this.props.username && (
-                                <Link to="/" className=" collapse navLink blackCollapse" >{t("navBar.hi")}, {this.props.username} </Link>
+                                <Link to={`/profilec/` + `${this.props.id}`} className=" collapse navLink blackCollapse" >{t("navBar.hi")}, {this.props.username} </Link>
                             )
                         }
                         <i className="fas fa-bars collapse blackCollapse" onClick={this.collapseClick} ></i>
@@ -85,7 +86,7 @@ class MyNavbar extends React.Component {
                 <div className="myNavRight" >
                     <Link to="/" className="navLink" style={{ width: '100%', justifyContent: 'center', color: '#000' }} > <i className="fas fa-search"  ></i></Link>
                 </div>
-                <Modal title="Post list"
+                <Modal title={`${t('postList.title')}`}
                     visible={this.state.visible}
                     onCancel={this.handleCancel}
                     footer={[]}

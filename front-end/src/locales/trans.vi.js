@@ -78,7 +78,14 @@ const translate = {
         release: 'Ngày ra rạp :',
         genres: 'Thể loại :',
         homePage: 'Trang chủ :',
-        actor: 'Diễn viên :'
+        actor: 'Diễn viên :',
+        edit: 'Sửa',
+        delete: 'Xóa',
+    },
+    postList: {
+        title: 'Đăng list',
+        movieName: 'Nhập tên phim , diễn viên , ..',
+        name: 'Tên list'
     }
 }
 

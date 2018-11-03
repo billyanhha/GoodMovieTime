@@ -49,7 +49,7 @@ class App extends Component {
           <Route path='/signUp' render={(props) => {
             return <SignUp {...props} />
           }} />
-          <Route path='/profile/:id' render={(props) => {
+          <Route  path='/profile/:id' render={(props) => {
             return <Profile {...props} username={this.state.username} id={this.state.id} />
           }} />
           <Route path='/top' render={(props) => {
@@ -61,7 +61,9 @@ class App extends Component {
           <Route path='/lists/:id' render={(props) => {
             return <ListDetail {...props} username={this.state.username} id={this.state.id} />
           }}/>
-          {/* <PrivateRoute path='/post'  /> */}
+          <Route exact path={`/profilec/:id`} render={(props) => {
+            return <Profile {...props} username={this.state.username} id={this.state.id} />
+          }}/>
         </div>
       </BrowserRouter>
     );

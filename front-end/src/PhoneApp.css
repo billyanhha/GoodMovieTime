@@ -277,6 +277,10 @@
         display: block;
     }
 
+    .listStats {
+        width: 100% !important;
+    }
+
  
     a:hover {
         color: none !important;

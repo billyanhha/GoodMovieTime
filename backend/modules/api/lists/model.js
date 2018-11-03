@@ -21,7 +21,7 @@ const listModel = new Schema(
     moviesId: [{ type: Number, required: true }],
     posterUri: [{ type: String, required: true }],
     createdBy: { type: Schema.Types.ObjectId, ref: "users" },
-    name: { type: String, requied: true },
+    name: { type: String , required: true },
     like: { type: [likeModel] , default : []},
     view: { type: Number, default: 0 },
     comments: {type: [commentModel] , default: []}

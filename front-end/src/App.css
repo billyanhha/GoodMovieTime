@@ -3,22 +3,17 @@
 }
 
 html , body {
-    height: 100%;
+    min-height: 100%;
 }
 
-.animation{
-    /* animation: fade-in 0.3s ease-in; */
-    /* back */
-}
+
 
 @keyframes fade-in {
     from {opacity: 0}
     to {opacity: 1;}
 }
 
-.row{
-    /* margin-right: 0 !important; */
-}
+
 
 .padding {
     padding-left: 15% !important;
@@ -54,7 +49,7 @@ html , body {
 }
 
 .container-fluid  {
-    height: 100%;
+    min-height: 100%;
     background-repeat: no-repeat;
     background-size: cover;
     /* width: 100%; */
@@ -70,7 +65,7 @@ html , body {
 
 .contain{
     display: flex;
-    height: 100%;
+    min-height: 100%;
     width: 100%;
     background-color: rgba(0 , 0, 0,0.6);
     flex-direction: column
@@ -97,7 +92,7 @@ html , body {
     bottom: 0;
     left: 0;
     right: 0;
-    height: 100%;
+    min-height: 100%;
     align-items: center;
     justify-content: center;
 }
@@ -144,9 +139,6 @@ html , body {
 #components-form-demo-normal-login .login-form {
     max-width: 300px;
   }
-  #components-form-demo-normal-login .login-form-forgot {
-    /* float: c; */
-  } 
   .myButton {
     height: 2vw !important;
     margin-top: 1vw; 
@@ -238,6 +230,7 @@ html , body {
 
 .container-fluid{
     background-color: #fafafa;
+    height: 100%;
 }
 
 .superheroLine {
@@ -257,10 +250,6 @@ html , body {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-}
-
-.a{
-    /* padd */
 }
 
 .panelTag{
@@ -302,9 +291,6 @@ html , body {
 
 }
 
-.logoView{
-    /* height: ; */
-}
 
 .input {
     width: 35%;
@@ -357,11 +343,6 @@ html , body {
     border-top: 0.3px solid rgba(0,0,0,.85)
 }
 
-.searhButton{
-
-}
-
-
 .navLink{
     display: flex;
     color: #fafafa;
@@ -401,16 +382,15 @@ html , body {
     /* padding: 1%; */
     margin-left: 15%;
     margin-right:20%;
-    height:18%;
+    height:7%;
     /* top: 90%; */
-    bottom: -10%;
+    bottom: 0%;
     background-color: #fafafa;
     display: flex;
 }
 
 .navSlideItem{
     /* width: ; */
-    display: flex;
     padding-left : 2%;
     padding-right: 2%;
     flex-basis: 60%;
@@ -439,19 +419,19 @@ html , body {
 
 .slideNavText{
     cursor: pointer;
-    padding-top: 10%;
+    padding-top: 5%;
     color: #000;
     font-weight: bolder;
     letter-spacing: 0;
-    font-size: 0.8vw;
+    font-size: 14px;
 }
 
 .slideNavTextClick{
     color: #EB2328;
-    padding-top: 10%;
+    padding-top: 5%;
     font-weight: bolder;
     letter-spacing: 0;
-    font-size: 0.8vw;
+    font-size: 14px;
 }
 
 /* .slide div {
@@ -765,6 +745,8 @@ textarea.ant-input{
     display: flex;
     justify-content: center;
     margin-top: 5%;
+    /* position: absolute; */
+    height: 100%;
 }
 
 .loader {
@@ -966,6 +948,7 @@ textarea.ant-input{
     left: 50%;
     font-size: 30px;
     color: #fff;
+    cursor: pointer;
 }
 
 .myPg {
@@ -1010,15 +993,21 @@ textarea.ant-input{
 
 .deleteButton{
     color: #EB2328;
-    font-size: 20px;
     transition: 0.3s all ease;
     cursor: pointer;
-    height: 20px;
+    background-color: transparent;
+    border: none;
 }
 
-.deleteButton:hover{
-    color: #000;
-    font-size: 20px;
+.deleteIcon{
+    cursor: pointer;
+    margin-left: 10px;
+    transition: 0.1s ease-in-out;
+}
+
+.deleteIcon:hover {
+    color: #EA1C22;
+    font-weight: bold;
 }
 
 
@@ -1049,8 +1038,8 @@ textarea.ant-input{
 
 .infoDetail { 
     height: 17vw; 
-    overflow: auto;
- }
+ overflow: auto;
+}
 
  .shareButton{
      font-weight: bold;
@@ -1098,7 +1087,13 @@ textarea.ant-input{
      resize: none;
  }
 
- textarea.form-control {
+.actorText{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    color: #000;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2 /* number of lines to show */
 }
 
 .comment{

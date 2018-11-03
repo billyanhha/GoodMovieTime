@@ -102,7 +102,7 @@ class JustNow extends Component {
             )
         })
         return (
-            <div>
+            <div style ={{height: '100%'}} >
                 <Header username={this.props.username} id={this.props.id} />
                 <MyNavbar username={this.props.username} id={this.props.id} />
                 {this.state.loading || !this.state.numberOfList

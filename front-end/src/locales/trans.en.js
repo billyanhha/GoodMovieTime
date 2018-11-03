@@ -8,7 +8,7 @@ const translate = {
         login: "Login",
         post: 'Post',
         viewProfile: "View profile",
-        logout: "logout",
+        logout: "Log out",
         hi: "Hi"
     },
     header: {
@@ -78,7 +78,14 @@ const translate = {
         release: 'Release time :',
         genres: 'Genres :',
         homePage: 'Home page :',
-        actor: 'Actor :'
+        actor: 'Actor :',
+        edit: 'Edit list',
+        delete: 'Delete list',
+    },
+    postList: {
+        title: 'Post list',
+        movieName: 'Enter movie title , credits ..',
+        name: 'List name'
     }
 }
 
