@@ -5,6 +5,7 @@ import config from '../config';
 import axios from '../axios';
 import { message, Icon, Modal } from 'antd';
 import { translate } from "react-i18next";
+import defaultUser from "../images/defaultUser.jpg";
 
 class CommentList extends Component {
     constructor(props) {
@@ -70,6 +71,10 @@ class CommentList extends Component {
 
             },
         });
+    }
+
+    onErrorImage = (e) => {
+        e.target.src = defaultUser;
     }
 
 

@@ -6,6 +6,7 @@ import { translate } from "react-i18next";
 import axios from "../axios";
 import Loader from '../components/Loader';
 import SearchResult from '../components/SearchResult';
+import i18n from '../locales/i18n';
 
 class Search extends Component {
     constructor(props) {
@@ -29,7 +30,7 @@ class Search extends Component {
                 })
                 .catch(err => {
                     console.log(err);
-                    this.setState({ loading: false });
+                    this.setState({ loading: false , data:[] });
                 })
         }
     }
@@ -37,29 +38,28 @@ class Search extends Component {
     searchList = () => {
         if (this.state.content) {
             this.setState({ loading: true });
-            this.setState({ loading: true });
             axios.get(`/api/lists/search?content=${this.state.content}`)
                 .then(data => {
                     this.setState({ data: data.data, loading: false });
                 })
                 .catch(err => {
                     console.log(err);
-                    this.setState({ loading: false });
+                    this.setState({ loading: false , data:[] });
                 })
         }
     }
 
     searchMovies = () => {
         if (this.state.content) {
+            console.log(i18n.language)
             this.setState({ loading: true });
-            this.setState({ loading: true });
-            axios.get(`/api/movies?content=${this.state.content}`)
+            axios.get(`/api/movies?content=${this.state.content}&language=${i18n.language}`)
                 .then(data => {
                     this.setState({ data: data.data, loading: false });
                 })
                 .catch(err => {
                     console.log(err);
-                    this.setState({ loading: false });
+                    this.setState({ loading: false , data:[] });
                 })
         }
     }

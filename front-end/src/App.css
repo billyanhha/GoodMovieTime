@@ -593,6 +593,7 @@ html , body {
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
+    background-color: #EEE;
 }
 
 
@@ -1219,6 +1220,16 @@ textarea.ant-input{
     justify-content: space-around;
     width: 100%;
 }
+
+.searchMovieResult{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 5px;
+  }
+
+  .searchMovie-detail-result{
+      color: '#000'
+  }
 
 
 

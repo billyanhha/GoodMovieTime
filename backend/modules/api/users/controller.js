@@ -69,10 +69,10 @@ const searchUser = (query , page) => new Promise((resolve, reject) => {
     userModel.find({
         $or: [
             {
-                username: { $regex: ".*" + query + ".*" }
+                username: { $regex: ".*" + query.toLowerCase() + ".*" }
             },
             {
-                fullname: { $regex: ".*" + query + ".*" },
+                fullname: { $regex: ".*" + query.toLowerCase() + ".*" },
             }
         ]
     })
@@ -85,10 +85,10 @@ const searchUser = (query , page) => new Promise((resolve, reject) => {
                 userModel.find({
                     $or: [
                         {
-                            username: { $regex: ".*" + query + ".*" }
+                            username: { $regex: ".*" + query.toLowerCase() + ".*" }
                         },
                         {
-                            fullname: { $regex: ".*" + query + ".*" },
+                            fullname: { $regex: ".*" + query.toLowerCase() + ".*" },
                         }
                     ]
                 }).countDocuments()

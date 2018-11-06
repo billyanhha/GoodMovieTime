@@ -51,9 +51,9 @@ const getCreditsDataById = movieId =>
 const getMovieById = ({id , language}) =>
   Promise.all([getMovieDataById({id , language}), getCreditsDataById(id)]);
 
-const getMovieByName = content =>
+const getMovieByName = (content , language) =>
   new Promise((resolve, reject) => {
-    const URI = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${content}`;
+    const URI = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${content}&language=${language}`;
     axios
       .get(URI)
       .then(
@@ -81,7 +81,7 @@ const getMovieByName = content =>
       .catch(err => reject(err));
   });
 
-const getMovieByCredits = content =>
+const getMovieByCredits = (content) =>
   new Promise((resolve, reject) => {
     const URI = `https://api.themoviedb.org/3/search/person?api_key=${API_KEY}&query=${content}`;
     axios
@@ -113,8 +113,8 @@ const getMovieByCredits = content =>
       .catch(err => reject(err));
   });
 
-const getMovieByContent = content =>
-  Promise.all([getMovieByName(content), getMovieByCredits(content)]);
+const getMovieByContent = (content , language) =>
+  Promise.all([getMovieByName(content , language), getMovieByCredits(content)]);
 
 const getHomepageById = movieId =>
   new Promise((resolve, reject) => {

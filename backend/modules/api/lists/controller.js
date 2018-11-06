@@ -218,19 +218,34 @@ const getDataForHome = () => {
 }
 
 const searchList = (query, page) => new Promise((resolve, reject) => {
-  listModel.find({
-    name: { $regex: ".*" + query + ".*" },
-  })
-    .select("name moviesId posterUri like view")
-    .limit(10)
-    .skip((page - 1) * 10)
-    .exec()
+  listModel.aggregate(
+    [
+      {
+        $match: {name: { $regex: ".*" + query.toLowerCase() + ".*" },
+      }
+      },
+      {
+        $project: {
+          name:1,
+          moviesId: 1,
+          posterUri: 1,
+          view: 1,
+          likeNum: { $size: "$like" },
+        }
+      },
+      {
+        $skip: ((page - 1) * 10),
+      },
+      {
+        $limit: 10
+      },
+    ])
     .then(
       data => {
         listModel.find({
-          name: { $regex: ".*" + query + ".*" },
+          name: { $regex: ".*" + query.toLowerCase() + ".*" },
         }).countDocuments()
-        .then(number => resolve({data , total: number}))
+          .then(number => resolve({ data, total: number }))
       }
     ).catch(
       err => reject(err)
