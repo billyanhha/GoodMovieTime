@@ -80,7 +80,7 @@ class MyNavbar extends React.Component {
                     <Link to="/" className={location.pathname === '/' ?  "navLinkActive" : "navLink"}>{t("navBar.home")}</Link>
                     <Link to="/top" className={location.pathname === '/top' ?  "navLinkActive" : "navLink"} >{t("navBar.top10")}</Link>
                     <Link to="/justNow" className={location.pathname === '/justNow' ?  "navLinkActive" : "navLink"} >{t("navBar.justNow")}</Link>
-                    <Link to="/" className={location.pathname === '/aboutUs' ?  "navLinkActive" : "navLink"} >{t("navBar.aboutUs")}</Link>
+                    <Link to="/aboutus" className={location.pathname === '/aboutUs' ?  "navLinkActive" : "navLink"} >{t("navBar.aboutUs")}</Link>
                     {render}
                 </div>
                 <div className="myNavRight" >
