@@ -1,6 +1,6 @@
 import axios from "axios";
 export default axios.create({
-  baseURL : 'http://localhost:6969',
+  baseURL : 'https://goodmovietime.herokuapp.com',
   withCredentials: true,
 });
 

@@ -14,7 +14,6 @@ import { Modal, message, Dropdown, Menu, Icon } from 'antd';
 import { FacebookShareCount } from "react-share";
 import { translate } from "react-i18next";
 import i18n from "../locales/i18n";
-import PostListModal from '../components/PostListModal';
 import EditListModal from '../components/EditListModal';
 
 class ListDetail extends Component {

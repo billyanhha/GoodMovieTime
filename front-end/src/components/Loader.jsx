@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import pacman from '../images/ll.gif';
-
 class Loader extends Component {
 
     render() {

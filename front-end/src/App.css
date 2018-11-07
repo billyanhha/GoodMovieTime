@@ -355,7 +355,7 @@ html , body {
 
 .navLinkActive{
     display: flex;
-    color: #EA1C22;
+    color: #FE0000;
     font-weight: 600;
     text-align: left;
     padding-top:10px;

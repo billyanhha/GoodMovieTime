@@ -98,7 +98,6 @@ class Search extends Component {
 
 
     render() {
-        const { t } = this.props;
 
         const arr = ['USER', 'LIST', 'MOVIE'];
         const renderSearchType = arr.map((value, index) => {
