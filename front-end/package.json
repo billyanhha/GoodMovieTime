@@ -22,7 +22,7 @@
     "react-select": "^2.0.0",
     "react-share": "^2.3.1",
     "react-slick": "^0.23.1",
-    "yarn": "^1.10.1"
+    "yarn": "^1.22.0"
   },
   "scripts": {
     "start": "react-scripts start",
