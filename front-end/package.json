@@ -10,7 +10,7 @@
     "i18next": "^11.9.1",
     "i18next-browser-languagedetector": "^2.2.3",
     "isomorphic-fetch": "^2.2.1",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.19",
     "material-ui": "^0.20.2",
     "moment": "^2.22.2",
     "react": "^16.5.2",
